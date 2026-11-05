@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/Kazo-ca/Os-App-Chess",
+  "project": "src/Kazo.Chess/Kazo.Chess.csproj",
+  "category": "entertainment",
+  "tags": [
+    "chess",
+    "board-game",
+    "stockfish",
+    "pgn"
+  ],
+  "license": "GPL-3.0",
+  "commit": "c64fe542f46f9ed3b85662c1140c6cc13c07dbab"
+}
