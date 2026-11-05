@@ -1,11 +1,11 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace HackerOs.MarketPlace;
+namespace Kazo.Os.MarketPlace;
 
 /// <summary>
-/// <c>catalog.json</c> at the root of the <c>packages</c> branch (ADR 0188 §6): what the Hack Store
-/// and <c>hackpkg</c> read, through <c>raw.githubusercontent.com</c>. Every path is relative to the
+/// <c>catalog.json</c> at the root of the <c>packages</c> branch (ADR 0188 §6): what the Kazo OS Store
+/// and <c>kazopkg</c> read, through <c>raw.githubusercontent.com</c>. Every path is relative to the
 /// branch root.
 /// </summary>
 /// <param name="SchemaVersion">Format version of this file; readers refuse a higher one.</param>
@@ -69,7 +69,7 @@ public sealed record CatalogApp(
 /// <summary>One published version of an app.</summary>
 /// <param name="Version">SemVer of the version.</param>
 /// <param name="Commit">Commit our CI built.</param>
-/// <param name="Package">Path of the <c>.hackapp</c>.</param>
+/// <param name="Package">Path of the <c>.kazoapp</c>.</param>
 /// <param name="Sha256">SHA-256 of the package, lower-case hex.</param>
 /// <param name="Size">Size of the package in bytes.</param>
 /// <param name="PublishedAt">When the package was published (UTC, ISO 8601).</param>
@@ -79,7 +79,7 @@ public sealed record CatalogApp(
 /// <param name="Screenshots">Paths of the screenshots, in order.</param>
 /// <param name="Descriptions">Path of the long description by language code.</param>
 /// <param name="Signature">
-/// ECDSA P-256 signature of the package, base64 (ADR 0214 §2 of Kazo-ca/HackerOs); absent when the
+/// ECDSA P-256 signature of the package, base64 (ADR 0214 §2 of Kazo-ca/Os); absent when the
 /// catalog had no signing key at publication.
 /// </param>
 public sealed record CatalogVersion(

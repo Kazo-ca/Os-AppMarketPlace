@@ -34,7 +34,7 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            const marker = '<!-- hackeros-catalog-review -->';
+            const marker = '<!-- kazoos-catalog-review -->';
             const number = Number(fs.readFileSync('comment/pr-number', 'utf8').trim());
             if (!Number.isInteger(number) || number <= 0) {
               core.setFailed('The artifact does not hold a PR number.');

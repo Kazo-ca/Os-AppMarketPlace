@@ -1,6 +1,6 @@
 using System.Buffers.Binary;
 
-namespace HackerOs.MarketPlace;
+namespace Kazo.Os.MarketPlace;
 
 /// <summary>
 /// Reads the size of a PNG image from its header, without decoding it: the signature, then the

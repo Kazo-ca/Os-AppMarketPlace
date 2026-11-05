@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-dotnet@v5
         with:
           global-json-file: global.json
-      - run: dotnet test tools/HackerOs.MarketPlace.slnx -c Release
+      - run: dotnet test tools/Kazo.Os.MarketPlace.slnx -c Release
 
   plan:
     name: Check folders
@@ -53,7 +53,7 @@ jobs:
           echo "Added folders: $folders"
 
       - name: Check the format of every folder and categories.json
-        run: dotnet run --project tools/HackerOs.MarketPlace.Tool -c Release -- validate --root .
+        run: dotnet run --project tools/Kazo.Os.MarketPlace.Tool -c Release -- validate --root .
 
   build:
     name: Build ${{ matrix.folder }}
@@ -110,20 +110,20 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
           REVIEW: ${{ runner.temp }}/review
         run: |
-          dotnet build tools/HackerOs.MarketPlace.Tool -c Release -nologo -v quiet
-          tool=(dotnet tools/HackerOs.MarketPlace.Tool/bin/Release/net10.0/HackerOs.MarketPlace.Tool.dll)
+          dotnet build tools/Kazo.Os.MarketPlace.Tool -c Release -nologo -v quiet
+          tool=(dotnet tools/Kazo.Os.MarketPlace.Tool/bin/Release/net10.0/Kazo.Os.MarketPlace.Tool.dll)
           mkdir -p comment
           echo "$PR_NUMBER" > comment/pr-number
           {
-            echo '<!-- hackeros-catalog-review -->'
-            echo '## Hack Store review'
+            echo '<!-- kazoos-catalog-review -->'
+            echo '## Kazo OS Store review'
             echo
             echo 'Built by our CI from the commit each `store.json` names. A maintainer reads the code, then approves.'
             echo
           } > comment/comment.md
           status=0
           for folder in $(jq -r '.[]' <<< "$FOLDERS"); do
-            package=$(find "$REVIEW/$folder/package" -name '*.hackapp' -print -quit 2>/dev/null || true)
+            package=$(find "$REVIEW/$folder/package" -name '*.kazoapp' -print -quit 2>/dev/null || true)
             "${tool[@]}" check-package --root . --folder "$folder" --report "comment/$folder.md" \
               ${package:+--package "$package"} --sarif "$REVIEW/$folder/sarif" || status=1
             cat "comment/$folder.md" >> comment/comment.md

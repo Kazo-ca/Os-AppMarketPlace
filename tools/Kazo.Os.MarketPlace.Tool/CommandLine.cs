@@ -1,4 +1,4 @@
-namespace HackerOs.MarketPlace;
+namespace Kazo.Os.MarketPlace;
 
 /// <summary>Arguments of one command: <c>--name value</c> pairs, then positional values.</summary>
 internal sealed class CommandLine

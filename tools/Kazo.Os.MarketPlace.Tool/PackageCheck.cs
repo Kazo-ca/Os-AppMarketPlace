@@ -1,7 +1,7 @@
 using System.Text.Json.Nodes;
-using HackerOs.Platform.Core.Apps.Packages;
+using Kazo.Os.Platform.Core.Apps.Packages;
 
-namespace HackerOs.MarketPlace;
+namespace Kazo.Os.MarketPlace;
 
 /// <summary>
 /// Checks the package our CI built from the app's commit against its catalog folder
@@ -12,7 +12,7 @@ public static class PackageCheck
 {
     /// <summary>Reads a package and compares it with its folder.</summary>
     /// <param name="folder">The checked app folder.</param>
-    /// <param name="packageBytes">The <c>.hackapp</c> built by the CI.</param>
+    /// <param name="packageBytes">The <c>.kazoapp</c> built by the CI.</param>
     /// <param name="errors">Receives every problem found.</param>
     /// <returns>The verified package, or <see langword="null"/> when it is refused.</returns>
     public static AppPackage? Check(AppFolder folder, byte[] packageBytes, List<CatalogError> errors)
@@ -35,7 +35,7 @@ public static class PackageCheck
         {
             errors.Add(new CatalogError(
                 $"{display}/{CatalogPaths.ManifestFile}",
-                $"The manifest generated at commit {folder.Store.Commit} differs from the one in the folder: copy the manifest.json inside the package HackerOsPack built (unzip -p <app>.hackapp manifest.json), not the project's."));
+                $"The manifest generated at commit {folder.Store.Commit} differs from the one in the folder: copy the manifest.json inside the package KazoOsPack built (unzip -p <app>.kazoapp manifest.json), not the project's."));
             return null;
         }
 

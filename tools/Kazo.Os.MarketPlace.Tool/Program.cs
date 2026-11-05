@@ -1,21 +1,21 @@
 using System.Globalization;
-using HackerOs.Platform.Core.Apps.Packages;
+using Kazo.Os.Platform.Core.Apps.Packages;
 
-namespace HackerOs.MarketPlace;
+namespace Kazo.Os.MarketPlace;
 
 /// <summary>
 /// Command line of the catalog tool, run by the workflows of this repository:
 /// <list type="bullet">
 /// <item><c>validate --root &lt;catalog&gt; [folder...]</c>: checks <c>categories.json</c> and the
 /// named app folders (every folder when none is named).</item>
-/// <item><c>check-package --root &lt;catalog&gt; --folder &lt;name&gt; --report &lt;file.md&gt; [--package &lt;file.hackapp&gt;] [--sarif &lt;dir&gt;]</c>:
+/// <item><c>check-package --root &lt;catalog&gt; --folder &lt;name&gt; --report &lt;file.md&gt; [--package &lt;file.kazoapp&gt;] [--sarif &lt;dir&gt;]</c>:
 /// checks the package built from a folder and writes its review comment section.</item>
 /// <item><c>publish --root &lt;catalog&gt; --built &lt;dir&gt; --output &lt;packages branch&gt; [--keep 3] [--published-at &lt;ISO 8601&gt;]</c>:
 /// updates the <c>packages</c> branch, signing each new package with the key of the
-/// <c>HACK_STORE_SIGNING_KEY</c> variable when it is set (ADR 0214 §2 of Kazo-ca/HackerOs).</item>
+/// <c>HACK_STORE_SIGNING_KEY</c> variable when it is set (ADR 0214 §2 of Kazo-ca/Os).</item>
 /// <item><c>keygen --private-key &lt;file.pem&gt;</c>: creates the catalog's key pair, writes the private
 /// key to a new file and prints the public key to compile into the OS.</item>
-/// <item><c>sign --package &lt;file.hackapp&gt; [--private-key &lt;file.pem&gt;]</c>: prints the signature of a package.</item>
+/// <item><c>sign --package &lt;file.kazoapp&gt; [--private-key &lt;file.pem&gt;]</c>: prints the signature of a package.</item>
 /// </list>
 /// Exit code 0 on success, 1 when anything is refused, 2 on a usage error.
 /// </summary>
@@ -142,7 +142,7 @@ public static class Program
         }
 
         Console.WriteLine($"Private key written to {path}: store it as the {PackageSigner.KeyVariable} secret of this repository, then keep it offline.");
-        Console.WriteLine("Public key (HackerOsAppSigningKeys, catalog:official=...):");
+        Console.WriteLine("Public key (KazoOsAppSigningKeys, catalog:official=...):");
         Console.WriteLine(publicKey);
         return 0;
     }
@@ -184,12 +184,12 @@ public static class Program
 
     private static int Usage()
     {
-        Console.Error.WriteLine("HackerOS catalog tool (ADR 0188)");
+        Console.Error.WriteLine("Kazo OS catalog tool (ADR 0188)");
         Console.Error.WriteLine("  validate --root <catalog> [folder...]");
-        Console.Error.WriteLine("  check-package --root <catalog> --folder <name> --report <file.md> [--package <file.hackapp>] [--sarif <dir>]");
+        Console.Error.WriteLine("  check-package --root <catalog> --folder <name> --report <file.md> [--package <file.kazoapp>] [--sarif <dir>]");
         Console.Error.WriteLine("  publish --root <catalog> --built <dir> --output <packages branch> [--keep 3] [--published-at <ISO 8601>]");
         Console.Error.WriteLine("  keygen --private-key <file.pem>");
-        Console.Error.WriteLine("  sign --package <file.hackapp> [--private-key <file.pem>]");
+        Console.Error.WriteLine("  sign --package <file.kazoapp> [--private-key <file.pem>]");
         return 2;
     }
 }

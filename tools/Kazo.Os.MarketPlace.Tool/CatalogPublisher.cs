@@ -1,7 +1,7 @@
-using HackerOs.App.Abstractions;
-using HackerOs.Platform.Core.Apps.Packages;
+using Kazo.Os.App.Abstractions;
+using Kazo.Os.Platform.Core.Apps.Packages;
 
-namespace HackerOs.MarketPlace;
+namespace Kazo.Os.MarketPlace;
 
 /// <summary>
 /// Updates the content of the <c>packages</c> branch after a merge (ADR 0188 §6): copies each
@@ -13,7 +13,7 @@ public static class CatalogPublisher
     /// <summary>Publishes built folders into a checkout of the <c>packages</c> branch.</summary>
     /// <param name="catalogRoot">Checkout of <c>main</c> (folders and <c>categories.json</c>).</param>
     /// <param name="builtRoot">
-    /// One sub-folder per app folder name, holding the <c>.hackapp</c> our CI built. Missing or empty
+    /// One sub-folder per app folder name, holding the <c>.kazoapp</c> our CI built. Missing or empty
     /// when only <c>categories.json</c> changed: the catalog is then rewritten with the new labels.
     /// </param>
     /// <param name="outputRoot">Checkout of the <c>packages</c> branch, updated in place.</param>

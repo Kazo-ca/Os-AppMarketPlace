@@ -1,10 +1,10 @@
 using System.Text.Json;
 
-namespace HackerOs.MarketPlace;
+namespace Kazo.Os.MarketPlace;
 
 /// <summary>
 /// Small helpers to read hand-written JSON strictly: an unknown or duplicate property is an
-/// error, as in the HackerOS manifest reader, so a typo never passes silently.
+/// error, as in the Kazo OS manifest reader, so a typo never passes silently.
 /// </summary>
 internal static class StrictJson
 {

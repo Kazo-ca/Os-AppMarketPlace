@@ -1,7 +1,7 @@
-namespace HackerOs.MarketPlace;
+namespace Kazo.Os.MarketPlace;
 
 /// <summary>
-/// Names and limits of the catalog format (ADR 0188 §4 of Kazo-ca/HackerOs). Every rule the
+/// Names and limits of the catalog format (ADR 0188 §4 of Kazo-ca/Os). Every rule the
 /// validator applies is written here once, so the README can quote it.
 /// </summary>
 public static class CatalogPaths

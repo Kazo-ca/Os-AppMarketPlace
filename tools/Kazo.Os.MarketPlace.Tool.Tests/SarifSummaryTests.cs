@@ -1,4 +1,4 @@
-namespace HackerOs.MarketPlace.Tests;
+namespace Kazo.Os.MarketPlace.Tests;
 
 public sealed class SarifSummaryTests : IDisposable
 {

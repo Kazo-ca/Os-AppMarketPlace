@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Catalog tool of the Kazo OS Store (ADR 0188 §4 to §6 of Kazo-ca/Os): checks an app folder,
+    checks the package our CI built from it, writes the review comment, and publishes the
+    packages branch. It reads manifests and packages with the Kazo OS libraries themselves, so
+    the rules are exactly the ones the OS applies at install time.
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <RootNamespace>Kazo.Os.MarketPlace</RootNamespace>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- The Kazo OS repository (Kazo-ca/Os), a submodule pinned to the commit of its v3.0.0 tag. -->
+    <KazoOsRoot>$(MSBuildThisFileDirectory)../../external/KazoOs/wasm2/KazoOs/</KazoOsRoot>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      The tool builds the two libraries from the submodule. The Kazo.Os.* 3.0.0 NuGet packages carry
+      the package reader (AppPackage, ADR 0182) too: these can become PackageReference items of that
+      version later, and the submodule then goes.
+    -->
+    <ProjectReference Include="$(KazoOsRoot)Shared/Kazo.Os.App.Abstractions/Kazo.Os.App.Abstractions.csproj" />
+    <ProjectReference Include="$(KazoOsRoot)Platform/Kazo.Os.Platform.Core/Kazo.Os.Platform.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Kazo.Os.MarketPlace.Tool.Tests" />
+  </ItemGroup>
+
+</Project>
