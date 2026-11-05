@@ -96,9 +96,37 @@
         "fr": "\u00C9checs \u00E0 deux sur un \u00E9cran ou contre Stockfish (5 niveaux), avec pendule, annulation et parties .pgn."
       },
       "license": "GPL-3.0",
-      "repository": "https://github.com/Kazo-ca/HackerOs-App-Chess",
-      "latestVersion": "1.0.0",
+      "repository": "https://github.com/Kazo-ca/Os-App-Chess",
+      "latestVersion": "1.1.0",
       "versions": [
+        {
+          "version": "1.1.0",
+          "commit": "c64fe542f46f9ed3b85662c1140c6cc13c07dbab",
+          "package": "packages/ca.kazo.chess/1.1.0/ca.kazo.chess-1.1.0.kazoapp",
+          "sha256": "ce8e753a2abe6ac73bd069f00b80a9e42b5a00b0c42b44dde33117c9788e2777",
+          "size": 1348016,
+          "publishedAt": "2026-11-05T20:48:54+00:00",
+          "capabilities": [
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.0.0"
+          },
+          "icon": "assets/ca.kazo.chess/1.1.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.chess/1.1.0/screenshots/1.png",
+            "assets/ca.kazo.chess/1.1.0/screenshots/2.png",
+            "assets/ca.kazo.chess/1.1.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.chess/1.1.0/description.en.md",
+            "fr": "assets/ca.kazo.chess/1.1.0/description.fr.md"
+          },
+          "signature": "25iKg9/mFWiDa2Ad9NJBy2h3dn0GPjquafUl\u002BElKXmvEqKdK3zwOl43ZmTy5jOnOdllaF5tUeb6Z5clLslkFGw=="
+        },
         {
           "version": "1.0.0",
           "commit": "56bbb3d9958349d9c71cceb9700bf11dce63e5d6",
