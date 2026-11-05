@@ -1,13 +1,13 @@
 > [Version française](readme-fr.md)
 
-# HackerOs-AppMarketPlace
+# Os-AppMarketPlace
 
-The catalog of the **Hack Store**, the app store of [HackerOS](https://github.com/Kazo-ca/HackerOs)
-([ADR 0188](https://github.com/Kazo-ca/HackerOs/blob/main/doc/en/wasm/dev/adr/0188-hack-store-and-app-catalog.md)).
+The catalog of the **Kazo OS Store**, the app store of [Kazo OS](https://github.com/Kazo-ca/Os)
+([ADR 0188](https://github.com/Kazo-ca/Os/blob/main/doc/en/wasm/dev/adr/0188-hack-store-and-app-catalog.md)).
 
 - The **`main`** branch holds one folder per app version, reviewed by pull request.
 - The **`packages`** branch is written by our workflow after each merge: `catalog.json`, the
-  `.hackapp` packages and the images, read by the Hack Store and `hackpkg` through
+  `.kazoapp` packages and the images, read by the Kazo OS Store and `kazopkg` through
   `raw.githubusercontent.com`.
 
 An author **never provides a binary**: our CI builds the app itself from the given commit, and
@@ -15,9 +15,9 @@ that package is what gets published. What reaches users is exactly the reviewed 
 
 ## Propose an app
 
-1. Make the app repository public and check that it builds with the HackerOS NuGet packages:
-   `dotnet build -c Release -t:HackerOsPack` (repository template:
-   [HackerOs-AppTemplate](https://github.com/Kazo-ca/HackerOs-AppTemplate)).
+1. Make the app repository public and check that it builds with the Kazo OS NuGet packages:
+   `dotnet build -c Release -t:KazoOsPack` (repository template:
+   [Os-AppTemplate](https://github.com/Kazo-ca/Os-AppTemplate)).
 2. Fork this repository and add a folder `apps/<appId>_<version>/`:
 
    ```text
@@ -27,14 +27,14 @@ that package is what gets published. What reaches users is exactly the reviewed 
      short_description.fr.txt   optional, one language per file
      description.en.md          long description (English required), 20 KB at most
      description.fr.md          optional
-     manifest.json              the manifest.json of the package HackerOsPack built, unchanged
+     manifest.json              the manifest.json of the package KazoOsPack built, unchanged
      store.json                 see below
      screenshots/1.png … 5.png  optional, 1 MB and 3840 px per side at most each
    ```
 
    ```json
    {
-     "repository": "https://github.com/example/HackerOs-App-MyApp",
+     "repository": "https://github.com/example/Os-App-MyApp",
      "commit": "3f2a9c1e0b7d4c5a8e6f1a2b3c4d5e6f7a8b9c0d",
      "category": "productivity",
      "tags": ["notes", "markdown"],
@@ -45,14 +45,14 @@ that package is what gets published. What reaches users is exactly the reviewed 
 
    `commit` is the full SHA (40 characters); `category` comes from
    [`categories.json`](categories.json); `project` is optional (without it, the repository root
-   must hold a single project or solution). A repository made with the `hackeros-solution`
+   must hold a single project or solution). A repository made with the `kazoos-solution`
    template holds a solution with a host and tests: name the app's `.csproj` in `project`.
 
-   `manifest.json` is the one **inside the package**, not the one of your project: `HackerOsPack`
-   adds every static resource of the app to the package's manifest (HackerOS ADR 0221), and the
+   `manifest.json` is the one **inside the package**, not the one of your project: `KazoOsPack`
+   adds every static resource of the app to the package's manifest (Kazo OS ADR 0221), and the
    catalog compares that manifest with the package its CI builds. Take it with
-   `unzip -p <bin>/hackeros-packages/<version>/<appId>-<version>.hackapp manifest.json`; the
-   **Publish to the Hack Store** workflow of the template does it for you.
+   `unzip -p <bin>/kazoos-packages/<version>/<appId>-<version>.kazoapp manifest.json`; the
+   **Publish to the Kazo OS Store** workflow of the template does it for you.
 3. Open a pull request to `main` and fill in the template.
 4. The **Validate app submissions** workflow checks the format, builds the app at the given
    commit, compares the generated manifest with yours, runs CodeQL, then writes a comment with the

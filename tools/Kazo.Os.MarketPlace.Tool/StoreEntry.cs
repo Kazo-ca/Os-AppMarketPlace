@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
-namespace HackerOs.MarketPlace;
+namespace Kazo.Os.MarketPlace;
 
 /// <summary>
 /// The content of <c>store.json</c> (ADR 0188 §4): where the code of this version is and how the

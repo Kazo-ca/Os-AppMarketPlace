@@ -53,7 +53,7 @@ jobs:
         if: steps.folders.outputs.folders != '[]'
         env:
           FOLDERS: ${{ steps.folders.outputs.folders }}
-        run: dotnet run --project tools/HackerOs.MarketPlace.Tool -c Release -- validate --root . $(jq -r '.[]' <<< "$FOLDERS")
+        run: dotnet run --project tools/Kazo.Os.MarketPlace.Tool -c Release -- validate --root . $(jq -r '.[]' <<< "$FOLDERS")
 
   build:
     name: Build ${{ matrix.folder }}
@@ -118,13 +118,13 @@ jobs:
 
       - name: Publish
         env:
-          # ADR 0214 §2 of Kazo-ca/HackerOs: each new package is signed when the secret exists.
+          # ADR 0214 §2 of Kazo-ca/Os: each new package is signed when the secret exists.
           # The key stays in this environment variable; it is never written to disk or printed.
           HACK_STORE_SIGNING_KEY: ${{ secrets.HACK_STORE_SIGNING_KEY }}
         run: |
           # built/<folder>/ for each app built above (nothing when only categories.json changed).
           mkdir -p "$RUNNER_TEMP/built"
-          dotnet run --project tools/HackerOs.MarketPlace.Tool -c Release -- publish \
+          dotnet run --project tools/Kazo.Os.MarketPlace.Tool -c Release -- publish \
             --root . --built "$RUNNER_TEMP/built" --output packages-branch
 
       - name: Push

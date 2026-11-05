@@ -1,6 +1,6 @@
 using System.Text.Json.Nodes;
 
-namespace HackerOs.MarketPlace.Tests;
+namespace Kazo.Os.MarketPlace.Tests;
 
 public sealed class CatalogPublisherTests : IDisposable
 {
@@ -23,7 +23,7 @@ public sealed class CatalogPublisherTests : IDisposable
 
         Assert.Empty(errors);
         Assert.Equal(["org.example.notes_1.2.0"], published);
-        Assert.True(File.Exists(Path.Combine(Output, "packages/org.example.notes/1.2.0/org.example.notes-1.2.0.hackapp")));
+        Assert.True(File.Exists(Path.Combine(Output, "packages/org.example.notes/1.2.0/org.example.notes-1.2.0.kazoapp")));
         Assert.True(File.Exists(Path.Combine(Output, "assets/org.example.notes/1.2.0/icon.png")));
         Assert.True(File.Exists(Path.Combine(Output, "assets/org.example.notes/1.2.0/description.en.md")));
 
@@ -41,7 +41,7 @@ public sealed class CatalogPublisherTests : IDisposable
         Assert.Equal(TestCatalog.Commit, (string?)version["commit"]);
         Assert.Equal(64, ((string?)version["sha256"])!.Length);
         Assert.Equal("clipboard.read", (string?)version["capabilities"]![0]);
-        Assert.Equal("2.1.0", (string?)version["sdkCompatibility"]!["minimumVersion"]);
+        Assert.Equal("3.0.0", (string?)version["sdkCompatibility"]!["minimumVersion"]);
         Assert.Equal("2026-10-30T12:00:00+00:00", (string?)version["publishedAt"]);
     }
 
@@ -140,7 +140,7 @@ public sealed class CatalogPublisherTests : IDisposable
     {
         string target = Path.Combine(Built, Path.GetFileName(folder), "1.0.0");
         Directory.CreateDirectory(target);
-        File.WriteAllBytes(Path.Combine(target, "app.hackapp"), TestCatalog.PackageOf(folder));
+        File.WriteAllBytes(Path.Combine(target, "app.kazoapp"), TestCatalog.PackageOf(folder));
     }
 
     private JsonNode ReadCatalog() => JsonNode.Parse(File.ReadAllText(Path.Combine(Output, "catalog.json")))!;

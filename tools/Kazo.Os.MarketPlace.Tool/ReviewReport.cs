@@ -1,8 +1,8 @@
 using System.Text;
-using HackerOs.App.Abstractions;
-using HackerOs.Platform.Core.Apps.Packages;
+using Kazo.Os.App.Abstractions;
+using Kazo.Os.Platform.Core.Apps.Packages;
 
-namespace HackerOs.MarketPlace;
+namespace Kazo.Os.MarketPlace;
 
 /// <summary>
 /// Writes the review comment of one app version (ADR 0188 §5 step 7): what the reviewer must look

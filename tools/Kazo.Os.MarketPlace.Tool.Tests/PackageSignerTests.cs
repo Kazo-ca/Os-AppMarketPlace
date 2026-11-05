@@ -1,8 +1,8 @@
 using System.Text.Json.Nodes;
 
-namespace HackerOs.MarketPlace.Tests;
+namespace Kazo.Os.MarketPlace.Tests;
 
-/// <summary>ADR 0214 §2 of Kazo-ca/HackerOs: the catalog signs its packages.</summary>
+/// <summary>ADR 0214 §2 of Kazo-ca/Os: the catalog signs its packages.</summary>
 public sealed class PackageSignerTests : IDisposable
 {
     private static readonly DateTimeOffset Now = new(2026, 10, 31, 12, 0, 0, TimeSpan.Zero);
@@ -40,7 +40,7 @@ public sealed class PackageSignerTests : IDisposable
         string folder = catalog.AddApp();
         string target = Path.Combine(built, Path.GetFileName(folder), "1.0.0");
         Directory.CreateDirectory(target);
-        File.WriteAllBytes(Path.Combine(target, "app.hackapp"), TestCatalog.PackageOf(folder));
+        File.WriteAllBytes(Path.Combine(target, "app.kazoapp"), TestCatalog.PackageOf(folder));
         List<CatalogError> errors = [];
 
         CatalogPublisher.Publish(catalog.Root, built, output, 3, Now, errors, privateKey);
@@ -73,7 +73,7 @@ public sealed class PackageSignerTests : IDisposable
     public void Sign_prints_a_signature_that_verifies()
     {
         string key = Path.Combine(catalog.Root, "key.pem");
-        string package = Path.Combine(catalog.Root, "app.hackapp");
+        string package = Path.Combine(catalog.Root, "app.kazoapp");
         Program.Main(["keygen", "--private-key", key]);
         File.WriteAllBytes(package, [9, 8, 7]);
         StringWriter output = new();

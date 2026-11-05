@@ -1,4 +1,4 @@
-namespace HackerOs.MarketPlace.Tests;
+namespace Kazo.Os.MarketPlace.Tests;
 
 public sealed class ProgramTests : IDisposable
 {
@@ -36,7 +36,7 @@ public sealed class ProgramTests : IDisposable
     public void Check_package_accepts_the_matching_package()
     {
         string folder = catalog.AddApp();
-        string package = Path.Combine(catalog.Root, "notes.hackapp");
+        string package = Path.Combine(catalog.Root, "notes.kazoapp");
         File.WriteAllBytes(package, TestCatalog.PackageOf(folder));
         string report = Path.Combine(catalog.Root, "report.md");
 

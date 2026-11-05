@@ -2,14 +2,14 @@
 # Runs code from the app's repository: call it only from a job with a read-only token and no
 # secrets. Every value that comes from the PR reaches the shell through env, never through ${{ }}.
 name: Build app from its commit
-description: Fetches the app repository at the store.json commit and runs HackerOsPack, optionally under CodeQL.
+description: Fetches the app repository at the store.json commit and runs KazoOsPack, optionally under CodeQL.
 
 inputs:
   folder:
     description: Name of the folder under apps/ (already checked by the catalog tool).
     required: true
   output:
-    description: Directory that receives the .hackapp package.
+    description: Directory that receives the .kazoapp package.
     required: true
   codeql:
     description: "'true' to analyze the app with CodeQL (results written as SARIF, not uploaded)."
@@ -55,19 +55,19 @@ runs:
           exit 1
         fi
         git checkout --quiet FETCH_HEAD
-        # An app made with the hackeros-solution template (HackerOS ADR 0207) reads its HackerOS
-        # version from the external/HackerOs submodule (build/Versions.props) and stops without it
-        # (HOSAPP0070). Only that submodule is fetched, and only from Kazo-ca/HackerOs: the app
-        # chooses the HackerOS release, not where its build code comes from.
+        # An app made with the kazoos-solution template (Kazo OS ADR 0207) reads its Kazo OS
+        # version from the external/KazoOs submodule (build/Versions.props) and stops without it
+        # (KOSAPP0070). Only that submodule is fetched, and only from Kazo-ca/Os: the app
+        # chooses the Kazo OS release, not where its build code comes from.
         if [ -f .gitmodules ]; then
-          name=$(git config -f .gitmodules --get-regexp '^submodule\..*\.path$' | awk '$2 == "external/HackerOs" {sub(/^submodule\./, "", $1); sub(/\.path$/, "", $1); print $1; exit}')
+          name=$(git config -f .gitmodules --get-regexp '^submodule\..*\.path$' | awk '$2 == "external/KazoOs" {sub(/^submodule\./, "", $1); sub(/\.path$/, "", $1); print $1; exit}')
           if [ -n "$name" ]; then
             url=$(git config -f .gitmodules --get "submodule.$name.url")
             case "$url" in
-              https://github.com/Kazo-ca/HackerOs|https://github.com/Kazo-ca/HackerOs.git) ;;
-              *) echo "::error file=.gitmodules::external/HackerOs must point to https://github.com/Kazo-ca/HackerOs, not $url."; exit 1 ;;
+              https://github.com/Kazo-ca/Os|https://github.com/Kazo-ca/Os.git) ;;
+              *) echo "::error file=.gitmodules::external/KazoOs must point to https://github.com/Kazo-ca/Os, not $url."; exit 1 ;;
             esac
-            git submodule update --init --depth 1 --quiet -- external/HackerOs
+            git submodule update --init --depth 1 --quiet -- external/KazoOs
           fi
         fi
 
@@ -81,7 +81,7 @@ runs:
       if: inputs.codeql == 'true'
       shell: bash
       run: |
-        # The app's own code only: external/HackerOs (the submodule fetched above) is HackerOS.
+        # The app's own code only: external/KazoOs (the submodule fetched above) is Kazo OS.
         javascript=false
         if [ -n "$(find "$RUNNER_TEMP/app-src" -type f \( -name '*.js' -o -name '*.mjs' -o -name '*.ts' \) -not -path '*/.git/*' -not -path "$RUNNER_TEMP/app-src/external/*" -print -quit)" ]; then
           javascript=true
@@ -121,7 +121,7 @@ runs:
         build-mode: manual
         source-root: ${{ runner.temp }}/app-src
 
-    - name: Build with HackerOsPack
+    - name: Build with KazoOsPack
       id: build
       shell: bash
       working-directory: ${{ runner.temp }}/app-src
@@ -129,15 +129,15 @@ runs:
         PROJECT: ${{ steps.store.outputs.project }}
         OUTPUT: ${{ inputs.output }}
       run: |
-        # Release builds take the HackerOS SDK packages from NuGet (ADR 0176), at the version of the
-        # external/HackerOs submodule fetched above.
+        # Release builds take the Kazo OS SDK packages from NuGet (ADR 0176), at the version of the
+        # external/KazoOs submodule fetched above.
         mkdir -p "$OUTPUT"
-        if dotnet build ${PROJECT:+"$PROJECT"} -c Release -t:HackerOsPack -p:HackerOsPackageOutput="$OUTPUT" -nologo; then
-          if [ -n "$(find "$OUTPUT" -name '*.hackapp' -print -quit)" ]; then
+        if dotnet build ${PROJECT:+"$PROJECT"} -c Release -t:KazoOsPack -p:KazoOsPackageOutput="$OUTPUT" -nologo; then
+          if [ -n "$(find "$OUTPUT" -name '*.kazoapp' -print -quit)" ]; then
             echo "built=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          echo "::error::The build succeeded but produced no .hackapp package."
+          echo "::error::The build succeeded but produced no .kazoapp package."
         fi
         echo "built=false" >> "$GITHUB_OUTPUT"
 

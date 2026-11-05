@@ -1,7 +1,7 @@
 using System.Text;
-using HackerOs.Platform.Core.Apps.Packages;
+using Kazo.Os.Platform.Core.Apps.Packages;
 
-namespace HackerOs.MarketPlace.Tests;
+namespace Kazo.Os.MarketPlace.Tests;
 
 public sealed class PackageCheckTests : IDisposable
 {

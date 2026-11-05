@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace HackerOs.MarketPlace;
+namespace Kazo.Os.MarketPlace;
 
 /// <summary>One CodeQL result, reduced to what the review comment shows.</summary>
 public sealed record SarifFinding(string Level, string RuleId, string Message, string Location);

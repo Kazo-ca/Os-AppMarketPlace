@@ -1,4 +1,4 @@
-namespace HackerOs.MarketPlace;
+namespace Kazo.Os.MarketPlace;
 
 /// <summary>One problem found in the catalog, reported against a file or folder.</summary>
 /// <param name="Path">The file or folder, relative to the catalog root when possible.</param>

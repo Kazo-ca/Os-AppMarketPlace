@@ -1,13 +1,13 @@
 > [English version](README.md)
 
-# HackerOs-AppMarketPlace
+# Os-AppMarketPlace
 
-Le catalogue du **Hack Store**, la boutique d'apps de [HackerOS](https://github.com/Kazo-ca/HackerOs)
-([ADR 0188](https://github.com/Kazo-ca/HackerOs/blob/main/doc/fr/wasm/dev/adr/0188-hack-store-and-app-catalog.md)).
+Le catalogue du **Kazo OS Store**, la boutique d'apps de [Kazo OS](https://github.com/Kazo-ca/Os)
+([ADR 0188](https://github.com/Kazo-ca/Os/blob/main/doc/fr/wasm/dev/adr/0188-hack-store-and-app-catalog.md)).
 
 - La branche **`main`** contient un dossier par version d'app, relu par pull request.
 - La branche **`packages`** est écrite par notre action après chaque fusion : `catalog.json`, les
-  paquets `.hackapp` et les images, lus par le Hack Store et `hackpkg` à travers
+  paquets `.kazoapp` et les images, lus par le Kazo OS Store et `kazopkg` à travers
   `raw.githubusercontent.com`.
 
 Un auteur ne fournit **jamais de binaire** : notre CI compile l'app elle-même depuis le commit
@@ -16,9 +16,9 @@ code relu.
 
 ## Proposer une app
 
-1. Rendez le dépôt de l'app public et vérifiez qu'il se compile avec les paquets NuGet de HackerOS :
-   `dotnet build -c Release -t:HackerOsPack` (modèle de dépôt :
-   [HackerOs-AppTemplate](https://github.com/Kazo-ca/HackerOs-AppTemplate)).
+1. Rendez le dépôt de l'app public et vérifiez qu'il se compile avec les paquets NuGet de Kazo OS :
+   `dotnet build -c Release -t:KazoOsPack` (modèle de dépôt :
+   [Os-AppTemplate](https://github.com/Kazo-ca/Os-AppTemplate)).
 2. Faites un fork de ce dépôt et ajoutez un dossier `apps/<appId>_<version>/` :
 
    ```text
@@ -28,14 +28,14 @@ code relu.
      short_description.fr.txt   facultatif, une langue par fichier
      description.en.md          description longue (anglais obligatoire), 20 Ko au plus
      description.fr.md          facultatif
-     manifest.json              le manifest.json du paquet construit par HackerOsPack, sans modification
+     manifest.json              le manifest.json du paquet construit par KazoOsPack, sans modification
      store.json                 voir ci-dessous
      screenshots/1.png … 5.png  facultatif, 1 Mo et 3840 px de côté au plus chacune
    ```
 
    ```json
    {
-     "repository": "https://github.com/example/HackerOs-App-MyApp",
+     "repository": "https://github.com/example/Os-App-MyApp",
      "commit": "3f2a9c1e0b7d4c5a8e6f1a2b3c4d5e6f7a8b9c0d",
      "category": "productivity",
      "tags": ["notes", "markdown"],
@@ -47,14 +47,14 @@ code relu.
    `commit` est le SHA complet (40 caractères) ; `category` vient de
    [`categories.json`](categories.json) ; `project` est facultatif (sans lui, la racine du dépôt
    doit contenir un seul projet ou une seule solution). Un dépôt créé avec le modèle
-   `hackeros-solution` contient une solution avec un hôte et des tests : indiquez le `.csproj` de
+   `kazoos-solution` contient une solution avec un hôte et des tests : indiquez le `.csproj` de
    l'app dans `project`.
 
-   `manifest.json` est celui **du paquet**, pas celui de votre projet : `HackerOsPack` ajoute au
-   manifeste du paquet toutes les ressources statiques de l'app (ADR 0221 de HackerOS), et le
+   `manifest.json` est celui **du paquet**, pas celui de votre projet : `KazoOsPack` ajoute au
+   manifeste du paquet toutes les ressources statiques de l'app (ADR 0221 de Kazo OS), et le
    catalogue compare ce manifeste au paquet que sa CI construit. Récupérez-le avec
-   `unzip -p <bin>/hackeros-packages/<version>/<appId>-<version>.hackapp manifest.json` ; le
-   workflow **Publish to the Hack Store** du modèle le fait pour vous.
+   `unzip -p <bin>/kazoos-packages/<version>/<appId>-<version>.kazoapp manifest.json` ; le
+   workflow **Publish to the Kazo OS Store** du modèle le fait pour vous.
 3. Ouvrez une pull request vers `main` et remplissez le modèle.
 4. L'action **Validate app submissions** vérifie le format, compile l'app au commit indiqué,
    compare le manifeste produit avec le vôtre, lance CodeQL, puis écrit un commentaire avec les

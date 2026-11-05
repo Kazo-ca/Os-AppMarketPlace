@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Kazo.Os.MarketPlace.Tool/Kazo.Os.MarketPlace.Tool.csproj" />
+  <Project Path="Kazo.Os.MarketPlace.Tool.Tests/Kazo.Os.MarketPlace.Tool.Tests.csproj" />
+</Solution>

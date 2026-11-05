@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
-namespace HackerOs.MarketPlace;
+namespace Kazo.Os.MarketPlace;
 
 /// <summary>A category of the closed list, with its label in each language.</summary>
 /// <param name="Id">Stable identifier used by <c>store.json</c>, e.g. <c>productivity</c>.</param>

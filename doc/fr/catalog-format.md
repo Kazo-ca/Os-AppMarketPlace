@@ -2,12 +2,12 @@
 
 # Format du catalogue, vérifications et publication
 
-Ce document décrit le dépôt catalogue du Hack Store tel qu'il est construit ici : le format d'un
+Ce document décrit le dépôt catalogue du Kazo OS Store tel qu'il est construit ici : le format d'un
 dossier d'app, ce que vérifie une pull request, ce que publie une fusion, et le format de
-`catalog.json` que lisent le Hack Store et `hackpkg`. La décision d'origine est
-l'[ADR 0188](https://github.com/Kazo-ca/HackerOs/blob/main/doc/fr/wasm/dev/adr/0188-hack-store-and-app-catalog.md)
+`catalog.json` que lisent le Kazo OS Store et `kazopkg`. La décision d'origine est
+l'[ADR 0188](https://github.com/Kazo-ca/Os/blob/main/doc/fr/wasm/dev/adr/0188-hack-store-and-app-catalog.md)
 (§4 à §6) ; les règles de confiance et d'installation sont dans
-l'[ADR 0189](https://github.com/Kazo-ca/HackerOs/blob/main/doc/fr/wasm/dev/adr/0189-app-sources-trust-and-per-user-install.md).
+l'[ADR 0189](https://github.com/Kazo-ca/Os/blob/main/doc/fr/wasm/dev/adr/0189-app-sources-trust-and-per-user-install.md).
 
 ## Architecture
 
@@ -16,7 +16,7 @@ main                              relue par PR
   apps/<appId>_<version>/         un dossier par version d'app
   categories.json                 liste fermée des catégories
   tools/                          outil du catalogue (C#) et ses tests
-  external/HackerOs               sous-module : bibliothèques HackerOS lues par l'outil
+  external/KazoOs                 sous-module : bibliothèques Kazo OS lues par l'outil
   .github/actions/build-app/      compile une app depuis son commit (+ CodeQL)
   .github/workflows/validate.yml  vérifie une PR
   .github/workflows/pr-comment.yml écrit le commentaire de revue
@@ -24,22 +24,30 @@ main                              relue par PR
 
 packages                          écrite seulement par publish.yml, sans historique de code
   catalog.json
-  packages/<appId>/<version>/<appId>-<version>.hackapp
+  packages/<appId>/<version>/<appId>-<version>.kazoapp
   assets/<appId>/<version>/icon.png, screenshots/N.png, description.<lang>.md
 ```
 
-L'outil `tools/HackerOs.MarketPlace.Tool` lit les manifestes avec `AppManifestJsonSerializer` et
-`AppManifestValidator`, et les paquets avec `AppPackage.Read` : ce sont les classes de HackerOS
-elles-mêmes, donc le catalogue applique exactement les règles de l'OS à l'installation. Le lecteur
-de paquets (ADR 0182) n'est pas encore dans les paquets NuGet 2.1.0 : l'outil compile les deux
-bibliothèques depuis le sous-module `external/HackerOs`, sur le tag `v2.2.1` (2026-11-01 : le
-lecteur de paquets de cette version accepte les assemblages satellites, ADR 0222 de HackerOS).
-Quand une version publiée les contiendra, le sous-module sera remplacé par des `PackageReference`.
+L'outil `tools/Kazo.Os.MarketPlace.Tool` lit les manifestes avec `AppManifestJsonSerializer` et
+`AppManifestValidator`, et les paquets avec `AppPackage.Read` : ce sont les classes de Kazo OS
+elles-mêmes, donc le catalogue applique exactement les règles de l'OS à l'installation. L'outil
+compile les deux bibliothèques depuis le sous-module `external/KazoOs` (`https://github.com/Kazo-ca/Os`),
+sur le tag `v3.0.0` (2026-11-05 : HackerOS a été renommé Kazo OS, ADR 0228 et 0229 de Kazo OS).
+Les paquets NuGet `Kazo.Os.*` 3.0.0 contiennent aussi le lecteur de paquets : le sous-module pourra
+être remplacé plus tard par des `PackageReference`.
 
-La CI compile une app soumise à son commit avec le sous-module `external/HackerOs` de l'app (une
-app créée avec le modèle `hackeros-solution` y lit sa version de HackerOS) : l'action
+La CI compile une app soumise à son commit avec le sous-module `external/KazoOs` de l'app (une
+app créée avec le modèle `kazoos-solution` y lit sa version de Kazo OS) : l'action
 `build-app` récupère ce seul sous-module, et seulement s'il pointe vers
-`https://github.com/Kazo-ca/HackerOs`.
+`https://github.com/Kazo-ca/Os`. Seules les apps compilées pour Kazo OS 3.0 ou plus récent (paquets
+`Kazo.Os.*`, cible `KazoOsPack`, paquet `.kazoapp`) peuvent être compilées : un commit d'une app
+HackerOS 2.x (`external/HackerOs`, `HackerOsPack`, `.hackapp`) ne le peut pas, et l'OS 3.0 refuse
+de toute façon une telle app (`KOSAPP0021`).
+
+Les versions publiées avant le renommage (`ca.kazo.chess_1.0.0`) restent telles quelles : un
+dossier fusionné ne change jamais, et leur entrée de `catalog.json` garde le chemin de paquet
+`.hackapp`, que Kazo OS lit encore (`AppPackage.LegacyExtension`). Une nouvelle version d'une telle
+app est un nouveau dossier compilé pour Kazo OS 3.0.
 
 ## Le dossier d'une version
 
@@ -52,7 +60,7 @@ qui n'est pas dans ce tableau est refusé, pour qu'aucun binaire n'entre dans `m
 | `icon.png` | oui | PNG 256×256, 200 Ko au plus |
 | `short_description.<lang>.txt` | `en` oui | UTF-8, une ligne non vide, 120 caractères au plus |
 | `description.<lang>.md` | `en` oui | UTF-8, non vide, 20 Ko au plus |
-| `manifest.json` | oui | celui **du paquet** construit par `HackerOsPack` (pas celui du projet : le paquet y ajoute les ressources statiques, ADR 0221 de HackerOS) ; lecture stricte et validation de l'OS ; `id` et `version` égaux au nom du dossier |
+| `manifest.json` | oui | celui **du paquet** construit par `KazoOsPack` (pas celui du projet : le paquet y ajoute les ressources statiques, ADR 0221 de Kazo OS) ; lecture stricte et validation de l'OS ; `id` et `version` égaux au nom du dossier |
 | `store.json` | oui | voir ci-dessous |
 | `screenshots/1.png` … `5.png` | non | 1 à 5 PNG numérotés sans trou, 1 Mo et 3840 px de côté au plus |
 
@@ -88,9 +96,9 @@ Les numéros sont ceux de l'ADR 0188 §5.
 | — | job *Check folders* | un fichier d'un dossier déjà fusionné ne peut ni changer ni disparaître ; la PR ne peut qu'ajouter des dossiers |
 | 1, 2 | job *Check folders* | `validate` sur `categories.json` et tous les dossiers |
 | 3 | job *Build* | `git fetch` du commit dans le dépôt de `store.json` ; échec s'il n'existe pas |
-| 4 | job *Build* puis *review* | `dotnet build -c Release -t:HackerOsPack`, puis `check-package` : le paquet doit être lu par `AppPackage.Read` et son manifeste être celui du dossier |
-| 5 | — | vérification des API contre le runtime élagué : faite par `hackpkg` à l'installation (ADR 0182) ; pas en CI pour la v1 (décision de Benoit, Q1 = A ; [#3](https://github.com/Kazo-ca/HackerOs-AppMarketPlace/issues/3)) |
-| 6 | job *Build* | CodeQL sur le code de l'app : C# depuis sa build tracée (`manual`) ; JavaScript/TypeScript, si le dépôt en a hors de `external/`, depuis ses sources avec la CLI CodeQL du runner (`none`, le seul mode que JavaScript accepte, que l'action CodeQL lancerait sur le dossier du catalogue lui-même) ; `external/**` (le sous-module HackerOS) est ignoré ; les résultats sont résumés dans le commentaire |
+| 4 | job *Build* puis *review* | `dotnet build -c Release -t:KazoOsPack`, puis `check-package` : le paquet doit être lu par `AppPackage.Read` et son manifeste être celui du dossier |
+| 5 | — | vérification des API contre le runtime élagué : faite par `kazopkg` à l'installation (ADR 0182) ; pas en CI pour la v1 (décision de Benoit, Q1 = A ; [#3](https://github.com/Kazo-ca/Os-AppMarketPlace/issues/3)) |
+| 6 | job *Build* | CodeQL sur le code de l'app : C# depuis sa build tracée (`manual`) ; JavaScript/TypeScript, si le dépôt en a hors de `external/`, depuis ses sources avec la CLI CodeQL du runner (`none`, le seul mode que JavaScript accepte, que l'action CodeQL lancerait sur le dossier du catalogue lui-même) ; `external/**` (le sous-module Kazo OS) est ignoré ; les résultats sont résumés dans le commentaire |
 | 7 | *review* puis `pr-comment.yml` | commentaire : source, licence, SDK, taille et SHA-256 du paquet, capacités (les dangereuses d'abord, marquées ⚠️), fichiers JavaScript, assemblies, résultats CodeQL |
 
 Puis un mainteneur relit le code et approuve ; rien n'est fusionné automatiquement.
@@ -144,18 +152,18 @@ catalog** à la main avec les noms de dossiers séparés par des espaces.
       "tags": ["notes", "markdown"],
       "shortDescriptions": { "en": "Take notes in Markdown.", "fr": "Prendre des notes en Markdown." },
       "license": "MIT",
-      "repository": "https://github.com/example/HackerOs-App-Notes",
+      "repository": "https://github.com/example/Os-App-Notes",
       "latestVersion": "1.2.0",
       "versions": [
         {
           "version": "1.2.0",
           "commit": "3f2a9c1e0b7d4c5a8e6f1a2b3c4d5e6f7a8b9c0d",
-          "package": "packages/org.example.notes/1.2.0/org.example.notes-1.2.0.hackapp",
+          "package": "packages/org.example.notes/1.2.0/org.example.notes-1.2.0.kazoapp",
           "sha256": "…",
           "size": 48213,
           "publishedAt": "2026-10-30T12:00:00+00:00",
           "capabilities": ["clipboard.read"],
-          "sdkCompatibility": { "minimumVersion": "2.1.0" },
+          "sdkCompatibility": { "minimumVersion": "3.0.0" },
           "icon": "assets/org.example.notes/1.2.0/icon.png",
           "screenshots": ["assets/org.example.notes/1.2.0/screenshots/1.png"],
           "descriptions": { "en": "assets/org.example.notes/1.2.0/description.en.md" },
@@ -174,23 +182,23 @@ catalog** à la main avec les noms de dossiers séparés par des espaces.
   par version, pour que le Store montre ce qu'une mise à jour ajoute.
 - `schemaVersion` change si le format change de façon incompatible ; un lecteur refuse une version
   plus grande que la sienne.
-- `signature` (facultatif) : signature ECDSA P-256 / SHA-256 des octets du `.hackapp`, au format
-  IEEE P1363 (`r||s`, 64 octets) en base64 ([ADR 0214](https://github.com/Kazo-ca/HackerOs/blob/main/doc/fr/wasm/dev/adr/0214-hack-store-hot-add-signing-transactions.md)
-  de HackerOs, §2). `publish.yml` signe chaque nouvelle version avec le secret
+- `signature` (facultatif) : signature ECDSA P-256 / SHA-256 des octets du `.kazoapp`, au format
+  IEEE P1363 (`r||s`, 64 octets) en base64 ([ADR 0214](https://github.com/Kazo-ca/Os/blob/main/doc/fr/wasm/dev/adr/0214-hack-store-hot-add-signing-transactions.md)
+  de Kazo OS, §2). `publish.yml` signe chaque nouvelle version avec le secret
   `HACK_STORE_SIGNING_KEY` quand il existe ; sans lui, les versions sont publiées sans signature.
   Une version déjà publiée garde sa signature.
 
 ### Clé de signature (à faire par Benoit)
 
 1. Sur ton ordinateur, dans une copie de ce dépôt :
-   `dotnet run --project tools/HackerOs.MarketPlace.Tool -- keygen --private-key ~/hack-store-signing.pem`.
+   `dotnet run --project tools/Kazo.Os.MarketPlace.Tool -- keygen --private-key ~/kazoos-store-signing.pem`.
    L'outil écrit la clé privée dans un nouveau fichier (`0600`), ne remplace jamais un fichier
    existant, et affiche la clé publique.
 2. Copier le contenu du fichier `.pem` dans le secret `HACK_STORE_SIGNING_KEY` du dépôt
    (Settings ▸ Secrets and variables ▸ Actions), puis garder le fichier hors ligne. La clé
    privée ne passe jamais par un agent ni par une PR.
 3. Mettre la clé publique dans `OfficialCatalogSigningKey` (`AppPackageDefaults.cs`) ou dans la
-   propriété MSBuild `HackerOsAppSigningKeys` de HackerOs (`catalog:official=<clé publique>`) :
+   propriété MSBuild `KazoOsAppSigningKeys` de Kazo OS (`catalog:official=<clé publique>`) :
    dès cette version de l'OS, tout paquet du catalogue officiel doit porter une signature valide.
 4. Republier les versions existantes (workflow *Publish catalog* ▸ Run workflow, avec leurs
    dossiers) pour qu'elles reçoivent une signature avant que l'OS l'exige.
@@ -198,12 +206,12 @@ catalog** à la main avec les noms de dossiers séparés par des espaces.
 ## L'outil du catalogue
 
 ```text
-dotnet run --project tools/HackerOs.MarketPlace.Tool -- validate --root . [dossier...]
-dotnet run --project tools/HackerOs.MarketPlace.Tool -- check-package --root . --folder <dossier> --report <f.md> [--package <f.hackapp>] [--sarif <dossier>]
-dotnet run --project tools/HackerOs.MarketPlace.Tool -- publish --root . --built <dossier> --output <copie de packages> [--keep 3] [--published-at <ISO 8601>]
-dotnet run --project tools/HackerOs.MarketPlace.Tool -- keygen --private-key <fichier.pem>
-dotnet run --project tools/HackerOs.MarketPlace.Tool -- sign --package <f.hackapp> [--private-key <fichier.pem>]
-dotnet test tools/HackerOs.MarketPlace.slnx
+dotnet run --project tools/Kazo.Os.MarketPlace.Tool -- validate --root . [dossier...]
+dotnet run --project tools/Kazo.Os.MarketPlace.Tool -- check-package --root . --folder <dossier> --report <f.md> [--package <f.kazoapp>] [--sarif <dossier>]
+dotnet run --project tools/Kazo.Os.MarketPlace.Tool -- publish --root . --built <dossier> --output <copie de packages> [--keep 3] [--published-at <ISO 8601>]
+dotnet run --project tools/Kazo.Os.MarketPlace.Tool -- keygen --private-key <fichier.pem>
+dotnet run --project tools/Kazo.Os.MarketPlace.Tool -- sign --package <f.kazoapp> [--private-key <fichier.pem>]
+dotnet test tools/Kazo.Os.MarketPlace.slnx
 ```
 
 Code de sortie : 0 si tout va bien, 1 si quelque chose est refusé, 2 pour une erreur d'usage. Dans
@@ -229,7 +237,7 @@ GitHub Actions, les erreurs deviennent des annotations sur les fichiers de la PR
   fichier à lire.
 - Une version fusionnée est immuable : une PR ne peut qu'ajouter des dossiers.
 - La vérification des API en CI (ADR 0188 §5 étape 5) est laissée à l'installation pour la v1
-  (décision de Benoit, Q1 = A) ; elle viendra avec [#3](https://github.com/Kazo-ca/HackerOs-AppMarketPlace/issues/3).
+  (décision de Benoit, Q1 = A) ; elle viendra avec [#3](https://github.com/Kazo-ca/Os-AppMarketPlace/issues/3).
 
 ## Tâches
 
@@ -237,6 +245,6 @@ GitHub Actions, les erreurs deviennent des annotations sur les fichiers de la PR
 - [x] Outil du catalogue : format, manifeste, paquet, commentaire de revue, publication, tests.
 - [x] `validate.yml`, `pr-comment.yml`, `publish.yml` et l'action `build-app`.
 - [x] README (anglais, français) et ce document.
-- [ ] Vérification des API contre le runtime élagué en CI ([#3](https://github.com/Kazo-ca/HackerOs-AppMarketPlace/issues/3)).
+- [ ] Vérification des API contre le runtime élagué en CI ([#3](https://github.com/Kazo-ca/Os-AppMarketPlace/issues/3)).
 - [ ] Remplacer le sous-module par les paquets NuGet quand une version les contient.
 - [ ] Packs de thèmes (`kind: "theme-pack"`, ADR 0190).

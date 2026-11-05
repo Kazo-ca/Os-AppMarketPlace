@@ -1,6 +1,6 @@
 using System.Text.Json.Nodes;
 
-namespace HackerOs.MarketPlace.Tests;
+namespace Kazo.Os.MarketPlace.Tests;
 
 public sealed class AppFolderValidatorTests : IDisposable
 {
@@ -161,7 +161,7 @@ public sealed class AppFolderValidatorTests : IDisposable
     [InlineData("\"project\": \"../evil/x.csproj\"", "'project' must be")]
     [InlineData("\"project\": \"src/a.csproj; rm -rf /\"", "'project' must be")]
     [InlineData("\"kind\": \"theme-pack\"", "'kind' may only be")]
-    [InlineData("\"binary\": \"https://example.com/app.hackapp\"", "Unknown property 'binary'")]
+    [InlineData("\"binary\": \"https://example.com/app.kazoapp\"", "Unknown property 'binary'")]
     public void Store_json_is_checked_strictly(string property, string expected)
     {
         string folder = catalog.AddApp();
@@ -182,7 +182,7 @@ public sealed class AppFolderValidatorTests : IDisposable
     {
         string folder = catalog.AddApp();
         File.WriteAllText(Path.Combine(folder, "store.json"), $$"""
-            { "repository": "https://github.com/example/HackerOs-App-Notes", "commit": "{{TestCatalog.Commit}}",
+            { "repository": "https://github.com/example/Os-App-Notes", "commit": "{{TestCatalog.Commit}}",
               "category": "utilities", "license": "GPL-3.0-only", "project": "src/Example.Notes/Example.Notes.csproj", "kind": "app" }
             """);
 
@@ -191,7 +191,7 @@ public sealed class AppFolderValidatorTests : IDisposable
 
         Assert.Empty(errors);
         Assert.Equal("src/Example.Notes/Example.Notes.csproj", result!.Store.Project);
-        Assert.Equal("example/HackerOs-App-Notes", result.Store.RepositorySlug);
+        Assert.Equal("example/Os-App-Notes", result.Store.RepositorySlug);
         Assert.Empty(result.Store.Tags);
     }
 }

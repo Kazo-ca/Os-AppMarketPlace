@@ -1,6 +1,6 @@
-using HackerOs.App.Abstractions;
+using Kazo.Os.App.Abstractions;
 
-namespace HackerOs.MarketPlace;
+namespace Kazo.Os.MarketPlace;
 
 /// <summary>A checked app version folder <c>apps/&lt;appId&gt;_&lt;version&gt;/</c>.</summary>
 /// <param name="Path">Absolute path of the folder.</param>

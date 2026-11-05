@@ -1,9 +1,9 @@
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using HackerOs.App.Abstractions;
+using Kazo.Os.App.Abstractions;
 
-namespace HackerOs.MarketPlace;
+namespace Kazo.Os.MarketPlace;
 
 /// <summary>
 /// Checks one app version folder against the catalog format (ADR 0188 §4, §5 steps 1 and 2):
