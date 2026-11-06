@@ -181,7 +181,7 @@ hand with the folder names separated by spaces.
   than its own.
 - `signature` (optional): ECDSA P-256 / SHA-256 signature of the `.kazoapp` bytes, in IEEE P1363
   form (`r||s`, 64 bytes), base64 ([ADR 0214](https://github.com/Kazo-ca/Os/blob/main/doc/en/wasm/dev/adr/0214-hack-store-hot-add-signing-transactions.md)
-  of Kazo OS, §2). `publish.yml` signs each new version with the `HACK_STORE_SIGNING_KEY` secret
+  of Kazo OS, §2). `publish.yml` signs each new version with the `KAZO_STORE_SIGNING_KEY` secret
   when it exists; without it, versions are published unsigned. A version already published keeps
   its signature.
 
@@ -191,7 +191,7 @@ hand with the folder names separated by spaces.
    `dotnet run --project tools/Kazo.Os.MarketPlace.Tool -- keygen --private-key ~/kazoos-store-signing.pem`.
    The tool writes the private key to a new file (`0600`), never replaces an existing file, and
    prints the public key.
-2. Copy the content of the `.pem` file into the repository's `HACK_STORE_SIGNING_KEY` secret
+2. Copy the content of the `.pem` file into the repository's `KAZO_STORE_SIGNING_KEY` secret
    (Settings ▸ Secrets and variables ▸ Actions), then keep the file offline. The private key never
    goes through an agent or a PR.
 3. Put the public key in `OfficialCatalogSigningKey` (`AppPackageDefaults.cs`) or in Kazo OS's

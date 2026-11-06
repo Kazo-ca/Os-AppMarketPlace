@@ -10,12 +10,12 @@ namespace Kazo.Os.MarketPlace;
 /// </summary>
 /// <remarks>
 /// The private key is a PKCS#8 PEM file kept by the catalog's maintainer; the publication workflow
-/// receives it through the <c>HACK_STORE_SIGNING_KEY</c> secret and never writes it to disk.
+/// receives it through the <c>KAZO_STORE_SIGNING_KEY</c> secret and never writes it to disk.
 /// </remarks>
 public static class PackageSigner
 {
     /// <summary>Environment variable that holds the private key (PEM) during the publication.</summary>
-    public const string KeyVariable = "HACK_STORE_SIGNING_KEY";
+    public const string KeyVariable = "KAZO_STORE_SIGNING_KEY";
 
     /// <summary>Creates a new key pair.</summary>
     /// <returns>The private key as PKCS#8 PEM and the public key as base64 SubjectPublicKeyInfo.</returns>
