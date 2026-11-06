@@ -185,7 +185,7 @@ catalog** à la main avec les noms de dossiers séparés par des espaces.
 - `signature` (facultatif) : signature ECDSA P-256 / SHA-256 des octets du `.kazoapp`, au format
   IEEE P1363 (`r||s`, 64 octets) en base64 ([ADR 0214](https://github.com/Kazo-ca/Os/blob/main/doc/fr/wasm/dev/adr/0214-hack-store-hot-add-signing-transactions.md)
   de Kazo OS, §2). `publish.yml` signe chaque nouvelle version avec le secret
-  `HACK_STORE_SIGNING_KEY` quand il existe ; sans lui, les versions sont publiées sans signature.
+  `KAZO_STORE_SIGNING_KEY` quand il existe ; sans lui, les versions sont publiées sans signature.
   Une version déjà publiée garde sa signature.
 
 ### Clé de signature (à faire par Benoit)
@@ -194,7 +194,7 @@ catalog** à la main avec les noms de dossiers séparés par des espaces.
    `dotnet run --project tools/Kazo.Os.MarketPlace.Tool -- keygen --private-key ~/kazoos-store-signing.pem`.
    L'outil écrit la clé privée dans un nouveau fichier (`0600`), ne remplace jamais un fichier
    existant, et affiche la clé publique.
-2. Copier le contenu du fichier `.pem` dans le secret `HACK_STORE_SIGNING_KEY` du dépôt
+2. Copier le contenu du fichier `.pem` dans le secret `KAZO_STORE_SIGNING_KEY` du dépôt
    (Settings ▸ Secrets and variables ▸ Actions), puis garder le fichier hors ligne. La clé
    privée ne passe jamais par un agent ni par une PR.
 3. Mettre la clé publique dans `OfficialCatalogSigningKey` (`AppPackageDefaults.cs`) ou dans la

@@ -12,7 +12,7 @@ namespace Kazo.Os.MarketPlace;
 /// checks the package built from a folder and writes its review comment section.</item>
 /// <item><c>publish --root &lt;catalog&gt; --built &lt;dir&gt; --output &lt;packages branch&gt; [--keep 3] [--published-at &lt;ISO 8601&gt;]</c>:
 /// updates the <c>packages</c> branch, signing each new package with the key of the
-/// <c>HACK_STORE_SIGNING_KEY</c> variable when it is set (ADR 0214 §2 of Kazo-ca/Os).</item>
+/// <c>KAZO_STORE_SIGNING_KEY</c> variable when it is set (ADR 0214 §2 of Kazo-ca/Os).</item>
 /// <item><c>keygen --private-key &lt;file.pem&gt;</c>: creates the catalog's key pair, writes the private
 /// key to a new file and prints the public key to compile into the OS.</item>
 /// <item><c>sign --package &lt;file.kazoapp&gt; [--private-key &lt;file.pem&gt;]</c>: prints the signature of a package.</item>
