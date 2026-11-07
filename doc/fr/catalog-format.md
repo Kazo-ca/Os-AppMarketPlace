@@ -32,8 +32,9 @@ L'outil `tools/Kazo.Os.MarketPlace.Tool` lit les manifestes avec `AppManifestJso
 `AppManifestValidator`, et les paquets avec `AppPackage.Read` : ce sont les classes de Kazo OS
 elles-mêmes, donc le catalogue applique exactement les règles de l'OS à l'installation. L'outil
 compile les deux bibliothèques depuis le sous-module `external/KazoOs` (`https://github.com/Kazo-ca/Os`),
-sur le tag `v3.0.0` (2026-11-05 : HackerOS a été renommé Kazo OS, ADR 0228 et 0229 de Kazo OS).
-Les paquets NuGet `Kazo.Os.*` 3.0.0 contiennent aussi le lecteur de paquets : le sous-module pourra
+sur le tag `v3.2.0` (2026-11-07 : les manifestes de Kazo OS 3.2.0 ont le champ `realNetworkPorts`
+de l'ADR 0235, que la lecture stricte de 3.0.0 refusait ; HackerOS a été renommé Kazo OS le
+2026-11-05, ADR 0228 et 0229 de Kazo OS). Les paquets NuGet `Kazo.Os.*` contiennent aussi le lecteur de paquets : le sous-module pourra
 être remplacé plus tard par des `PackageReference`.
 
 La CI compile une app soumise à son commit avec le sous-module `external/KazoOs` de l'app (une

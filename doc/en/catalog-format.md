@@ -31,9 +31,10 @@ packages                          written only by publish.yml, no code history
 The tool `tools/Kazo.Os.MarketPlace.Tool` reads manifests with `AppManifestJsonSerializer` and
 `AppManifestValidator`, and packages with `AppPackage.Read`: the Kazo OS classes themselves, so the
 catalog applies exactly the rules the OS applies at install time. The tool builds the two
-libraries from the `external/KazoOs` submodule (`https://github.com/Kazo-ca/Os`), on the `v3.0.0`
-tag (2026-11-05: HackerOS was renamed Kazo OS, Kazo OS ADR 0228 and 0229). The `Kazo.Os.*` 3.0.0
-NuGet packages carry the package reader too: the submodule can be replaced by `PackageReference`
+libraries from the `external/KazoOs` submodule (`https://github.com/Kazo-ca/Os`), on the `v3.2.0`
+tag (2026-11-07: Kazo OS 3.2.0 manifests have the `realNetworkPorts` field of ADR 0235, which the
+strict reading of 3.0.0 refused; HackerOS was renamed Kazo OS on 2026-11-05, Kazo OS ADR 0228 and
+0229). The `Kazo.Os.*` NuGet packages carry the package reader too: the submodule can be replaced by `PackageReference`
 items later.
 
 The CI builds a submitted app at its commit with the app's own `external/KazoOs` submodule (an
