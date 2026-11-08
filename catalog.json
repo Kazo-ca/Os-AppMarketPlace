@@ -231,8 +231,41 @@
       },
       "license": "MIT",
       "repository": "https://github.com/Kazo-ca/Os-App-Webamp",
-      "latestVersion": "1.0.0",
+      "latestVersion": "1.1.0",
       "versions": [
+        {
+          "version": "1.1.0",
+          "commit": "99567cd027cfa9e1428db6d0903a96bc5ab526fd",
+          "package": "packages/ca.kazo.webamp/1.1.0/ca.kazo.webamp-1.1.0.kazoapp",
+          "sha256": "c7631b9ff2cc43bd53554b8b8a0a4281f3da8a42aebdd01869ef9d15ee260b1c",
+          "size": 637456,
+          "publishedAt": "2026-11-08T04:55:12+00:00",
+          "capabilities": [
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "dialogs.folder-select",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write",
+            "notifications.post",
+            "shell.context-menu"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.1.0"
+          },
+          "icon": "assets/ca.kazo.webamp/1.1.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.webamp/1.1.0/screenshots/1.png",
+            "assets/ca.kazo.webamp/1.1.0/screenshots/2.png",
+            "assets/ca.kazo.webamp/1.1.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.webamp/1.1.0/description.en.md",
+            "fr": "assets/ca.kazo.webamp/1.1.0/description.fr.md"
+          },
+          "signature": "bUHOnnUBDo9dGJfxuRYDu\u002BVDGkMkHywvZT47sYs3VgBUICo6x97QUkQjt1P\u002BPJf4PMeBAmkANzZX652a9f6CGQ=="
+        },
         {
           "version": "1.0.0",
           "commit": "ac301545f6fd214bcde28d4dfd77e2f491005a04",
