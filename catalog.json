@@ -176,8 +176,40 @@
       },
       "license": "MIT",
       "repository": "https://github.com/Kazo-ca/Os-App-IRC",
-      "latestVersion": "1.0.0",
+      "latestVersion": "1.0.1",
       "versions": [
+        {
+          "version": "1.0.1",
+          "commit": "3b7faf239953be5e6b0e6891a6b513f4720babef",
+          "package": "packages/ca.kazo.irc/1.0.1/ca.kazo.irc-1.0.1.kazoapp",
+          "sha256": "eaf19ddbf427ce727e510ddbf17c679cc363aa53372d02adb71d4e5b2c42a33a",
+          "size": 146148,
+          "publishedAt": "2026-11-11T21:50:08+00:00",
+          "capabilities": [
+            "apps.launch",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write",
+            "network.real.access",
+            "network.simulated.write",
+            "notifications.post"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.2.0"
+          },
+          "icon": "assets/ca.kazo.irc/1.0.1/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.irc/1.0.1/screenshots/1.png",
+            "assets/ca.kazo.irc/1.0.1/screenshots/2.png",
+            "assets/ca.kazo.irc/1.0.1/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.irc/1.0.1/description.en.md",
+            "fr": "assets/ca.kazo.irc/1.0.1/description.fr.md"
+          },
+          "signature": "HpZp3dRCw7M6DBSvqUZeZzOjts0OAhdbLSbWnvfxusMuOK0\u002BCkWMwHySYEOMJb63cKW99FDOqUd3nqLzlL0kEA=="
+        },
         {
           "version": "1.0.0",
           "commit": "8309ff4395bd4b1f9cc953b78f00cf35bd6cea38",
