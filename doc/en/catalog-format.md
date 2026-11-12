@@ -79,7 +79,7 @@ Read strictly: an unknown or duplicate property is an error.
 | `tags` | no | at most 10, lower case, digits and `-`, 30 characters at most, no duplicate |
 | `license` | yes | SPDX expression (`MIT`, `GPL-3.0-only`, `MIT OR Apache-2.0`) |
 | `project` | no | relative path of the `.csproj` to build (letters, digits, `.`, `_`, `-`, `/`, no `..`) |
-| `kind` | no | only `app` for now; theme packs (ADR 0190) come with their work item |
+| `kind` | no | what the folder publishes: `app` (the value when the field is absent) or `feature` (a feature of the OS, [ADR 0243](https://github.com/Kazo-ca/Os/blob/main/doc/en/wasm/dev/adr/0243-feature-app-type.md) of Kazo OS: its `manifest.json` has `kind: "feature"` and its package holds `entrypoints/`). The tool accepts `feature` only once its `external/KazoOs` submodule moves to a Kazo OS version that reads that kind; theme packs (ADR 0190) come with their work item |
 
 ### `categories.json`
 
@@ -178,6 +178,13 @@ hand with the folder names separated by spaces.
 - The listing fields (`name`, `category`, `tags`, `shortDescriptions`, `license`, `repository`)
   come from the newest version. `capabilities` and `sdkCompatibility` are per version, so the Store
   can show what an update adds.
+- `kind` (optional) says what the entry installs, copied from `store.json`: `app` (the value when
+  the field is absent: entries published before this field need no rewrite), `feature` (a feature
+  of the OS, installed for the whole machine only: the Kazo OS Store lists it with the apps and
+  offers "Install for everyone" only, [ADR 0243](https://github.com/Kazo-ca/Os/blob/main/doc/en/wasm/dev/adr/0243-feature-app-type.md)
+  §4 of Kazo OS) or `theme-pack` (ADR 0190, to come). A Kazo OS that does not know a value reads
+  the entry as an `app` with a warning (versions before ADR 0243 skipped it); a new `kind` therefore
+  does not change `schemaVersion`.
 - `schemaVersion` changes when the format changes incompatibly; a reader refuses a higher version
   than its own.
 - `signature` (optional): ECDSA P-256 / SHA-256 signature of the `.kazoapp` bytes, in IEEE P1363
@@ -234,6 +241,10 @@ Actions, errors become annotations on the PR's files. Clone with `--recurse-subm
 - A merged version is immutable: a PR may only add folders.
 - The API check in CI (ADR 0188 §5 step 5) is left to install time for v1 (Benoit's decision,
   Q1 = A); it comes with [#3](https://github.com/Kazo-ca/Os-AppMarketPlace/issues/3).
+- `kind: "feature"` in `catalog.json` (2026-11-11, Benoit's decision on
+  [Kazo-ca/Os#449](https://github.com/Kazo-ca/Os/pull/449), question 1 = B): the catalog says the
+  kind of a package so the Store hides "Install for me"; an absent field means `app`, existing
+  entries do not change.
 
 ## Tasks
 
@@ -244,3 +255,6 @@ Actions, errors become annotations on the PR's files. Clone with `--recurse-subm
 - [ ] API check against the trimmed runtime in CI ([#3](https://github.com/Kazo-ca/Os-AppMarketPlace/issues/3)).
 - [ ] Replace the submodule by the NuGet packages once a release carries them.
 - [ ] Theme packs (`kind: "theme-pack"`, ADR 0190).
+- [ ] `kind: "feature"` in the tool (`store.json`, `check-package`, `publish`) once the
+  `external/KazoOs` submodule reads features (ADR 0243 of Kazo OS,
+  [Kazo-ca/Os#449](https://github.com/Kazo-ca/Os/pull/449)).
