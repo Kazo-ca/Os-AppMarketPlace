@@ -2,12 +2,15 @@
 
 # Os-AppMarketPlace
 
+**[Voir toutes les apps disponibles dans le Store](https://github.com/Kazo-ca/Os-AppMarketPlace/blob/packages/APPS-fr.md)** : nom, description, version, et
+un lien **Essayer** qui ouvre l'app dans Kazo OS. La page est réécrite à chaque publication.
+
 Le catalogue du **Kazo OS Store**, la boutique d'apps de [Kazo OS](https://github.com/Kazo-ca/Os)
 ([ADR 0188](https://github.com/Kazo-ca/Os/blob/main/doc/fr/wasm/dev/adr/0188-hack-store-and-app-catalog.md)).
 
 - La branche **`main`** contient un dossier par version d'app, relu par pull request.
 - La branche **`packages`** est écrite par notre action après chaque fusion : `catalog.json`, les
-  paquets `.kazoapp` et les images, lus par le Kazo OS Store et `kazopkg` à travers
+  paquets `.kazoapp`, les images et la liste des apps (`APPS-fr.md`), lus par le Kazo OS Store et `kazopkg` à travers
   `raw.githubusercontent.com`.
 
 Un auteur ne fournit **jamais de binaire** : notre CI compile l'app elle-même depuis le commit

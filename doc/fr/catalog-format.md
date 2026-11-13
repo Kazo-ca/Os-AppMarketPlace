@@ -24,6 +24,7 @@ main                              relue par PR
 
 packages                          écrite seulement par publish.yml, sans historique de code
   catalog.json
+  APPS.md, APPS-fr.md               la liste des apps, liée depuis les README
   packages/<appId>/<version>/<appId>-<version>.kazoapp
   assets/<appId>/<version>/icon.png, screenshots/N.png, description.<lang>.md
 ```
@@ -133,9 +134,18 @@ chaque app (les plus anciennes sont retirées de `packages/` et `assets/` ; leur
 l'historique de `main`). Une version plus ancienne publiée en retard ne change pas la fiche de
 l'app.
 
+Chaque publication réécrit aussi `APPS.md` (anglais) et `APPS-fr.md` (français) à la racine de la
+branche `packages`, depuis le `catalog.json` qui vient d'être écrit : une ligne par app avec son
+icône, son nom, sa description courte, les types de fichiers qu'elle ouvre, sa dernière version, sa
+catégorie, un lien **Essayer** (`https://os.kazo.ca/?autolaunch=<appId>`, ADR 0258 de Kazo OS),
+son dépôt source et sa licence. Le texte des auteurs est échappé (ni HTML, ni lien à lui). La page
+ne contient pas d'heure (la date affichée est le `publishedAt` le plus récent) : réécrire un
+catalogue inchangé ne change rien. Les README de ce dépôt et de Kazo-ca/Os renvoient vers
+<https://github.com/Kazo-ca/Os-AppMarketPlace/blob/packages/APPS-fr.md>.
+
 Pour republier une version (par exemple après un changement de l'outil) : lancer **Publish
 catalog** à la main avec les noms de dossiers séparés par des espaces. Lancé sans dossier, il ne
-reconstruit rien et réécrit seulement `catalog.json` : c'est ainsi qu'on remplit les
+reconstruit rien et réécrit seulement `catalog.json` et la liste des apps : c'est ainsi qu'on remplit les
 `fileHandlers` des versions publiées avant ce champ (voir plus bas), sans toucher à leurs paquets
 ni à leurs signatures.
 

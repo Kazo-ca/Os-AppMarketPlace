@@ -6,7 +6,8 @@ namespace Kazo.Os.MarketPlace;
 /// <summary>
 /// Updates the content of the <c>packages</c> branch after a merge (ADR 0188 §6): copies each
 /// newly built package and its assets, rewrites <c>catalog.json</c>, and keeps only the newest
-/// versions of each app. Nothing is written when one folder fails its checks.
+/// versions of each app, then rewrites the public list of the apps (<see cref="AppsPage"/>).
+/// Nothing is written when one folder fails its checks.
 /// </summary>
 public static class CatalogPublisher
 {
@@ -63,7 +64,11 @@ public static class CatalogPublisher
             .Select(app => Prune(app, outputRoot, keptVersions))
             .Select(app => AddMissingFileHandlers(app, outputRoot))];
         Directory.CreateDirectory(outputRoot);
-        File.WriteAllText(catalogPath, new CatalogDocument(CatalogDocument.CurrentSchemaVersion, categories.Categories, pruned).Write());
+        CatalogDocument written = new(CatalogDocument.CurrentSchemaVersion, categories.Categories, pruned);
+        File.WriteAllText(catalogPath, written.Write());
+
+        // The public list of the apps (APPS.md, APPS-fr.md), linked from the READMEs, follows every publication.
+        AppsPage.Write(written, outputRoot);
         return [.. ready.Select(item => item.Folder.Name)];
     }
 

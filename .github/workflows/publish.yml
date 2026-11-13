@@ -1,5 +1,5 @@
 # Publishes after a merge (ADR 0188 §6): rebuilds each new version at its commit, then rewrites the
-# packages branch (catalog.json, packages/, assets/), keeping the 3 newest versions of each app,
+# packages branch (catalog.json, APPS.md and APPS-fr.md, packages/, assets/), keeping the 3 newest versions of each app,
 # and signs each new package with the KAZO_STORE_SIGNING_KEY secret when it is set.
 # The build jobs run the app's code with a read-only token; only the last job may push.
 name: Publish catalog
