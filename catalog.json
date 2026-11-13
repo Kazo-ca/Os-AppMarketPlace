@@ -125,7 +125,18 @@
             "en": "assets/ca.kazo.chess/1.1.0/description.en.md",
             "fr": "assets/ca.kazo.chess/1.1.0/description.fr.md"
           },
-          "signature": "25iKg9/mFWiDa2Ad9NJBy2h3dn0GPjquafUl\u002BElKXmvEqKdK3zwOl43ZmTy5jOnOdllaF5tUeb6Z5clLslkFGw=="
+          "signature": "25iKg9/mFWiDa2Ad9NJBy2h3dn0GPjquafUl\u002BElKXmvEqKdK3zwOl43ZmTy5jOnOdllaF5tUeb6Z5clLslkFGw==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/x-chess-pgn",
+              "extensions": [
+                ".pgn"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
         },
         {
           "version": "1.0.0",
@@ -153,7 +164,18 @@
             "en": "assets/ca.kazo.chess/1.0.0/description.en.md",
             "fr": "assets/ca.kazo.chess/1.0.0/description.fr.md"
           },
-          "signature": "rsbYj1ghSTaSncAHqPQKEbPv94KFmVPoGBR/YvywN5O6X42p4CD60CCiIq5Pi4KOTnE0H28qsufsQuUOF\u002Bg3nw=="
+          "signature": "rsbYj1ghSTaSncAHqPQKEbPv94KFmVPoGBR/YvywN5O6X42p4CD60CCiIq5Pi4KOTnE0H28qsufsQuUOF\u002Bg3nw==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/x-chess-pgn",
+              "extensions": [
+                ".pgn"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -296,7 +318,118 @@
             "en": "assets/ca.kazo.webamp/1.1.0/description.en.md",
             "fr": "assets/ca.kazo.webamp/1.1.0/description.fr.md"
           },
-          "signature": "bUHOnnUBDo9dGJfxuRYDu\u002BVDGkMkHywvZT47sYs3VgBUICo6x97QUkQjt1P\u002BPJf4PMeBAmkANzZX652a9f6CGQ=="
+          "signature": "bUHOnnUBDo9dGJfxuRYDu\u002BVDGkMkHywvZT47sYs3VgBUICo6x97QUkQjt1P\u002BPJf4PMeBAmkANzZX652a9f6CGQ==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/vnd.apple.mpegurl",
+              "extensions": [
+                ".m3u8"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "application/x-winamp-skin",
+              "extensions": [
+                ".wsz"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/aac",
+              "extensions": [
+                ".aac"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/flac",
+              "extensions": [
+                ".flac"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/mp4",
+              "extensions": [
+                ".m4a"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/mpeg",
+              "extensions": [
+                ".mp3"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/ogg",
+              "extensions": [
+                ".ogg",
+                ".oga"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/opus",
+              "extensions": [
+                ".opus"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/wav",
+              "extensions": [
+                ".wav"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/webm",
+              "extensions": [
+                ".weba"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/x-mpegurl",
+              "extensions": [
+                ".m3u"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/x-scpls",
+              "extensions": [
+                ".pls"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
         },
         {
           "version": "1.0.0",
@@ -329,7 +462,118 @@
             "en": "assets/ca.kazo.webamp/1.0.0/description.en.md",
             "fr": "assets/ca.kazo.webamp/1.0.0/description.fr.md"
           },
-          "signature": "9ftvTPo0Bjs9XWE1vu8WQQyRAiTaG18lNExcbRhx2teYoLJqTJMf6PrODe74Z5qZ5OxnNvkJHt1LnYz8Rh\u002BdAA=="
+          "signature": "9ftvTPo0Bjs9XWE1vu8WQQyRAiTaG18lNExcbRhx2teYoLJqTJMf6PrODe74Z5qZ5OxnNvkJHt1LnYz8Rh\u002BdAA==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/vnd.apple.mpegurl",
+              "extensions": [
+                ".m3u8"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "application/x-winamp-skin",
+              "extensions": [
+                ".wsz"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/aac",
+              "extensions": [
+                ".aac"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/flac",
+              "extensions": [
+                ".flac"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/mp4",
+              "extensions": [
+                ".m4a"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/mpeg",
+              "extensions": [
+                ".mp3"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/ogg",
+              "extensions": [
+                ".ogg",
+                ".oga"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/opus",
+              "extensions": [
+                ".opus"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/wav",
+              "extensions": [
+                ".wav"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/webm",
+              "extensions": [
+                ".weba"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/x-mpegurl",
+              "extensions": [
+                ".m3u"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/x-scpls",
+              "extensions": [
+                ".pls"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -382,7 +626,137 @@
             "en": "assets/ca.kazo.word/0.1.0/description.en.md",
             "fr": "assets/ca.kazo.word/0.1.0/description.fr.md"
           },
-          "signature": "f9TUfDypurEHc0uk0T\u002Bd9NPQq8cZ4ITZAvMLLh2dWH7JVsnVebD/qIrjx86aXZzpCAnzINbfkgv8enfik//Aaw=="
+          "signature": "f9TUfDypurEHc0uk0T\u002Bd9NPQq8cZ4ITZAvMLLh2dWH7JVsnVebD/qIrjx86aXZzpCAnzINbfkgv8enfik//Aaw==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/msword",
+              "extensions": [
+                ".doc",
+                ".dot"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/rtf",
+              "extensions": [
+                ".rtf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ms-word.document.macroenabled.12",
+              "extensions": [
+                ".docm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ms-word.template.macroenabled.12",
+              "extensions": [
+                ".dotm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.oasis.opendocument.text",
+              "extensions": [
+                ".odt"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.oasis.opendocument.text-flat-xml",
+              "extensions": [
+                ".fodt"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.oasis.opendocument.text-template",
+              "extensions": [
+                ".ott"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+              "extensions": [
+                ".docx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.openxmlformats-officedocument.wordprocessingml.template",
+              "extensions": [
+                ".dotx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-tex",
+              "extensions": [
+                ".tex"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/html",
+              "extensions": [
+                ".html",
+                ".htm"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/markdown",
+              "extensions": [
+                ".md"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/plain",
+              "extensions": [
+                ".txt"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
         }
       ]
     }
