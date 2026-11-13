@@ -267,6 +267,158 @@
       ]
     },
     {
+      "appId": "ca.kazo.spreadsheets",
+      "kind": "app",
+      "name": "Kazo Spreadsheets",
+      "category": "productivity",
+      "tags": [
+        "spreadsheet",
+        "xlsx",
+        "ods",
+        "gridcraft"
+      ],
+      "shortDescriptions": {
+        "en": "A spreadsheet for .xlsx, .ods and .csv workbooks, based on GridCraft by the ArtCraft team.",
+        "fr": "Un tableur pour les classeurs .xlsx, .ods et .csv, bas\u00E9 sur GridCraft de l\u0027\u00E9quipe ArtCraft."
+      },
+      "license": "MIT",
+      "repository": "https://github.com/Kazo-ca/Os-App-Spreadsheets",
+      "latestVersion": "0.1.0",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "commit": "5d757d37c15a59a49d605d9ab75be9be9284d5d4",
+          "package": "packages/ca.kazo.spreadsheets/0.1.0/ca.kazo.spreadsheets-0.1.0.kazoapp",
+          "sha256": "9f9eaa954a281450033636643c404154dfa44b11e50c02a27f6d19b4dff1c567",
+          "size": 9884043,
+          "publishedAt": "2026-11-13T16:08:36+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.3.3"
+          },
+          "icon": "assets/ca.kazo.spreadsheets/0.1.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.spreadsheets/0.1.0/screenshots/1.png",
+            "assets/ca.kazo.spreadsheets/0.1.0/screenshots/2.png",
+            "assets/ca.kazo.spreadsheets/0.1.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.spreadsheets/0.1.0/description.en.md",
+            "fr": "assets/ca.kazo.spreadsheets/0.1.0/description.fr.md"
+          },
+          "signature": "KY0Fkb2zmw7pamklJRRCAor2sjOdtSIR3QXi3PymFYWMKlKmV2ccrbYn9xhWF\u002BE6b2/wyLnsSwXZPES0/TQuYw==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/json",
+              "extensions": [
+                ".json"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ms-excel",
+              "extensions": [
+                ".xls"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ms-excel.sheet.binary.macroEnabled.12",
+              "extensions": [
+                ".xlsb"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ms-excel.sheet.macroEnabled.12",
+              "extensions": [
+                ".xlsm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.oasis.opendocument.spreadsheet",
+              "extensions": [
+                ".ods"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+              "extensions": [
+                ".xlsx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-sylk",
+              "extensions": [
+                ".slk"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "text/csv",
+              "extensions": [
+                ".csv"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "text/plain",
+              "extensions": [
+                ".txt"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/tab-separated-values",
+              "extensions": [
+                ".tsv"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "appId": "ca.kazo.webamp",
       "kind": "app",
       "name": "Webamp",
