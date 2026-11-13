@@ -136,6 +136,66 @@ public sealed class CatalogPublisherTests : IDisposable
         Assert.Contains(errors, error => error.Message.Contains("does not exist on main", StringComparison.Ordinal));
     }
 
+    private const string DocxHandlers = """
+        [{"mediaType":"application/vnd.openxmlformats-officedocument.wordprocessingml.document","extensions":[".docx"],"actions":["open","edit"],"priority":10},{"extensions":[".txt"],"actions":["open"]}]
+        """;
+
+    [Fact]
+    public void A_version_lists_the_file_types_of_its_manifest()
+    {
+        Build(catalog.AddApp(fileHandlers: DocxHandlers));
+
+        List<CatalogError> errors = [];
+        CatalogPublisher.Publish(catalog.Root, Built, Output, 3, Now, errors);
+
+        Assert.Empty(errors);
+        JsonArray handlers = ReadCatalog()["apps"]![0]!["versions"]![0]!["fileHandlers"]!.AsArray();
+        Assert.Equal(2, handlers.Count);
+        Assert.Equal("application/vnd.openxmlformats-officedocument.wordprocessingml.document", (string?)handlers[0]!["mediaType"]);
+        Assert.Equal([".docx"], handlers[0]!["extensions"]!.AsArray().Select(e => (string?)e));
+        Assert.Equal(["open", "edit"], handlers[0]!["actions"]!.AsArray().Select(a => (string?)a));
+        Assert.Null(handlers[0]!["priority"]);
+        Assert.Null(handlers[1]!["mediaType"]);
+        Assert.Equal([".txt"], handlers[1]!["extensions"]!.AsArray().Select(e => (string?)e));
+    }
+
+    [Fact]
+    public void A_version_without_file_types_leaves_the_field_out()
+    {
+        Build(catalog.AddApp());
+
+        List<CatalogError> errors = [];
+        CatalogPublisher.Publish(catalog.Root, Built, Output, 3, Now, errors);
+
+        Assert.Empty(errors);
+        Assert.False(ReadCatalog()["apps"]![0]!["versions"]![0]!.AsObject().ContainsKey("fileHandlers"));
+    }
+
+    [Fact]
+    public void A_later_publication_fills_the_file_types_of_versions_published_before_the_field()
+    {
+        Build(catalog.AddApp(fileHandlers: DocxHandlers));
+        List<CatalogError> errors = [];
+        CatalogPublisher.Publish(catalog.Root, Built, Output, 3, Now, errors, PackageSigner.CreateKeyPair().PrivateKeyPem);
+        Directory.Delete(Built, recursive: true);
+
+        // catalog.json as the tool wrote it before ADR 0257: no fileHandlers.
+        JsonNode old = ReadCatalog();
+        JsonObject oldVersion = old["apps"]![0]!["versions"]![0]!.AsObject();
+        oldVersion.Remove("fileHandlers");
+        string sha256 = (string)oldVersion["sha256"]!;
+        string signature = (string)oldVersion["signature"]!;
+        File.WriteAllText(Path.Combine(Output, "catalog.json"), old.ToJsonString());
+
+        CatalogPublisher.Publish(catalog.Root, Built, Output, 3, Now, errors);
+
+        Assert.Empty(errors);
+        JsonNode version = ReadCatalog()["apps"]![0]!["versions"]![0]!;
+        Assert.Equal([".docx"], version["fileHandlers"]![0]!["extensions"]!.AsArray().Select(e => (string?)e));
+        Assert.Equal(sha256, (string?)version["sha256"]);
+        Assert.Equal(signature, (string?)version["signature"]);
+    }
+
     private void Build(string folder)
     {
         string target = Path.Combine(Built, Path.GetFileName(folder), "1.0.0");

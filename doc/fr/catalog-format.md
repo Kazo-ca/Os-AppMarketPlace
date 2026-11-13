@@ -134,7 +134,10 @@ l'historique de `main`). Une version plus ancienne publiée en retard ne change 
 l'app.
 
 Pour republier une version (par exemple après un changement de l'outil) : lancer **Publish
-catalog** à la main avec les noms de dossiers séparés par des espaces.
+catalog** à la main avec les noms de dossiers séparés par des espaces. Lancé sans dossier, il ne
+reconstruit rien et réécrit seulement `catalog.json` : c'est ainsi qu'on remplit les
+`fileHandlers` des versions publiées avant ce champ (voir plus bas), sans toucher à leurs paquets
+ni à leurs signatures.
 
 ### `catalog.json`
 
@@ -168,7 +171,10 @@ catalog** à la main avec les noms de dossiers séparés par des espaces.
           "icon": "assets/org.example.notes/1.2.0/icon.png",
           "screenshots": ["assets/org.example.notes/1.2.0/screenshots/1.png"],
           "descriptions": { "en": "assets/org.example.notes/1.2.0/description.en.md" },
-          "signature": "MEUCIQ…"
+          "signature": "MEUCIQ…",
+          "fileHandlers": [
+            { "mediaType": "text/markdown", "extensions": [".md"], "actions": ["open", "edit"] }
+          ]
         }
       ]
     }
@@ -195,6 +201,16 @@ catalog** à la main avec les noms de dossiers séparés par des espaces.
   de Kazo OS, §2). `publish.yml` signe chaque nouvelle version avec le secret
   `KAZO_STORE_SIGNING_KEY` quand il existe ; sans lui, les versions sont publiées sans signature.
   Une version déjà publiée garde sa signature.
+- `fileHandlers` (facultatif) : les types de fichiers que la version sait ouvrir, recopiés des
+  `fileHandlers` de son manifeste : `extensions` (avec le point), `mediaType` (absent quand le
+  manifeste n'en donne pas) et `actions` (`open`, `edit`…). La `priority` du manifeste n'est pas
+  recopiée : elle ne départage que les apps installées. Le champ est absent quand le manifeste ne
+  déclare aucun type. Kazo OS s'en sert pour proposer une app du catalogue quand aucune app
+  installée n'ouvre un fichier ([ADR 0257](https://github.com/Kazo-ca/Os/blob/main/doc/fr/wasm/dev/adr/0257-offer-a-store-app-for-an-unsupported-file.md)
+  de Kazo OS). Le champ est dans `catalog.json`, pas dans le paquet : il ne change ni le `sha256`
+  ni la `signature`. Les versions publiées avant ce champ le reçoivent à la publication suivante :
+  l'outil le lit dans le manifeste de leur paquet sur la branche `packages`. Un lecteur qui ne le
+  connaît pas l'ignore ; `schemaVersion` reste 1.
 
 ### Clé de signature (à faire par Benoit)
 
