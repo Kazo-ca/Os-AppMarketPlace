@@ -436,6 +436,69 @@
       ]
     },
     {
+      "appId": "ca.kazo.pdf",
+      "kind": "app",
+      "name": "Kazo Pdf",
+      "category": "productivity",
+      "tags": [
+        "pdf",
+        "documents",
+        "office"
+      ],
+      "shortDescriptions": {
+        "en": "A PDF reader and editor for Kazo OS, built on PdfCraft.",
+        "fr": "Un lecteur et \u00E9diteur de PDF pour Kazo OS, construit sur PdfCraft."
+      },
+      "license": "MIT",
+      "repository": "https://github.com/Kazo-ca/Os-App-PDF",
+      "latestVersion": "0.1.0",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "commit": "babb51c6806a0484015e6602aa2213d7db70e0e9",
+          "package": "packages/ca.kazo.pdf/0.1.0/ca.kazo.pdf-0.1.0.kazoapp",
+          "sha256": "dcf5efda9e6b85a5b72442d791beff9e00e8981b7bd87db3c01fe4aba68be8af",
+          "size": 34723091,
+          "publishedAt": "2026-11-13T23:42:06+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.3.4"
+          },
+          "icon": "assets/ca.kazo.pdf/0.1.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.pdf/0.1.0/screenshots/1.png",
+            "assets/ca.kazo.pdf/0.1.0/screenshots/2.png",
+            "assets/ca.kazo.pdf/0.1.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.pdf/0.1.0/description.en.md",
+            "fr": "assets/ca.kazo.pdf/0.1.0/description.fr.md"
+          },
+          "signature": "GQSl0\u002B0BD5yYQEum8tWG21uBplOCvrtYs5G4syoqnqxmCiYb92Ka71sXu4tuzeeVN8nIgL9lHLF/MbT67Rt9eg==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/pdf",
+              "extensions": [
+                ".pdf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "appId": "ca.kazo.spreadsheets",
       "kind": "app",
       "name": "Kazo Spreadsheets",
