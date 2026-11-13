@@ -180,6 +180,175 @@
       ]
     },
     {
+      "appId": "ca.kazo.fig",
+      "kind": "app",
+      "name": "Kazo Fig",
+      "category": "graphics",
+      "tags": [
+        "design",
+        "prototype",
+        "ui",
+        "figcraft"
+      ],
+      "shortDescriptions": {
+        "en": "Interface design and prototyping for .figcraft files, based on FigCraft by the ArtCraft team.",
+        "fr": "Design d\u0027interfaces et prototypage pour les fichiers .figcraft, bas\u00E9 sur FigCraft de l\u0027\u00E9quipe ArtCraft."
+      },
+      "license": "MIT",
+      "repository": "https://github.com/Kazo-ca/Os-App-Fig",
+      "latestVersion": "0.1.0",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "commit": "4f8cd85366e9e60e8827b33ae8b6faabdd277a17",
+          "package": "packages/ca.kazo.fig/0.1.0/ca.kazo.fig-0.1.0.kazoapp",
+          "sha256": "cab59e5a3d6eb776f6d8a0312e360f2c4a37a3ea2d34e2d1c63e3d090e3e976d",
+          "size": 10724319,
+          "publishedAt": "2026-11-13T17:08:57+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.3.3"
+          },
+          "icon": "assets/ca.kazo.fig/0.1.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.fig/0.1.0/screenshots/1.png",
+            "assets/ca.kazo.fig/0.1.0/screenshots/2.png",
+            "assets/ca.kazo.fig/0.1.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.fig/0.1.0/description.en.md",
+            "fr": "assets/ca.kazo.fig/0.1.0/description.fr.md"
+          },
+          "signature": "jaUhacBhfxTTlB5CRz5a1iK3/wC7iUqtOAHCMjevgqtSuyes2Hq5vUvOWMtc03q6s3VUW3V50xCcHcpB\u002BqrMoQ==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/json",
+              "extensions": [
+                ".json"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "application/x-fig",
+              "extensions": [
+                ".fig"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-figcraft",
+              "extensions": [
+                ".figcraft"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-jam",
+              "extensions": [
+                ".jam"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-penpot",
+              "extensions": [
+                ".penpot"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-sketch",
+              "extensions": [
+                ".sketch"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/gif",
+              "extensions": [
+                ".gif"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/jpeg",
+              "extensions": [
+                ".jpg",
+                ".jpeg"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/png",
+              "extensions": [
+                ".png"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/svg\u002Bxml",
+              "extensions": [
+                ".svg"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/tiff",
+              "extensions": [
+                ".tif",
+                ".tiff"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/webp",
+              "extensions": [
+                ".webp"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "appId": "ca.kazo.irc",
       "kind": "app",
       "name": "IRC",
