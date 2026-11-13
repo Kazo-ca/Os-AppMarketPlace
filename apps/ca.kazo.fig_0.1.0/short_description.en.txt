@@ -1,0 +1,1 @@
+Interface design and prototyping for .figcraft files, based on FigCraft by the ArtCraft team.
