@@ -916,8 +916,169 @@
       },
       "license": "MIT",
       "repository": "https://github.com/Kazo-ca/Os-App-Word",
-      "latestVersion": "0.1.0",
+      "latestVersion": "0.1.1",
       "versions": [
+        {
+          "version": "0.1.1",
+          "commit": "35e85bed9316035f102406d8d662ec936b747c01",
+          "package": "packages/ca.kazo.word/0.1.1/ca.kazo.word-0.1.1.kazoapp",
+          "sha256": "f29b317f4ce019f7bb933b82b73911090f1476c07af72a99ebde98c3edb93e29",
+          "size": 22792207,
+          "publishedAt": "2026-11-13T17:28:39+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.3.3"
+          },
+          "icon": "assets/ca.kazo.word/0.1.1/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.word/0.1.1/screenshots/1.png",
+            "assets/ca.kazo.word/0.1.1/screenshots/2.png",
+            "assets/ca.kazo.word/0.1.1/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.word/0.1.1/description.en.md",
+            "fr": "assets/ca.kazo.word/0.1.1/description.fr.md"
+          },
+          "signature": "LXr4p\u002Bt7K57USt4Fogmff/s0FDhjsub5/UQWIInahifLF7koaOJLbRZMg784oBUtsmF9K3T/kXxgtXfX2/zbeg==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/msword",
+              "extensions": [
+                ".doc",
+                ".dot"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/rtf",
+              "extensions": [
+                ".rtf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ms-word.document.macroenabled.12",
+              "extensions": [
+                ".docm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ms-word.template.macroenabled.12",
+              "extensions": [
+                ".dotm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.oasis.opendocument.text",
+              "extensions": [
+                ".odt"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.oasis.opendocument.text-flat-xml",
+              "extensions": [
+                ".fodt"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.oasis.opendocument.text-template",
+              "extensions": [
+                ".ott"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+              "extensions": [
+                ".docx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.openxmlformats-officedocument.wordprocessingml.template",
+              "extensions": [
+                ".dotx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-tex",
+              "extensions": [
+                ".tex"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/html",
+              "extensions": [
+                ".html",
+                ".htm"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/markdown",
+              "extensions": [
+                ".md"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/plain",
+              "extensions": [
+                ".txt"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
+        },
         {
           "version": "0.1.0",
           "commit": "263e2de830a9226f30a9504b23a2688b0dac7f39",
