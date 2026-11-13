@@ -131,7 +131,9 @@ app (older ones leave `packages/` and `assets/`; their folder stays in the histo
 older version published late does not change the app's listing.
 
 To publish a version again (for example after a change of the tool): run **Publish catalog** by
-hand with the folder names separated by spaces.
+hand with the folder names separated by spaces. Run with no folder, it builds nothing and only
+rewrites `catalog.json`: this is how the `fileHandlers` of versions published before that field
+are filled (see below), without touching their packages or signatures.
 
 ### `catalog.json`
 
@@ -165,7 +167,10 @@ hand with the folder names separated by spaces.
           "icon": "assets/org.example.notes/1.2.0/icon.png",
           "screenshots": ["assets/org.example.notes/1.2.0/screenshots/1.png"],
           "descriptions": { "en": "assets/org.example.notes/1.2.0/description.en.md" },
-          "signature": "MEUCIQ…"
+          "signature": "MEUCIQ…",
+          "fileHandlers": [
+            { "mediaType": "text/markdown", "extensions": [".md"], "actions": ["open", "edit"] }
+          ]
         }
       ]
     }
@@ -192,6 +197,15 @@ hand with the folder names separated by spaces.
   of Kazo OS, §2). `publish.yml` signs each new version with the `KAZO_STORE_SIGNING_KEY` secret
   when it exists; without it, versions are published unsigned. A version already published keeps
   its signature.
+- `fileHandlers` (optional): the file types the version can open, copied from the `fileHandlers`
+  of its manifest: `extensions` (with the dot), `mediaType` (absent when the manifest gives none)
+  and `actions` (`open`, `edit`…). The manifest's `priority` is not copied: it only breaks ties
+  between installed apps. The field is absent when the manifest declares no type. Kazo OS uses it
+  to offer a catalog app when no installed app opens a file ([ADR 0257](https://github.com/Kazo-ca/Os/blob/main/doc/en/wasm/dev/adr/0257-offer-a-store-app-for-an-unsupported-file.md)
+  of Kazo OS). The field is in `catalog.json`, not in the package: it changes neither `sha256` nor
+  `signature`. Versions published before the field receive it at the next publication: the tool
+  reads it from the manifest of their package on the `packages` branch. A reader that does not
+  know it ignores it; `schemaVersion` stays 1.
 
 ### Signing key (for Benoit)
 

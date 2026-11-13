@@ -58,7 +58,10 @@ public static class CatalogPublisher
             apps[folder.AppId] = Merge(apps.GetValueOrDefault(folder.AppId), folder, version);
         }
 
-        List<CatalogApp> pruned = [.. apps.Values.OrderBy(app => app.AppId, StringComparer.Ordinal).Select(app => Prune(app, outputRoot, keptVersions))];
+        List<CatalogApp> pruned = [.. apps.Values
+            .OrderBy(app => app.AppId, StringComparer.Ordinal)
+            .Select(app => Prune(app, outputRoot, keptVersions))
+            .Select(app => AddMissingFileHandlers(app, outputRoot))];
         Directory.CreateDirectory(outputRoot);
         File.WriteAllText(catalogPath, new CatalogDocument(CatalogDocument.CurrentSchemaVersion, categories.Categories, pruned).Write());
         return [.. ready.Select(item => item.Folder.Name)];
@@ -129,7 +132,8 @@ public static class CatalogPublisher
             new CatalogSdkRange(sdk.MinimumVersion, sdk.MaximumVersion),
             icon,
             screenshots,
-            descriptions);
+            descriptions,
+            FileHandlers: CatalogFileHandler.From(folder.Manifest.FileHandlers));
     }
 
     private static CatalogApp Merge(CatalogApp? existing, AppFolder folder, CatalogVersion version)
@@ -166,6 +170,42 @@ public static class CatalogPublisher
         }
 
         return app with { Versions = [.. app.Versions.Take(keptVersions)] };
+    }
+
+    /// <summary>
+    /// Fills <see cref="CatalogVersion.FileHandlers"/> of the versions published before the field
+    /// existed (ADR 0257 of Kazo-ca/Os), from the manifest inside their package on the
+    /// <c>packages</c> branch. The package, its hash and its signature stay as they are: only
+    /// <c>catalog.json</c> changes, so the next publication fills every version still kept.
+    /// </summary>
+    private static CatalogApp AddMissingFileHandlers(CatalogApp app, string outputRoot)
+    {
+        if (app.Versions.All(version => version.FileHandlers is not null))
+        {
+            return app;
+        }
+
+        return app with { Versions = [.. app.Versions.Select(version => version.FileHandlers is null ? version with { FileHandlers = ReadFileHandlers(outputRoot, version) } : version)] };
+    }
+
+    private static IReadOnlyList<CatalogFileHandler>? ReadFileHandlers(string outputRoot, CatalogVersion version)
+    {
+        string path = Path.Combine(outputRoot, version.Package);
+        if (!File.Exists(path))
+        {
+            return null;
+        }
+
+        try
+        {
+            return CatalogFileHandler.From(AppPackage.Read(File.ReadAllBytes(path)).Manifest.FileHandlers);
+        }
+        catch (AppPackageException)
+        {
+            // The package was checked when it was published; a reader that refuses it today changes
+            // nothing in the catalog: the version simply announces no file type.
+            return null;
+        }
     }
 
     private static void WriteFile(string root, string relativePath, byte[] bytes)

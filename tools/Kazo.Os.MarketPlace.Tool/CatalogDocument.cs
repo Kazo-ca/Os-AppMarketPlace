@@ -1,3 +1,4 @@
+using Kazo.Os.App.Abstractions;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -82,6 +83,10 @@ public sealed record CatalogApp(
 /// ECDSA P-256 signature of the package, base64 (ADR 0214 §2 of Kazo-ca/Os); absent when the
 /// catalog had no signing key at publication.
 /// </param>
+/// <param name="FileHandlers">
+/// File types the version declares in the <c>fileHandlers</c> of its manifest, so Kazo OS can offer
+/// it for a file no installed app opens (ADR 0257 of Kazo-ca/Os); absent when the manifest declares none.
+/// </param>
 public sealed record CatalogVersion(
     string Version,
     string Commit,
@@ -94,7 +99,25 @@ public sealed record CatalogVersion(
     string Icon,
     IReadOnlyList<string> Screenshots,
     IReadOnlyDictionary<string, string> Descriptions,
-    string? Signature = null);
+    string? Signature = null,
+    IReadOnlyList<CatalogFileHandler>? FileHandlers = null);
+
+/// <summary>One file type a version opens, copied from a <c>fileHandlers</c> entry of its manifest.</summary>
+/// <param name="MediaType">Media type, when the manifest gives one.</param>
+/// <param name="Extensions">Extensions with their leading dot, as in the manifest.</param>
+/// <param name="Actions">Actions such as <c>open</c> or <c>edit</c>.</param>
+public sealed record CatalogFileHandler(string? MediaType, IReadOnlyList<string> Extensions, IReadOnlyList<string> Actions)
+{
+    /// <summary>
+    /// Copies the file handlers of a manifest, or returns <see langword="null"/> when it has none so the
+    /// field is left out of <c>catalog.json</c>. The manifest's <c>priority</c> is not copied: it only
+    /// orders installed apps.
+    /// </summary>
+    public static IReadOnlyList<CatalogFileHandler>? From(IReadOnlyList<FileHandlerManifest> handlers) =>
+        handlers.Count == 0
+            ? null
+            : [.. handlers.Select(handler => new CatalogFileHandler(handler.MediaType, [.. handler.Extensions], [.. handler.Actions]))];
+}
 
 /// <summary>SDK range of a version, as in its manifest.</summary>
 /// <param name="MinimumVersion">Lowest SDK version.</param>

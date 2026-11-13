@@ -11,8 +11,9 @@ on:
   workflow_dispatch:
     inputs:
       folders:
-        description: Folders under apps/ to (re)publish, separated by spaces.
-        required: true
+        description: Folders under apps/ to (re)publish, separated by spaces. Empty rewrites catalog.json only.
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -40,9 +41,14 @@ jobs:
         env:
           INPUT_FOLDERS: ${{ inputs.folders }}
           BEFORE: ${{ github.event.before }}
+          EVENT: ${{ github.event_name }}
         run: |
           if [ -n "$INPUT_FOLDERS" ]; then
             list=$(printf '%s\n' $INPUT_FOLDERS)
+          elif [ "$EVENT" = "workflow_dispatch" ]; then
+            # Nothing to build: the publish job only rewrites catalog.json, for example to fill the
+            # fileHandlers of versions published before that field (ADR 0257 of Kazo-ca/Os).
+            list=''
           else
             list=$(git diff --name-only --diff-filter=A "$BEFORE" HEAD -- apps | awk -F/ 'NF >= 3 {print $2}')
           fi

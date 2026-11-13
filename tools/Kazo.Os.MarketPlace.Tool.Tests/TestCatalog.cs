@@ -26,7 +26,8 @@ internal sealed class TestCatalog : IDisposable
     public string Apps => Path.Combine(Root, "apps");
 
     /// <summary>Writes a valid folder for <paramref name="appId"/> at <paramref name="version"/>.</summary>
-    public string AddApp(string appId = "org.example.notes", string version = "1.2.0", string[]? capabilities = null)
+    /// <param name="fileHandlers">JSON array written as the manifest's <c>fileHandlers</c>.</param>
+    public string AddApp(string appId = "org.example.notes", string version = "1.2.0", string[]? capabilities = null, string fileHandlers = "[]")
     {
         string folder = Path.Combine(Apps, $"{appId}_{version}");
         Directory.CreateDirectory(folder);
@@ -34,7 +35,7 @@ internal sealed class TestCatalog : IDisposable
         File.WriteAllText(Path.Combine(folder, "short_description.en.txt"), "Take notes in Markdown.\n");
         File.WriteAllText(Path.Combine(folder, "short_description.fr.txt"), "Prendre des notes en Markdown.\n");
         File.WriteAllText(Path.Combine(folder, "description.en.md"), "# Notes\n\nA note app.\n");
-        File.WriteAllText(Path.Combine(folder, "manifest.json"), Manifest(appId, version, capabilities ?? []));
+        File.WriteAllText(Path.Combine(folder, "manifest.json"), Manifest(appId, version, capabilities ?? [], fileHandlers));
         File.WriteAllText(Path.Combine(folder, "store.json"), $$"""
             {
               "repository": "https://github.com/example/Os-App-Notes",
@@ -54,10 +55,19 @@ internal sealed class TestCatalog : IDisposable
     public static byte[] PackageOf(string folder) => Package(File.ReadAllText(Path.Combine(folder, "manifest.json")));
 
     /// <summary>A manifest as the Kazo OS generator writes it.</summary>
-    public static string Manifest(string appId, string version, string[] capabilities) =>
-        $$"""
-        {"schemaVersion":1,"id":"{{appId}}","name":"Notes","version":"{{version}}","publisherId":"pub.example","description":"Notes","kind":"terminal","entryPoint":{"assembly":"Example.Notes.dll","type":"Example.Notes.NotesCommand"},"sdkCompatibility":{"minimumVersion":"3.0.0"},"presentation":{"category":"utilities","launchVisibility":"hidden","iconAssetPaths":[]},"localizations":[],"capabilities":[{{string.Join(",", capabilities.Select(c => $"\"{c}\""))}}],"declaredTopicPermissions":[],"resources":{"baselineCpuWeight":0,"burstCpuWeight":0,"baselineMemoryWeight":0,"burstMemoryWeight":0,"baselineStorageIoWeight":0,"burstStorageIoWeight":0,"baselineNetworkIoWeight":0,"burstNetworkIoWeight":0},"intents":[],"dependencies":[],"assets":[],"fileHandlers":[],"terminal":{"name":"notes","aliases":[],"usage":"notes"},"singleInstancePerUser":false,"autoStart":false,"supportsBack":false,"execution":"pool"}
+    /// <remarks>Only window apps may declare file handlers: a manifest with some is a window app.</remarks>
+    public static string Manifest(string appId, string version, string[] capabilities, string fileHandlers = "[]")
+    {
+        bool window = fileHandlers != "[]";
+        string kind = window ? "window" : "terminal";
+        string execution = window ? "mainThread" : "pool";
+        string surface = window
+            ? "\"window\":{\"defaultWidth\":800,\"defaultHeight\":600,\"minWidth\":400,\"minHeight\":300,\"resizable\":true}"
+            : "\"terminal\":{\"name\":\"notes\",\"aliases\":[],\"usage\":\"notes\"}";
+        return $$"""
+        {"schemaVersion":1,"id":"{{appId}}","name":"Notes","version":"{{version}}","publisherId":"pub.example","description":"Notes","kind":"{{kind}}","entryPoint":{"assembly":"Example.Notes.dll","type":"Example.Notes.NotesCommand"},"sdkCompatibility":{"minimumVersion":"3.0.0"},"presentation":{"category":"utilities","launchVisibility":"hidden","iconAssetPaths":[]},"localizations":[],"capabilities":[{{string.Join(",", capabilities.Select(c => $"\"{c}\""))}}],"declaredTopicPermissions":[],"resources":{"baselineCpuWeight":0,"burstCpuWeight":0,"baselineMemoryWeight":0,"burstMemoryWeight":0,"baselineStorageIoWeight":0,"burstStorageIoWeight":0,"baselineNetworkIoWeight":0,"burstNetworkIoWeight":0},"intents":[],"dependencies":[],"assets":[],"fileHandlers":{{fileHandlers}},{{surface}},"singleInstancePerUser":false,"autoStart":false,"supportsBack":false,"execution":"{{execution}}"}
         """;
+    }
 
     /// <summary>The header of a PNG image of the given size (the checks never decode pixels).</summary>
     public static byte[] Png(int width, int height, int padding = 0)
