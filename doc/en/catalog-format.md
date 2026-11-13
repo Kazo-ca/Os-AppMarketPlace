@@ -24,6 +24,7 @@ main                              reviewed by PR
 
 packages                          written only by publish.yml, no code history
   catalog.json
+  APPS.md, APPS-fr.md               the list of the apps, linked from the READMEs
   packages/<appId>/<version>/<appId>-<version>.kazoapp
   assets/<appId>/<version>/icon.png, screenshots/N.png, description.<lang>.md
 ```
@@ -130,9 +131,18 @@ package and the images, rewrites `catalog.json`, then keeps only the **3 newest 
 app (older ones leave `packages/` and `assets/`; their folder stays in the history of `main`). An
 older version published late does not change the app's listing.
 
+Each publication also rewrites `APPS.md` (English) and `APPS-fr.md` (French) at the root of the
+`packages` branch, from the `catalog.json` just written: one row per app with its icon, name, short
+description, file types it opens, newest version, category, a **Try it** link
+(`https://os.kazo.ca/?autolaunch=<appId>`, ADR 0258 of Kazo OS), its source repository and its
+license. Author text is escaped (no HTML, no link of its own). The page holds no clock time (the
+date shown is the newest `publishedAt`), so rewriting an unchanged catalog changes nothing. The
+READMEs of this repository and of Kazo-ca/Os link to
+<https://github.com/Kazo-ca/Os-AppMarketPlace/blob/packages/APPS.md>.
+
 To publish a version again (for example after a change of the tool): run **Publish catalog** by
 hand with the folder names separated by spaces. Run with no folder, it builds nothing and only
-rewrites `catalog.json`: this is how the `fileHandlers` of versions published before that field
+rewrites `catalog.json` and the list of the apps: this is how the `fileHandlers` of versions published before that field
 are filled (see below), without touching their packages or signatures.
 
 ### `catalog.json`
