@@ -332,6 +332,59 @@
           "signature": "9ftvTPo0Bjs9XWE1vu8WQQyRAiTaG18lNExcbRhx2teYoLJqTJMf6PrODe74Z5qZ5OxnNvkJHt1LnYz8Rh\u002BdAA=="
         }
       ]
+    },
+    {
+      "appId": "ca.kazo.word",
+      "kind": "app",
+      "name": "Kazo Word",
+      "category": "productivity",
+      "tags": [
+        "word-processor",
+        "documents",
+        "docx",
+        "odt",
+        "wordcraft"
+      ],
+      "shortDescriptions": {
+        "en": "A word processor for .docx and .odt documents, based on WordCraft by the ArtCraft team.",
+        "fr": "Un traitement de texte pour les documents .docx et .odt, bas\u00E9 sur WordCraft de l\u0027\u00E9quipe ArtCraft."
+      },
+      "license": "MIT",
+      "repository": "https://github.com/Kazo-ca/Os-App-Word",
+      "latestVersion": "0.1.0",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "commit": "263e2de830a9226f30a9504b23a2688b0dac7f39",
+          "package": "packages/ca.kazo.word/0.1.0/ca.kazo.word-0.1.0.kazoapp",
+          "sha256": "82f0e544e0622b3f130de6834b1102d7b787d82d220c5515f5dd06957d3b1dff",
+          "size": 22791521,
+          "publishedAt": "2026-11-13T08:07:50+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.3.2"
+          },
+          "icon": "assets/ca.kazo.word/0.1.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.word/0.1.0/screenshots/1.png",
+            "assets/ca.kazo.word/0.1.0/screenshots/2.png",
+            "assets/ca.kazo.word/0.1.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.word/0.1.0/description.en.md",
+            "fr": "assets/ca.kazo.word/0.1.0/description.fr.md"
+          },
+          "signature": "f9TUfDypurEHc0uk0T\u002Bd9NPQq8cZ4ITZAvMLLh2dWH7JVsnVebD/qIrjx86aXZzpCAnzINbfkgv8enfik//Aaw=="
+        }
+      ]
     }
   ]
 }
