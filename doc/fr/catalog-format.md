@@ -103,7 +103,8 @@ Les numéros sont ceux de l'ADR 0188 §5.
 | 6 | job *Build* | CodeQL sur le code de l'app : C# depuis sa build tracée (`manual`) ; JavaScript/TypeScript, si le dépôt en a hors de `external/`, depuis ses sources avec la CLI CodeQL du runner (`none`, le seul mode que JavaScript accepte, que l'action CodeQL lancerait sur le dossier du catalogue lui-même) ; `external/**` (le sous-module Kazo OS) est ignoré ; les résultats sont résumés dans le commentaire |
 | 7 | *review* puis `pr-comment.yml` | commentaire : source, licence, SDK, taille et SHA-256 du paquet, capacités (les dangereuses d'abord, marquées ⚠️), fichiers JavaScript, assemblies, résultats CodeQL |
 
-Puis un mainteneur relit le code et approuve ; rien n'est fusionné automatiquement.
+Puis un mainteneur relit le code et approuve. Seule exception : une « reconstruction seule » soumise
+par l'automate des apps est fusionnée par `auto-merge.yml` (voir [Canal bêta](#canal-bêta-adr-0271-5)).
 
 ### Sécurité des workflows
 
@@ -237,12 +238,87 @@ ni à leurs signatures.
 4. Republier les versions existantes (workflow *Publish catalog* ▸ Run workflow, avec leurs
    dossiers) pour qu'elles reçoivent une signature avant que l'OS l'exige.
 
+## Canal bêta ([ADR 0271](https://github.com/Kazo-ca/Os/blob/release-channels/base/doc/fr/wasm/dev/adr/0271-beta-channel-and-automatic-app-updates.md) §5)
+
+Kazo OS a deux canaux. Un OS stable lit `catalog.json`, une préversion de l'OS lit
+`catalog-beta.json`, les deux à la racine de la branche `packages`.
+
+| | Stable | Bêta |
+|---|---|---|
+| Branche qui reçoit les PR | `main` | `beta` |
+| Versions acceptées | sans suffixe (`1.0.1`) | avec suffixe (`1.0.1-beta.1`) |
+| Fichier publié | `catalog.json`, puis `catalog-beta.json` | `catalog-beta.json` seul |
+| Sous-module `external/KazoOs` | version stable de l'OS | préversion de l'OS |
+
+- **La branche `beta`** contient tout `main` (le job *Bring main into beta* de `publish.yml` y
+  fusionne `main` après chaque publication stable, et garde le sous-module de `beta` quand les deux
+  l'ont déplacé) plus les dossiers des versions bêta. Elle se crée depuis `main` quand la série
+  `release-channels` y est fusionnée ; avant, l'automate des apps dit que le canal bêta n'est pas
+  ouvert.
+- **Vérification** : `validate --channel beta` sur une PR vers `beta`, `--channel stable` sinon.
+  Un dossier ajouté doit être du canal de sa branche ; sans dossier nommé, `main` refuse tout dossier
+  bêta, `beta` accepte les deux (elle reçoit les stables de `main`).
+- **Publication** : un push sur `beta` ne recompile que les dossiers bêta ajoutés (les stables ont
+  été publiés par `main`), signés avec la même clé `KAZO_STORE_SIGNING_KEY`, et réécrit
+  `catalog-beta.json` sans toucher `catalog.json` ni la liste des apps. Les deux branches partagent
+  le groupe de concurrence `publish-catalog`, car elles poussent sur la même branche `packages`.
+
+### `catalog-beta.json`
+
+Format fixé par le chantier 3 de la série (Kazo OS, `app-installation.md`, « Format de
+`catalog-beta.json` ») :
+
+- même format que `catalog.json` (`schemaVersion` 1) : tout `catalog.json` (catégories, apps,
+  versions stables), plus les versions bêta dans `versions` de leur app ;
+- paquets et ressources aux mêmes chemins (`packages/<appId>/<version>/`, `assets/<appId>/<version>/`) ;
+- versions de la plus récente à la plus ancienne en SemVer (`1.0.1` > `1.0.1-beta.2` > `1.0.0`) ;
+- `latestVersion` et champs de fiche : ceux de `catalog.json`, une bêta ne change pas la fiche ;
+  une app qui n'a que des versions bêta est décrite par la plus récente ;
+- rétention séparée : les 3 bêtas les plus récentes de chaque app, en plus des 3 stables ;
+- une bêta est retirée (paquet et ressources compris) dès qu'une version stable plus récente de son
+  app est publiée, et une bêta plus ancienne que la dernière stable est refusée.
+
+Les versions bêta ne vivent qu'entre deux publications dans `catalog-beta.json` : chaque
+publication le relit, puis le réécrit (`BetaCatalog`).
+
+### Fusion des « reconstructions seules » (`auto-merge.yml`)
+
+Quand l'automate des apps (workflow `sdk-update` d'Os-AppTemplate) déplace une app sur un nouveau
+SDK, il soumet une version qui n'apporte aucun code à relire. Sur décision de Benoit (Q5 = A),
+l'automate fusionne alors la PR une fois sa validation verte, en bêta comme en stable, dans ce
+catalogue seulement. `auto-merge.yml` tourne depuis `main` après *Validate app submissions* et
+fusionne seulement si :
+
+1. la validation a réussi sur la tête actuelle d'une PR ouverte vers `main` ou `beta` ;
+2. la PR vient d'une branche `submit/<appId>_<version>` de ce dépôt (l'App GitHub de
+   l'organisation y pousse), ouverte par un bot ;
+3. la PR ne fait qu'ajouter les fichiers de `apps/<appId>_<version>/` : la validation qui a tourné
+   est donc celle de la branche de base, pas une que la PR aurait changée ;
+4. `check-rebuild` de l'outil, compilé depuis la branche de base, compare le dossier à la version
+   précédente de l'app dans cette branche (la plus récente plus ancienne) :
+   - `store.json` identique sauf `commit` (même dépôt, même projet, catégorie, étiquettes, licence) ;
+   - `manifest.json` identique sauf `version` et `sdkCompatibility`, donc mêmes capacités ;
+   - icône, descriptions et captures identiques à l'octet ;
+   - dans le dépôt de l'app, entre le commit précédent et le commit soumis
+     (`git diff --unified=0`, récupéré sans rien exécuter), seul le sous-module `external/KazoOs`
+     bouge, et chaque autre ligne changée ne diffère de l'ancienne que par la version (le
+     `Version` de la classe `[AppManifest]` et du `manifest.json` versionné, comme les écrit
+     `bump-app-version.sh`). Pas de fichier ajouté, supprimé, binaire ou changé de mode.
+
+Sinon la PR attend un mainteneur, avec un commentaire qui dit pourquoi (première version de l'app,
+code changé, capacités ajoutées…). La fusion se fait avec l'App GitHub de l'organisation
+(`KAZO_AUTOMATION_APP_ID`, `KAZO_AUTOMATION_APP_KEY`) quand elle est disponible, ce qui lance
+`publish.yml` ; sinon avec le jeton du workflow, qui lance alors lui-même la publication
+(`workflow_dispatch` avec le dossier), car GitHub ne démarre aucun workflow pour un push fait avec ce jeton.
+
 ## L'outil du catalogue
 
 ```text
-dotnet run --project tools/Kazo.Os.MarketPlace.Tool -- validate --root . [dossier...]
+dotnet run --project tools/Kazo.Os.MarketPlace.Tool -- validate --root . [--channel stable|beta] [dossier...]
 dotnet run --project tools/Kazo.Os.MarketPlace.Tool -- check-package --root . --folder <dossier> --report <f.md> [--package <f.kazoapp>] [--sarif <dossier>]
-dotnet run --project tools/Kazo.Os.MarketPlace.Tool -- publish --root . --built <dossier> --output <copie de packages> [--keep 3] [--published-at <ISO 8601>]
+dotnet run --project tools/Kazo.Os.MarketPlace.Tool -- publish --root . --built <dossier> --output <copie de packages> [--channel stable|beta] [--keep 3] [--published-at <ISO 8601>]
+dotnet run --project tools/Kazo.Os.MarketPlace.Tool -- previous-version --root . --folder <dossier>
+dotnet run --project tools/Kazo.Os.MarketPlace.Tool -- check-rebuild --root . --folder <dossier> --diff <fichier.diff>
 dotnet run --project tools/Kazo.Os.MarketPlace.Tool -- keygen --private-key <fichier.pem>
 dotnet run --project tools/Kazo.Os.MarketPlace.Tool -- sign --package <f.kazoapp> [--private-key <fichier.pem>]
 dotnet test tools/Kazo.Os.MarketPlace.slnx
@@ -260,6 +336,11 @@ GitHub Actions, les erreurs deviennent des annotations sur les fichiers de la PR
 - Actions ▸ General : demander l'approbation avant de lancer les workflows des PR de contributeurs
   extérieurs.
 - Protection de `packages` : écriture réservée à GitHub Actions.
+- Canal bêta, une fois la série `release-channels` dans `main` : créer `beta` depuis `main`, la
+  protéger comme `main` en laissant le job *Bring main into beta* (jeton du workflow) et l'App
+  GitHub de l'organisation y pousser, et autoriser l'App à fusionner les PR de `main` et `beta`
+  (ou l'ajouter aux exceptions de la protection) ; donner au dépôt l'accès aux secrets d'organisation
+  `KAZO_AUTOMATION_APP_ID` et `KAZO_AUTOMATION_APP_KEY`.
 
 ## Décisions prises dans ce chantier
 
@@ -270,6 +351,10 @@ GitHub Actions, les erreurs deviennent des annotations sur les fichiers de la PR
 - `catalog.json` contient aussi les catégories et leurs libellés, pour que le Store n'ait qu'un
   fichier à lire.
 - Une version fusionnée est immuable : une PR ne peut qu'ajouter des dossiers.
+- Canal bêta (2026-11-14, ADR 0271) : rétention de 3 bêtas par app en plus des 3 stables ; une
+  bêta plus ancienne que la dernière stable est refusée ; la « reconstruction seule » exige aussi
+  des ressources identiques et un `store.json` identique sauf `commit`, et se compare à la
+  version précédente dans la branche visée.
 - La vérification des API en CI (ADR 0188 §5 étape 5) est laissée à l'installation pour la v1
   (décision de Benoit, Q1 = A) ; elle viendra avec [#3](https://github.com/Kazo-ca/Os-AppMarketPlace/issues/3).
 - `kind: "feature"` dans `catalog.json` (2026-11-11, décision de Benoit sur
@@ -278,6 +363,10 @@ GitHub Actions, les erreurs deviennent des annotations sur les fichiers de la PR
   les entrées existantes ne changent pas.
 
 ## Tâches
+
+- [x] Canal bêta (ADR 0271 §5, chantier 4 de `release-channels`) : `catalog-beta.json`, branche
+  `beta` dans `validate.yml` et `publish.yml`, `check-rebuild`, `auto-merge.yml`, tests.
+- [ ] Créer la branche `beta` quand la série est dans `main` (chantier 8).
 
 - [x] `categories.json`, modèle de PR, `CODEOWNERS`.
 - [x] Outil du catalogue : format, manifeste, paquet, commentaire de revue, publication, tests.

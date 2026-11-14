@@ -71,7 +71,7 @@ versions** of each app stay downloadable.
 ## Documentation
 
 - [Catalog format, checks and publication](doc/en/catalog-format.md): every rule, the format of
-  `catalog.json`, the catalog tool and the repository settings.
+  `catalog.json` and `catalog-beta.json`, the beta channel, the catalog tool and the repository settings.
 
 ## License
 
