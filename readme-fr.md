@@ -73,7 +73,7 @@ dossier. Les **3 dernières versions** de chaque app restent téléchargeables.
 ## Documentation
 
 - [Format du catalogue, vérifications et publication](doc/fr/catalog-format.md) : toutes les
-  règles, le format de `catalog.json`, l'outil du catalogue et le réglage du dépôt.
+  règles, le format de `catalog.json` et `catalog-beta.json`, le canal bêta, l'outil du catalogue et le réglage du dépôt.
 
 ## Licence
 

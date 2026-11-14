@@ -47,6 +47,19 @@ public sealed class ProgramTests : IDisposable
     }
 
     [Fact]
+    public void Main_refuses_a_beta_folder_and_beta_refuses_a_new_stable_one()
+    {
+        catalog.AddApp(version: "1.0.0");
+        catalog.AddApp(version: "1.0.1-beta.1");
+
+        Assert.Equal(1, Program.Main(["validate", "--root", catalog.Root]));
+        Assert.Equal(0, Program.Main(["validate", "--root", catalog.Root, "--channel", "beta"]));
+        Assert.Equal(0, Program.Main(["validate", "--root", catalog.Root, "--channel", "beta", "org.example.notes_1.0.1-beta.1"]));
+        Assert.Equal(1, Program.Main(["validate", "--root", catalog.Root, "--channel", "beta", "org.example.notes_1.0.0"]));
+        Assert.Equal(2, Program.Main(["validate", "--root", catalog.Root, "--channel", "nightly"]));
+    }
+
+    [Fact]
     public void An_unknown_command_is_a_usage_error() =>
         Assert.Equal(2, Program.Main(["frobnicate"]));
 }

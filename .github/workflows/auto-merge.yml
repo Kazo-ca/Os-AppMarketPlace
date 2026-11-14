@@ -1,0 +1,182 @@
+# Merges a "rebuild only" submission once its validation is green (ADR 0271 §5 and Q5 = A of
+# Kazo-ca/Os): a version that only moves an app to a new Kazo OS SDK, on main or on beta.
+#
+# Runs from main, after "Validate app submissions", with a token that may merge. Nothing of the PR
+# runs here: its files are read as data, and the tool is built from the PR's base branch.
+# The PR is merged only when all of this holds:
+#   - it is open, its head is the commit the validation ran on, and that run succeeded;
+#   - it comes from a branch submit/<appId>_<version> of this repository (the Kazo OS automation
+#     GitHub App pushes there, ADR 0271 §7), opened by a bot, and targets main or beta;
+#   - it only adds the files of apps/<appId>_<version>/, so the validation that ran is the one of
+#     its base branch, not one the PR changed;
+#   - the catalog tool says it is a rebuild only of the previous version of the app in that branch
+#     (check-rebuild: same store.json but the commit, same manifest but version and SDK range, same
+#     capabilities and assets, and in the app repository only the Kazo OS submodule and the version moved).
+# Anything else stays for a maintainer, with a comment that says why.
+#
+# The merge uses the Kazo OS automation GitHub App (KAZO_AUTOMATION_APP_ID, KAZO_AUTOMATION_APP_KEY)
+# when it is set, so the push starts the publication. Without it the workflow token merges, and
+# this workflow starts the publication of the base branch itself (workflow_dispatch), since GitHub
+# starts no workflow for a push made with that token.
+name: Merge rebuild-only submissions
+
+on:
+  workflow_run:
+    workflows: [Validate app submissions]
+    types: [completed]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: auto-merge-${{ github.event.workflow_run.head_branch }}
+  cancel-in-progress: false
+
+jobs:
+  merge:
+    if: >-
+      github.event.workflow_run.event == 'pull_request'
+      && github.event.workflow_run.conclusion == 'success'
+      && startsWith(github.event.workflow_run.head_branch, 'submit/')
+      && github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    env:
+      HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+      HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Find the pull request
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          pr=$(gh api "repos/$GH_REPO/commits/$HEAD_SHA/pulls" --jq "[.[] | select(.state == \"open\" and .head.sha == \"$HEAD_SHA\" and .head.ref == \"$HEAD_BRANCH\" and .head.repo.full_name == \"$GH_REPO\")][0]")
+          if [ -z "$pr" ] || [ "$pr" = null ]; then
+            echo "No open pull request from $HEAD_BRANCH at $HEAD_SHA." >> "$GITHUB_STEP_SUMMARY"
+            echo "eligible=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          number=$(jq -r .number <<< "$pr")
+          base=$(jq -r .base.ref <<< "$pr")
+          author_type=$(jq -r .user.type <<< "$pr")
+          folder="${HEAD_BRANCH#submit/}"
+          reason=''
+          if [ "$base" != main ] && [ "$base" != beta ]; then
+            reason="it targets $base, not main or beta"
+          elif [ "$author_type" != Bot ]; then
+            reason="it was not opened by the automation"
+          elif ! [[ "$folder" =~ ^[A-Za-z0-9.-]+_[0-9A-Za-z.+-]+$ ]]; then
+            reason="its branch does not name a version folder"
+          else
+            files=$(gh api "repos/$GH_REPO/pulls/$number/files" --paginate --jq '.[] | "\(.status) \(.filename)"')
+            other=$(printf '%s\n' "$files" | awk -v prefix="apps/$folder/" '$0 != "" && !($1 == "added" && index($2, prefix) == 1)')
+            if [ -z "$files" ] || [ -n "$other" ]; then
+              reason="it changes more than adding apps/$folder/"
+            fi
+          fi
+          {
+            echo "number=$number"
+            echo "base=$base"
+            echo "folder=$folder"
+          } >> "$GITHUB_OUTPUT"
+          if [ -n "$reason" ]; then
+            echo "PR #$number is left for a maintainer: $reason." >> "$GITHUB_STEP_SUMMARY"
+            echo "eligible=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "eligible=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # The base branch with its submodule (the Kazo OS libraries the tool reads manifests with),
+      # and the submitted folder copied in as data.
+      - uses: actions/checkout@v6
+        if: steps.pr.outputs.eligible == 'true'
+        with:
+          ref: ${{ steps.pr.outputs.base }}
+          submodules: true
+      - uses: actions/setup-dotnet@v5
+        if: steps.pr.outputs.eligible == 'true'
+        with:
+          global-json-file: global.json
+
+      - name: Check that it is a rebuild only
+        id: check
+        if: steps.pr.outputs.eligible == 'true'
+        env:
+          FOLDER: ${{ steps.pr.outputs.folder }}
+        run: |
+          git fetch --depth 1 origin "$HEAD_SHA"
+          git checkout "$HEAD_SHA" -- "apps/$FOLDER"
+          dotnet build tools/Kazo.Os.MarketPlace.Tool -c Release -nologo -v quiet
+          tool=(dotnet tools/Kazo.Os.MarketPlace.Tool/bin/Release/net10.0/Kazo.Os.MarketPlace.Tool.dll)
+          : > "$RUNNER_TEMP/app.diff"
+          if "${tool[@]}" previous-version --root . --folder "$FOLDER" > "$RUNNER_TEMP/versions.txt"; then
+            repository=$(sed -n 's/^previous-repository=//p' "$RUNNER_TEMP/versions.txt")
+            previous=$(sed -n 's/^previous-commit=//p' "$RUNNER_TEMP/versions.txt")
+            commit=$(sed -n 's/^commit=//p' "$RUNNER_TEMP/versions.txt")
+            if [ -n "$previous" ]; then
+              # Fetched from the repository of the previous version, already reviewed; check-rebuild
+              # refuses a submission that names another one. Fetching runs nothing of the app.
+              git init --quiet "$RUNNER_TEMP/app"
+              git -C "$RUNNER_TEMP/app" fetch --quiet --depth 1 "$repository" "$previous" "$commit"
+              git -C "$RUNNER_TEMP/app" diff --no-color --no-ext-diff --no-renames --submodule=short --unified=0 "$previous" "$commit" > "$RUNNER_TEMP/app.diff"
+            fi
+          fi
+          if "${tool[@]}" check-rebuild --root . --folder "$FOLDER" --diff "$RUNNER_TEMP/app.diff" > "$RUNNER_TEMP/check.txt" 2>&1; then
+            echo "rebuild=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "rebuild=false" >> "$GITHUB_OUTPUT"
+          fi
+          tee -a "$GITHUB_STEP_SUMMARY" < "$RUNNER_TEMP/check.txt"
+          {
+            echo 'report<<KAZOOS_REPORT'
+            sed -E 's/^(::error file=[^:]*::|error [^:]*: )/- /' "$RUNNER_TEMP/check.txt"
+            echo 'KAZOOS_REPORT'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Get the Kazo OS automation token
+        id: app-token
+        if: steps.check.outputs.rebuild == 'true' && env.HAS_AUTOMATION_APP == 'true'
+        env:
+          HAS_AUTOMATION_APP: ${{ secrets.KAZO_AUTOMATION_APP_ID != '' && secrets.KAZO_AUTOMATION_APP_KEY != '' }}
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.KAZO_AUTOMATION_APP_ID }}
+          private-key: ${{ secrets.KAZO_AUTOMATION_APP_KEY }}
+
+      - name: Merge
+        if: steps.check.outputs.rebuild == 'true'
+        env:
+          APP_TOKEN: ${{ steps.app-token.outputs.token }}
+          WORKFLOW_TOKEN: ${{ github.token }}
+          NUMBER: ${{ steps.pr.outputs.number }}
+          BASE: ${{ steps.pr.outputs.base }}
+          FOLDER: ${{ steps.pr.outputs.folder }}
+        run: |
+          export GH_TOKEN="${APP_TOKEN:-$WORKFLOW_TOKEN}"
+          gh pr comment "$NUMBER" --body "Rebuild only for a new Kazo OS SDK (ADR 0271 §5 of Kazo-ca/Os): the validation is green, merged by the automation. _Posted by the catalog workflow \`auto-merge.yml\`._"
+          gh pr merge "$NUMBER" --merge --match-head-commit "$HEAD_SHA"
+          if [ -z "$APP_TOKEN" ]; then
+            # A push made with the workflow token starts no workflow: start the publication here.
+            GH_TOKEN="$WORKFLOW_TOKEN" gh workflow run publish.yml --ref "$BASE" -f folders="$FOLDER"
+          fi
+          echo "PR #$NUMBER merged into $BASE." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Say why it waits for a maintainer
+        if: steps.check.outputs.rebuild == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUMBER: ${{ steps.pr.outputs.number }}
+          REPORT: ${{ steps.check.outputs.report }}
+        run: |
+          marker='<!-- kazoos-rebuild-only -->'
+          body=$(printf '%s\n%s\n\n%s\n\n%s\n' "$marker" '**Not a rebuild only: a maintainer reviews this version.**' "$REPORT" '_Posted by the catalog workflow `auto-merge.yml`._')
+          previous=$(gh api "repos/$GH_REPO/issues/$NUMBER/comments" --paginate --jq ".[] | select(.user.type == \"Bot\" and (.body | startswith(\"$marker\"))) | .id" | head -n 1)
+          if [ -n "$previous" ]; then
+            gh api -X PATCH "repos/$GH_REPO/issues/comments/$previous" -f body="$body" > /dev/null
+          else
+            gh pr comment "$NUMBER" --body "$body"
+          fi

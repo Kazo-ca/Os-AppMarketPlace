@@ -53,7 +53,15 @@ jobs:
           echo "Added folders: $folders"
 
       - name: Check the format of every folder and categories.json
-        run: dotnet run --project tools/Kazo.Os.MarketPlace.Tool -c Release -- validate --root .
+        env:
+          # ADR 0271 §5 of Kazo-ca/Os: a PR to beta adds beta versions (with a suffix), any other PR stable ones.
+          CHANNEL: ${{ github.base_ref == 'beta' && 'beta' || 'stable' }}
+          FOLDERS: ${{ steps.changes.outputs.folders }}
+        run: |
+          dotnet run --project tools/Kazo.Os.MarketPlace.Tool -c Release -- validate --root . --channel "$CHANNEL"
+          if [ "$FOLDERS" != '[]' ]; then
+            dotnet run --project tools/Kazo.Os.MarketPlace.Tool -c Release --no-build -- validate --root . --channel "$CHANNEL" $(jq -r '.[]' <<< "$FOLDERS")
+          fi
 
   build:
     name: Build ${{ matrix.folder }}
