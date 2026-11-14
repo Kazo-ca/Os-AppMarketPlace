@@ -1391,6 +1391,172 @@
       ]
     },
     {
+      "appId": "ca.kazo.vector",
+      "kind": "app",
+      "name": "Kazo Vector",
+      "category": "graphics",
+      "tags": [
+        "vector",
+        "drawing",
+        "illustration",
+        "svg",
+        "graphics"
+      ],
+      "shortDescriptions": {
+        "en": "A vector drawing app for Kazo OS, built on VectorCraft.",
+        "fr": "Une app de dessin vectoriel pour Kazo OS, construite sur VectorCraft."
+      },
+      "license": "MIT",
+      "repository": "https://github.com/Kazo-ca/Os-App-Vector",
+      "latestVersion": "0.1.0",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "commit": "f1d05146e60aec116f9b4de2929d2a6dbebd4a85",
+          "package": "packages/ca.kazo.vector/0.1.0/ca.kazo.vector-0.1.0.kazoapp",
+          "sha256": "f4fc3aab6944c0c85974755393ebebcd151a1b6b3eca4437c54c341e498d444c",
+          "size": 30491261,
+          "publishedAt": "2026-11-14T19:56:19+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.3.4"
+          },
+          "icon": "assets/ca.kazo.vector/0.1.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.vector/0.1.0/screenshots/1.png",
+            "assets/ca.kazo.vector/0.1.0/screenshots/2.png",
+            "assets/ca.kazo.vector/0.1.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.vector/0.1.0/description.en.md",
+            "fr": "assets/ca.kazo.vector/0.1.0/description.fr.md"
+          },
+          "signature": "5/gnwlqlNzxs8vtSNKt8s5HJEJZLHImReyX8myKUK6oIGLxe0g41fgMmpo/tVIPc1IidzCPWHgY1BQJvipP9CA==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/illustrator",
+              "extensions": [
+                ".ai"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/pdf",
+              "extensions": [
+                ".pdf"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "application/postscript",
+              "extensions": [
+                ".eps",
+                ".epsf",
+                ".ps"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-affinity-designer",
+              "extensions": [
+                ".afdesign"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "application/x-illustrator-template",
+              "extensions": [
+                ".ait"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-vectorcraft",
+              "extensions": [
+                ".vectorcraft"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-vectorcraft-template",
+              "extensions": [
+                ".vctemplate"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/emf",
+              "extensions": [
+                ".emf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/svg\u002Bxml",
+              "extensions": [
+                ".svg",
+                ".svgz"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/vnd.dxf",
+              "extensions": [
+                ".dxf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/wmf",
+              "extensions": [
+                ".wmf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "appId": "ca.kazo.webamp",
       "kind": "app",
       "name": "Webamp",
