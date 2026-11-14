@@ -499,6 +499,624 @@
       ]
     },
     {
+      "appId": "ca.kazo.photo",
+      "kind": "app",
+      "name": "Kazo Photo",
+      "category": "graphics",
+      "tags": [
+        "image-editor",
+        "photo",
+        "layers",
+        "psd",
+        "graphics"
+      ],
+      "shortDescriptions": {
+        "en": "A layered image editor for Kazo OS, built on PhotoCraft.",
+        "fr": "Un \u00E9diteur d\u0027images \u00E0 calques pour Kazo OS, construit sur PhotoCraft."
+      },
+      "license": "MIT",
+      "repository": "https://github.com/Kazo-ca/Os-App-Photo",
+      "latestVersion": "0.1.0",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "commit": "e085cbca11592937c617544ec2f9ebe6333a1c9e",
+          "package": "packages/ca.kazo.photo/0.1.0/ca.kazo.photo-0.1.0.kazoapp",
+          "sha256": "55aa0ab5dbf51e6c823160aa91afccc9671140c48d5ac2b077319800f25d163f",
+          "size": 25745558,
+          "publishedAt": "2026-11-14T07:58:06+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.3.4"
+          },
+          "icon": "assets/ca.kazo.photo/0.1.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.photo/0.1.0/screenshots/1.png",
+            "assets/ca.kazo.photo/0.1.0/screenshots/2.png",
+            "assets/ca.kazo.photo/0.1.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.photo/0.1.0/description.en.md",
+            "fr": "assets/ca.kazo.photo/0.1.0/description.fr.md"
+          },
+          "signature": "grIG1n9l7wL6PUptqjOSVGkLGv4sUBdKj2UTEMfwK0/50s3ZTTg/5keoOHDStbNirMkOvoeNWUGQtwCgduToZQ==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/dicom",
+              "extensions": [
+                ".dcm",
+                ".dicom",
+                ".dc3"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-adobe-swatch-exchange",
+              "extensions": [
+                ".ase"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-affinity",
+              "extensions": [
+                ".af"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-affinity-designer",
+              "extensions": [
+                ".afdesign"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-affinity-photo",
+              "extensions": [
+                ".afphoto"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-affinity-publisher",
+              "extensions": [
+                ".afpub"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-krita",
+              "extensions": [
+                ".kra"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-krita-archive",
+              "extensions": [
+                ".krz"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-photocraft",
+              "extensions": [
+                ".pcraft"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-photoshop-brush",
+              "extensions": [
+                ".abr"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-photoshop-color-table",
+              "extensions": [
+                ".act"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-photoshop-gradient",
+              "extensions": [
+                ".grd"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-photoshop-large",
+              "extensions": [
+                ".psb"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-photoshop-style",
+              "extensions": [
+                ".asl"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-photoshop-swatches",
+              "extensions": [
+                ".aco"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-photoshop-template",
+              "extensions": [
+                ".psdt"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/bmp",
+              "extensions": [
+                ".bmp"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/fits",
+              "extensions": [
+                ".fits",
+                ".fit",
+                ".fts"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/gif",
+              "extensions": [
+                ".gif"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/heic",
+              "extensions": [
+                ".heic"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/heif",
+              "extensions": [
+                ".heif",
+                ".hif"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/jpeg",
+              "extensions": [
+                ".jpg",
+                ".jpeg"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/openraster",
+              "extensions": [
+                ".ora"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/png",
+              "extensions": [
+                ".png"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/qoi",
+              "extensions": [
+                ".qoi"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/svg\u002Bxml",
+              "extensions": [
+                ".svg"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/svg\u002Bxml-compressed",
+              "extensions": [
+                ".svgz"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/tiff",
+              "extensions": [
+                ".tif",
+                ".tiff"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/vnd-ms.dds",
+              "extensions": [
+                ".dds"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/vnd.adobe.photoshop",
+              "extensions": [
+                ".psd"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/vnd.microsoft.icon",
+              "extensions": [
+                ".ico"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/vnd.radiance",
+              "extensions": [
+                ".hdr"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/webp",
+              "extensions": [
+                ".webp"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/x-adobe-dng",
+              "extensions": [
+                ".dng"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-canon-cr2",
+              "extensions": [
+                ".cr2"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-canon-cr3",
+              "extensions": [
+                ".cr3"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-cineon",
+              "extensions": [
+                ".cin"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-compressed-xcf",
+              "extensions": [
+                ".xcfgz"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-dpx",
+              "extensions": [
+                ".dpx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-exr",
+              "extensions": [
+                ".exr"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-fuji-raf",
+              "extensions": [
+                ".raf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-iff",
+              "extensions": [
+                ".iff",
+                ".lbm",
+                ".ilbm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-nikon-nef",
+              "extensions": [
+                ".nef"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-nikon-nrw",
+              "extensions": [
+                ".nrw"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-olympus-orf",
+              "extensions": [
+                ".orf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-paintdotnet",
+              "extensions": [
+                ".pdn"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-panasonic-rw2",
+              "extensions": [
+                ".rw2"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-pentax-pef",
+              "extensions": [
+                ".pef"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-portable-arbitrarymap",
+              "extensions": [
+                ".pam"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-portable-bitmap",
+              "extensions": [
+                ".pbm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-portable-floatmap",
+              "extensions": [
+                ".pfm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-portable-graymap",
+              "extensions": [
+                ".pgm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-portable-pixmap",
+              "extensions": [
+                ".ppm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-sony-arw",
+              "extensions": [
+                ".arw"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-tga",
+              "extensions": [
+                ".tga"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-xcf",
+              "extensions": [
+                ".xcf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "appId": "ca.kazo.spreadsheets",
       "kind": "app",
       "name": "Kazo Spreadsheets",
