@@ -2493,6 +2493,167 @@
       "latestVersion": "0.1.1",
       "versions": [
         {
+          "version": "0.1.2-beta.1",
+          "commit": "1a4112bfe86ac423fa7fb2b2e026b48f94efa20c",
+          "package": "packages/ca.kazo.word/0.1.2-beta.1/ca.kazo.word-0.1.2-beta.1.kazoapp",
+          "sha256": "d87f5e37faa80d080f30c7b89ffe28528a6d84a01a8d832a588cca0e8c65cca7",
+          "size": 22792226,
+          "publishedAt": "2026-11-15T19:41:30+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.4.0-preview.4"
+          },
+          "icon": "assets/ca.kazo.word/0.1.2-beta.1/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.word/0.1.2-beta.1/screenshots/1.png",
+            "assets/ca.kazo.word/0.1.2-beta.1/screenshots/2.png",
+            "assets/ca.kazo.word/0.1.2-beta.1/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.word/0.1.2-beta.1/description.en.md",
+            "fr": "assets/ca.kazo.word/0.1.2-beta.1/description.fr.md"
+          },
+          "signature": "8RbOsJ48DJTV8X1k32TcOmqSAAq8AjceOpfUTYI4u7MZk8JFqTIV9hdUabqJuEz8xLpMhr5JqFbvj\u002BcDJYPUgA==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/msword",
+              "extensions": [
+                ".doc",
+                ".dot"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/rtf",
+              "extensions": [
+                ".rtf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ms-word.document.macroenabled.12",
+              "extensions": [
+                ".docm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ms-word.template.macroenabled.12",
+              "extensions": [
+                ".dotm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.oasis.opendocument.text",
+              "extensions": [
+                ".odt"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.oasis.opendocument.text-flat-xml",
+              "extensions": [
+                ".fodt"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.oasis.opendocument.text-template",
+              "extensions": [
+                ".ott"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+              "extensions": [
+                ".docx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.openxmlformats-officedocument.wordprocessingml.template",
+              "extensions": [
+                ".dotx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-tex",
+              "extensions": [
+                ".tex"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/html",
+              "extensions": [
+                ".html",
+                ".htm"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/markdown",
+              "extensions": [
+                ".md"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/plain",
+              "extensions": [
+                ".txt"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
+        },
+        {
           "version": "0.1.1",
           "commit": "35e85bed9316035f102406d8d662ec936b747c01",
           "package": "packages/ca.kazo.word/0.1.1/ca.kazo.word-0.1.1.kazoapp",
