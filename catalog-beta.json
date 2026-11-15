@@ -1301,6 +1301,137 @@
       "latestVersion": "0.1.0",
       "versions": [
         {
+          "version": "0.1.1-beta.1",
+          "commit": "09f705718cf1d96f4c1e6dcfaa62bf14791b80e2",
+          "package": "packages/ca.kazo.spreadsheets/0.1.1-beta.1/ca.kazo.spreadsheets-0.1.1-beta.1.kazoapp",
+          "sha256": "97e43cc7aa24a7ad8ca84a41e4c339cb8fd6a23886acc6ab6ecfe1d75a22bdff",
+          "size": 9884085,
+          "publishedAt": "2026-11-15T19:03:14+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.4.0-preview.4"
+          },
+          "icon": "assets/ca.kazo.spreadsheets/0.1.1-beta.1/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.spreadsheets/0.1.1-beta.1/screenshots/1.png",
+            "assets/ca.kazo.spreadsheets/0.1.1-beta.1/screenshots/2.png",
+            "assets/ca.kazo.spreadsheets/0.1.1-beta.1/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.spreadsheets/0.1.1-beta.1/description.en.md",
+            "fr": "assets/ca.kazo.spreadsheets/0.1.1-beta.1/description.fr.md"
+          },
+          "signature": "H5gqk31hZSvUXI129uHxwLKQ8fxI0ITsYrtl8rl/VgZq0xChBO5qwpzJcW0Fwf/LqrdQ6\u002BdWW4eAnjQ8GnCfaQ==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/json",
+              "extensions": [
+                ".json"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ms-excel",
+              "extensions": [
+                ".xls"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ms-excel.sheet.binary.macroEnabled.12",
+              "extensions": [
+                ".xlsb"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ms-excel.sheet.macroEnabled.12",
+              "extensions": [
+                ".xlsm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.oasis.opendocument.spreadsheet",
+              "extensions": [
+                ".ods"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+              "extensions": [
+                ".xlsx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-sylk",
+              "extensions": [
+                ".slk"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "text/csv",
+              "extensions": [
+                ".csv"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "text/plain",
+              "extensions": [
+                ".txt"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/tab-separated-values",
+              "extensions": [
+                ".tsv"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            }
+          ]
+        },
+        {
           "version": "0.1.0",
           "commit": "5d757d37c15a59a49d605d9ab75be9be9284d5d4",
           "package": "packages/ca.kazo.spreadsheets/0.1.0/ca.kazo.spreadsheets-0.1.0.kazoapp",
