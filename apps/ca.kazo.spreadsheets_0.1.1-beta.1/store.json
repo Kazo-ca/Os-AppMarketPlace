@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/Kazo-ca/Os-App-Spreadsheets",
+  "project": "src/Kazo.Spreadsheets/Kazo.Spreadsheets.csproj",
+  "category": "productivity",
+  "tags": [
+    "spreadsheet",
+    "xlsx",
+    "ods",
+    "gridcraft"
+  ],
+  "license": "MIT",
+  "commit": "09f705718cf1d96f4c1e6dcfaa62bf14791b80e2"
+}
