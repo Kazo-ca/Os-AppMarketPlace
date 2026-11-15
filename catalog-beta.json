@@ -3118,15 +3118,15 @@
       },
       "license": "MIT",
       "repository": "https://github.com/Kazo-ca/Os-App-Word",
-      "latestVersion": "0.1.1",
+      "latestVersion": "0.1.2",
       "versions": [
         {
-          "version": "0.1.2-beta.1",
-          "commit": "1a4112bfe86ac423fa7fb2b2e026b48f94efa20c",
-          "package": "packages/ca.kazo.word/0.1.2-beta.1/ca.kazo.word-0.1.2-beta.1.kazoapp",
-          "sha256": "d87f5e37faa80d080f30c7b89ffe28528a6d84a01a8d832a588cca0e8c65cca7",
-          "size": 22792226,
-          "publishedAt": "2026-11-15T19:41:30+00:00",
+          "version": "0.1.2",
+          "commit": "cdd1ae0984efe361d0599b06581cf5fa2571707b",
+          "package": "packages/ca.kazo.word/0.1.2/ca.kazo.word-0.1.2.kazoapp",
+          "sha256": "6af95c8e364437f5503aa5bb8b817271a4f5ac2baf02259aa321ea1d88a8409d",
+          "size": 22792213,
+          "publishedAt": "2026-11-15T21:53:40+00:00",
           "capabilities": [
             "apps.launch",
             "dialogs.file-open",
@@ -3137,19 +3137,19 @@
             "filesystem.user-home.write"
           ],
           "sdkCompatibility": {
-            "minimumVersion": "3.4.0-preview.4"
+            "minimumVersion": "3.4.0"
           },
-          "icon": "assets/ca.kazo.word/0.1.2-beta.1/icon.png",
+          "icon": "assets/ca.kazo.word/0.1.2/icon.png",
           "screenshots": [
-            "assets/ca.kazo.word/0.1.2-beta.1/screenshots/1.png",
-            "assets/ca.kazo.word/0.1.2-beta.1/screenshots/2.png",
-            "assets/ca.kazo.word/0.1.2-beta.1/screenshots/3.png"
+            "assets/ca.kazo.word/0.1.2/screenshots/1.png",
+            "assets/ca.kazo.word/0.1.2/screenshots/2.png",
+            "assets/ca.kazo.word/0.1.2/screenshots/3.png"
           ],
           "descriptions": {
-            "en": "assets/ca.kazo.word/0.1.2-beta.1/description.en.md",
-            "fr": "assets/ca.kazo.word/0.1.2-beta.1/description.fr.md"
+            "en": "assets/ca.kazo.word/0.1.2/description.en.md",
+            "fr": "assets/ca.kazo.word/0.1.2/description.fr.md"
           },
-          "signature": "8RbOsJ48DJTV8X1k32TcOmqSAAq8AjceOpfUTYI4u7MZk8JFqTIV9hdUabqJuEz8xLpMhr5JqFbvj\u002BcDJYPUgA==",
+          "signature": "nxEPa\u002BB2rTij3TyB6WCd\u002Bb8trseFK/nNoLo24rOU0CVv6QoDIvdHp5e3GHdMgUshE9v4yQwfQmGCUzizDAALzA==",
           "fileHandlers": [
             {
               "mediaType": "application/msword",
