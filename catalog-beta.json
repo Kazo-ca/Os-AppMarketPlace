@@ -100,6 +100,45 @@
       "latestVersion": "1.1.0",
       "versions": [
         {
+          "version": "1.1.1-beta.1",
+          "commit": "239e8b16b23de4dec6fc333b6630131e9fc7f8a4",
+          "package": "packages/ca.kazo.chess/1.1.1-beta.1/ca.kazo.chess-1.1.1-beta.1.kazoapp",
+          "sha256": "a217fc907ed74f2f22b1584d1ebd13ce648e0564b761e34f99f28f8332a04fc5",
+          "size": 1348037,
+          "publishedAt": "2026-11-15T19:38:22+00:00",
+          "capabilities": [
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.4.0-preview.4"
+          },
+          "icon": "assets/ca.kazo.chess/1.1.1-beta.1/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.chess/1.1.1-beta.1/screenshots/1.png",
+            "assets/ca.kazo.chess/1.1.1-beta.1/screenshots/2.png",
+            "assets/ca.kazo.chess/1.1.1-beta.1/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.chess/1.1.1-beta.1/description.en.md",
+            "fr": "assets/ca.kazo.chess/1.1.1-beta.1/description.fr.md"
+          },
+          "signature": "fkjQ9AfGIWdZBbnv4vasBCCGRPUW8GzKt9cI/E2poA\u002BPbwsMRTsSjCjIvLt\u002BuPN7iwlyryNpmlU0q3EnXi\u002BNXw==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/x-chess-pgn",
+              "extensions": [
+                ".pgn"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
+        },
+        {
           "version": "1.1.0",
           "commit": "c64fe542f46f9ed3b85662c1140c6cc13c07dbab",
           "package": "packages/ca.kazo.chess/1.1.0/ca.kazo.chess-1.1.0.kazoapp",
