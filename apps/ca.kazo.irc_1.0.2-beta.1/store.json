@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/Kazo-ca/Os-App-IRC",
+  "project": "src/Kazo.Irc/Kazo.Irc.csproj",
+  "category": "communication",
+  "tags": [
+    "irc",
+    "chat",
+    "ircv3",
+    "websocket",
+    "libera",
+    "messaging"
+  ],
+  "license": "MIT",
+  "commit": "d248a240a211e38780a482b6137e24ee0ae19416"
+}
