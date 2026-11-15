@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/Kazo-ca/Os-App-Fig",
+  "project": "src/Kazo.Fig/Kazo.Fig.csproj",
+  "category": "graphics",
+  "tags": [
+    "design",
+    "prototype",
+    "ui",
+    "figcraft"
+  ],
+  "license": "MIT",
+  "commit": "3c2d08d169ee700fdd770561c515710de931e5d7"
+}
