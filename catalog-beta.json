@@ -200,6 +200,106 @@
       "latestVersion": "0.1.0",
       "versions": [
         {
+          "version": "0.1.1-beta.1",
+          "commit": "0b3325369522798767cd87a8c3a6bb9bafed8f6b",
+          "package": "packages/ca.kazo.deck/0.1.1-beta.1/ca.kazo.deck-0.1.1-beta.1.kazoapp",
+          "sha256": "b2e5e665347cfa5f2f50f01cba95d3874fb3fa9df15f4705a565a8bc7a6b0c51",
+          "size": 15657889,
+          "publishedAt": "2026-11-15T19:26:30+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.4.0-preview.4"
+          },
+          "icon": "assets/ca.kazo.deck/0.1.1-beta.1/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.deck/0.1.1-beta.1/screenshots/1.png",
+            "assets/ca.kazo.deck/0.1.1-beta.1/screenshots/2.png",
+            "assets/ca.kazo.deck/0.1.1-beta.1/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.deck/0.1.1-beta.1/description.en.md",
+            "fr": "assets/ca.kazo.deck/0.1.1-beta.1/description.fr.md"
+          },
+          "signature": "U9ilBPAiP2aMXpzNGmKkVfpg\u002BOdMjSC0qyBx\u002BJFD\u002BNwm9Elv39yqljycVT6ydHpelRd0Fionu45njNotlPjv\u002Bw==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/rtf",
+              "extensions": [
+                ".rtf"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+              "extensions": [
+                ".pptx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.openxmlformats-officedocument.presentationml.slideshow",
+              "extensions": [
+                ".ppsx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.openxmlformats-officedocument.presentationml.template",
+              "extensions": [
+                ".potx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-deckcraft",
+              "extensions": [
+                ".deckcraft"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "text/markdown",
+              "extensions": [
+                ".md"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/plain",
+              "extensions": [
+                ".txt"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
+        },
+        {
           "version": "0.1.0",
           "commit": "93467731e53453c120b655c23d85818ac31f0316",
           "package": "packages/ca.kazo.deck/0.1.0/ca.kazo.deck-0.1.0.kazoapp",
