@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/Kazo-ca/Os-App-Word",
+  "project": "src/Kazo.Word/Kazo.Word.csproj",
+  "category": "productivity",
+  "tags": [
+    "word-processor",
+    "documents",
+    "docx",
+    "odt",
+    "wordcraft"
+  ],
+  "license": "MIT",
+  "commit": "cdd1ae0984efe361d0599b06581cf5fa2571707b"
+}
