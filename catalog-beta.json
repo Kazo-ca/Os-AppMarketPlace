@@ -1833,6 +1833,150 @@
       "latestVersion": "0.1.0",
       "versions": [
         {
+          "version": "0.1.1-beta.1",
+          "commit": "34d7c33f8e2d3061fa10f8a523589d47d91357c3",
+          "package": "packages/ca.kazo.vector/0.1.1-beta.1/ca.kazo.vector-0.1.1-beta.1.kazoapp",
+          "sha256": "de39791032fe909cff8fb2ad463d778eae0ae5f084d19b3424ee730f8003fc0a",
+          "size": 30491272,
+          "publishedAt": "2026-11-15T19:29:06+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.4.0-preview.4"
+          },
+          "icon": "assets/ca.kazo.vector/0.1.1-beta.1/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.vector/0.1.1-beta.1/screenshots/1.png",
+            "assets/ca.kazo.vector/0.1.1-beta.1/screenshots/2.png",
+            "assets/ca.kazo.vector/0.1.1-beta.1/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.vector/0.1.1-beta.1/description.en.md",
+            "fr": "assets/ca.kazo.vector/0.1.1-beta.1/description.fr.md"
+          },
+          "signature": "RtW\u002BiaTGat7TAB\u002BFWGaL1uF1QRy6CxJrMH3jTFvFPTYtkPPeG/rfueGz56pKHEeYAHdoN1DOoY/5lW1L6MRjGg==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/illustrator",
+              "extensions": [
+                ".ai"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/pdf",
+              "extensions": [
+                ".pdf"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "application/postscript",
+              "extensions": [
+                ".eps",
+                ".epsf",
+                ".ps"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-affinity-designer",
+              "extensions": [
+                ".afdesign"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "application/x-illustrator-template",
+              "extensions": [
+                ".ait"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-vectorcraft",
+              "extensions": [
+                ".vectorcraft"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-vectorcraft-template",
+              "extensions": [
+                ".vctemplate"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/emf",
+              "extensions": [
+                ".emf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/svg\u002Bxml",
+              "extensions": [
+                ".svg",
+                ".svgz"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/vnd.dxf",
+              "extensions": [
+                ".dxf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/wmf",
+              "extensions": [
+                ".wmf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            }
+          ]
+        },
+        {
           "version": "0.1.0",
           "commit": "f1d05146e60aec116f9b4de2929d2a6dbebd4a85",
           "package": "packages/ca.kazo.vector/0.1.0/ca.kazo.vector-0.1.0.kazoapp",
