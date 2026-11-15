@@ -97,15 +97,15 @@
       },
       "license": "GPL-3.0",
       "repository": "https://github.com/Kazo-ca/Os-App-Chess",
-      "latestVersion": "1.1.0",
+      "latestVersion": "1.1.1",
       "versions": [
         {
-          "version": "1.1.1-beta.1",
-          "commit": "239e8b16b23de4dec6fc333b6630131e9fc7f8a4",
-          "package": "packages/ca.kazo.chess/1.1.1-beta.1/ca.kazo.chess-1.1.1-beta.1.kazoapp",
-          "sha256": "a217fc907ed74f2f22b1584d1ebd13ce648e0564b761e34f99f28f8332a04fc5",
-          "size": 1348037,
-          "publishedAt": "2026-11-15T19:38:22+00:00",
+          "version": "1.1.1",
+          "commit": "bb75622bdd94f25197a9f9180de8fddc9321a48a",
+          "package": "packages/ca.kazo.chess/1.1.1/ca.kazo.chess-1.1.1.kazoapp",
+          "sha256": "3617805ac03ae58b43cbaa4c46f73913f237ec1346749adc7a7d2bd3e8cd497b",
+          "size": 1348034,
+          "publishedAt": "2026-11-15T21:56:28+00:00",
           "capabilities": [
             "dialogs.file-open",
             "dialogs.file-save",
@@ -113,19 +113,19 @@
             "filesystem.user-home.write"
           ],
           "sdkCompatibility": {
-            "minimumVersion": "3.4.0-preview.4"
+            "minimumVersion": "3.4.0"
           },
-          "icon": "assets/ca.kazo.chess/1.1.1-beta.1/icon.png",
+          "icon": "assets/ca.kazo.chess/1.1.1/icon.png",
           "screenshots": [
-            "assets/ca.kazo.chess/1.1.1-beta.1/screenshots/1.png",
-            "assets/ca.kazo.chess/1.1.1-beta.1/screenshots/2.png",
-            "assets/ca.kazo.chess/1.1.1-beta.1/screenshots/3.png"
+            "assets/ca.kazo.chess/1.1.1/screenshots/1.png",
+            "assets/ca.kazo.chess/1.1.1/screenshots/2.png",
+            "assets/ca.kazo.chess/1.1.1/screenshots/3.png"
           ],
           "descriptions": {
-            "en": "assets/ca.kazo.chess/1.1.1-beta.1/description.en.md",
-            "fr": "assets/ca.kazo.chess/1.1.1-beta.1/description.fr.md"
+            "en": "assets/ca.kazo.chess/1.1.1/description.en.md",
+            "fr": "assets/ca.kazo.chess/1.1.1/description.fr.md"
           },
-          "signature": "fkjQ9AfGIWdZBbnv4vasBCCGRPUW8GzKt9cI/E2poA\u002BPbwsMRTsSjCjIvLt\u002BuPN7iwlyryNpmlU0q3EnXi\u002BNXw==",
+          "signature": "kRtQcXDFb1LUdmUgLYl/yy8RM8ZWIV2Yyv3aeOUkWClc/Nf\u002BY1N0NARdgOib1KuWpFtSml19qQ5OwW21AlGcMw==",
           "fileHandlers": [
             {
               "mediaType": "application/x-chess-pgn",
@@ -236,15 +236,15 @@
       },
       "license": "MIT",
       "repository": "https://github.com/Kazo-ca/Os-App-Deck",
-      "latestVersion": "0.1.0",
+      "latestVersion": "0.1.1",
       "versions": [
         {
-          "version": "0.1.1-beta.1",
-          "commit": "0b3325369522798767cd87a8c3a6bb9bafed8f6b",
-          "package": "packages/ca.kazo.deck/0.1.1-beta.1/ca.kazo.deck-0.1.1-beta.1.kazoapp",
-          "sha256": "b2e5e665347cfa5f2f50f01cba95d3874fb3fa9df15f4705a565a8bc7a6b0c51",
-          "size": 15657889,
-          "publishedAt": "2026-11-15T19:26:30+00:00",
+          "version": "0.1.1",
+          "commit": "d1c0f49fe600089883102f6f20242a1b77709abf",
+          "package": "packages/ca.kazo.deck/0.1.1/ca.kazo.deck-0.1.1.kazoapp",
+          "sha256": "c3ebb8a9edb0970cd08f3f361b5da9be30a631d1cfc14b176f95aa0bbb710df4",
+          "size": 15657856,
+          "publishedAt": "2026-11-15T21:56:28+00:00",
           "capabilities": [
             "apps.launch",
             "dialogs.file-open",
@@ -255,19 +255,19 @@
             "filesystem.user-home.write"
           ],
           "sdkCompatibility": {
-            "minimumVersion": "3.4.0-preview.4"
+            "minimumVersion": "3.4.0"
           },
-          "icon": "assets/ca.kazo.deck/0.1.1-beta.1/icon.png",
+          "icon": "assets/ca.kazo.deck/0.1.1/icon.png",
           "screenshots": [
-            "assets/ca.kazo.deck/0.1.1-beta.1/screenshots/1.png",
-            "assets/ca.kazo.deck/0.1.1-beta.1/screenshots/2.png",
-            "assets/ca.kazo.deck/0.1.1-beta.1/screenshots/3.png"
+            "assets/ca.kazo.deck/0.1.1/screenshots/1.png",
+            "assets/ca.kazo.deck/0.1.1/screenshots/2.png",
+            "assets/ca.kazo.deck/0.1.1/screenshots/3.png"
           ],
           "descriptions": {
-            "en": "assets/ca.kazo.deck/0.1.1-beta.1/description.en.md",
-            "fr": "assets/ca.kazo.deck/0.1.1-beta.1/description.fr.md"
+            "en": "assets/ca.kazo.deck/0.1.1/description.en.md",
+            "fr": "assets/ca.kazo.deck/0.1.1/description.fr.md"
           },
-          "signature": "U9ilBPAiP2aMXpzNGmKkVfpg\u002BOdMjSC0qyBx\u002BJFD\u002BNwm9Elv39yqljycVT6ydHpelRd0Fionu45njNotlPjv\u002Bw==",
+          "signature": "fZN5Ye8oBNoJ8t30GThWjMFosx7BfjZOpOIr0voDxt0jSakWd4Y4/2phshmj1odrCsQJbLumzVRnlYBs0oGWGg==",
           "fileHandlers": [
             {
               "mediaType": "application/rtf",
@@ -457,15 +457,15 @@
       },
       "license": "MIT",
       "repository": "https://github.com/Kazo-ca/Os-App-Fig",
-      "latestVersion": "0.1.0",
+      "latestVersion": "0.1.1",
       "versions": [
         {
-          "version": "0.1.1-beta.1",
-          "commit": "3c2d08d169ee700fdd770561c515710de931e5d7",
-          "package": "packages/ca.kazo.fig/0.1.1-beta.1/ca.kazo.fig-0.1.1-beta.1.kazoapp",
-          "sha256": "5a395d958ecf53c80911a34fbe1116518c6ccd3cfe493029a38afbaaa1b5e4ed",
-          "size": 10724341,
-          "publishedAt": "2026-11-15T19:17:04+00:00",
+          "version": "0.1.1",
+          "commit": "5d3f375973b4411f37d66fd7378c7bc119a654dc",
+          "package": "packages/ca.kazo.fig/0.1.1/ca.kazo.fig-0.1.1.kazoapp",
+          "sha256": "cb9d5055c0c5d3c9de43a4a6ea2f925821e8941e8da8b6ba3be404f1da338448",
+          "size": 10724319,
+          "publishedAt": "2026-11-15T21:56:28+00:00",
           "capabilities": [
             "apps.launch",
             "dialogs.file-open",
@@ -476,19 +476,19 @@
             "filesystem.user-home.write"
           ],
           "sdkCompatibility": {
-            "minimumVersion": "3.4.0-preview.4"
+            "minimumVersion": "3.4.0"
           },
-          "icon": "assets/ca.kazo.fig/0.1.1-beta.1/icon.png",
+          "icon": "assets/ca.kazo.fig/0.1.1/icon.png",
           "screenshots": [
-            "assets/ca.kazo.fig/0.1.1-beta.1/screenshots/1.png",
-            "assets/ca.kazo.fig/0.1.1-beta.1/screenshots/2.png",
-            "assets/ca.kazo.fig/0.1.1-beta.1/screenshots/3.png"
+            "assets/ca.kazo.fig/0.1.1/screenshots/1.png",
+            "assets/ca.kazo.fig/0.1.1/screenshots/2.png",
+            "assets/ca.kazo.fig/0.1.1/screenshots/3.png"
           ],
           "descriptions": {
-            "en": "assets/ca.kazo.fig/0.1.1-beta.1/description.en.md",
-            "fr": "assets/ca.kazo.fig/0.1.1-beta.1/description.fr.md"
+            "en": "assets/ca.kazo.fig/0.1.1/description.en.md",
+            "fr": "assets/ca.kazo.fig/0.1.1/description.fr.md"
           },
-          "signature": "g1Jhrkp7Mdrlyn9a7D0JflbeuHF/DSKvVR9byRLyi4g8RNRzh2DD0JnQ/i86LaNnUyzheB\u002BlhJD4/\u002BYQ0PkZ9A==",
+          "signature": "l6aCqBTT1DTHlItnSYJOfTQjDeXs\u002BY6LMHMvHgAQ1avEasjWr1BrI6RIJWTE8JUlmfJ6DtMYNxkk39K400Gs0Q==",
           "fileHandlers": [
             {
               "mediaType": "application/json",
@@ -776,15 +776,15 @@
       },
       "license": "MIT",
       "repository": "https://github.com/Kazo-ca/Os-App-IRC",
-      "latestVersion": "1.0.1",
+      "latestVersion": "1.0.2",
       "versions": [
         {
-          "version": "1.0.2-beta.1",
-          "commit": "d248a240a211e38780a482b6137e24ee0ae19416",
-          "package": "packages/ca.kazo.irc/1.0.2-beta.1/ca.kazo.irc-1.0.2-beta.1.kazoapp",
-          "sha256": "e332e36c1dd88568f744bb451657502c889743038beecb4c19e4ffa91d582b19",
-          "size": 146174,
-          "publishedAt": "2026-11-15T19:48:57+00:00",
+          "version": "1.0.2",
+          "commit": "fe2883a749bc3cbef86d0b894619ba9fb2a09c6d",
+          "package": "packages/ca.kazo.irc/1.0.2/ca.kazo.irc-1.0.2.kazoapp",
+          "sha256": "a9d9bcd3792d2e5a3f09e762c2c900222986bbbe2adcfff36ce6b5fc90f66c64",
+          "size": 146148,
+          "publishedAt": "2026-11-15T21:56:28+00:00",
           "capabilities": [
             "apps.launch",
             "filesystem.private.read",
@@ -796,19 +796,19 @@
             "notifications.post"
           ],
           "sdkCompatibility": {
-            "minimumVersion": "3.4.0-preview.4"
+            "minimumVersion": "3.4.0"
           },
-          "icon": "assets/ca.kazo.irc/1.0.2-beta.1/icon.png",
+          "icon": "assets/ca.kazo.irc/1.0.2/icon.png",
           "screenshots": [
-            "assets/ca.kazo.irc/1.0.2-beta.1/screenshots/1.png",
-            "assets/ca.kazo.irc/1.0.2-beta.1/screenshots/2.png",
-            "assets/ca.kazo.irc/1.0.2-beta.1/screenshots/3.png"
+            "assets/ca.kazo.irc/1.0.2/screenshots/1.png",
+            "assets/ca.kazo.irc/1.0.2/screenshots/2.png",
+            "assets/ca.kazo.irc/1.0.2/screenshots/3.png"
           ],
           "descriptions": {
-            "en": "assets/ca.kazo.irc/1.0.2-beta.1/description.en.md",
-            "fr": "assets/ca.kazo.irc/1.0.2-beta.1/description.fr.md"
+            "en": "assets/ca.kazo.irc/1.0.2/description.en.md",
+            "fr": "assets/ca.kazo.irc/1.0.2/description.fr.md"
           },
-          "signature": "q/KF47cpsdR3dl91jBaxEazruiHsQbhaDAci3DFLXlk/Jz7q7NmNBo4K9w7PuN2oa8C5V33EWfEpnUIcnqNcZQ=="
+          "signature": "v7OyNiKA3D802E3SOl8FD4VL7ABLm1OyWFdPCy8PoPpscB2cQpZeqXUnq\u002BI4LyqWIqe2bbqnrM4wupqvBrYb5w=="
         },
         {
           "version": "1.0.1",
@@ -892,15 +892,15 @@
       },
       "license": "MIT",
       "repository": "https://github.com/Kazo-ca/Os-App-PDF",
-      "latestVersion": "0.1.0",
+      "latestVersion": "0.1.1",
       "versions": [
         {
-          "version": "0.1.1-beta.1",
-          "commit": "0e087fa799fb2d3d4b35ef5b4cf6911e6167fb26",
-          "package": "packages/ca.kazo.pdf/0.1.1-beta.1/ca.kazo.pdf-0.1.1-beta.1.kazoapp",
-          "sha256": "727b5bbc1cebe79b5eb043276f95481d1eeb571c81c34d417eff59ce903e6d39",
-          "size": 34723118,
-          "publishedAt": "2026-11-15T19:00:29+00:00",
+          "version": "0.1.1",
+          "commit": "0226555d67f36d2c8a01001a25eb7a001349bb7f",
+          "package": "packages/ca.kazo.pdf/0.1.1/ca.kazo.pdf-0.1.1.kazoapp",
+          "sha256": "b6f079ce2d0e369b41fe9a94b69c61dd28854f0665c088551a68517afc025082",
+          "size": 34723084,
+          "publishedAt": "2026-11-15T21:56:28+00:00",
           "capabilities": [
             "apps.launch",
             "dialogs.file-open",
@@ -911,19 +911,19 @@
             "filesystem.user-home.write"
           ],
           "sdkCompatibility": {
-            "minimumVersion": "3.4.0-preview.4"
+            "minimumVersion": "3.4.0"
           },
-          "icon": "assets/ca.kazo.pdf/0.1.1-beta.1/icon.png",
+          "icon": "assets/ca.kazo.pdf/0.1.1/icon.png",
           "screenshots": [
-            "assets/ca.kazo.pdf/0.1.1-beta.1/screenshots/1.png",
-            "assets/ca.kazo.pdf/0.1.1-beta.1/screenshots/2.png",
-            "assets/ca.kazo.pdf/0.1.1-beta.1/screenshots/3.png"
+            "assets/ca.kazo.pdf/0.1.1/screenshots/1.png",
+            "assets/ca.kazo.pdf/0.1.1/screenshots/2.png",
+            "assets/ca.kazo.pdf/0.1.1/screenshots/3.png"
           ],
           "descriptions": {
-            "en": "assets/ca.kazo.pdf/0.1.1-beta.1/description.en.md",
-            "fr": "assets/ca.kazo.pdf/0.1.1-beta.1/description.fr.md"
+            "en": "assets/ca.kazo.pdf/0.1.1/description.en.md",
+            "fr": "assets/ca.kazo.pdf/0.1.1/description.fr.md"
           },
-          "signature": "H8CWGwsJQxbNNEC4653NP6MhZOq2vI\u002BKCTLjtRRi8gsrMLUJhKlejrnpJkF4uGptRFRLE5AuQJJ3AVR9wnkWYg==",
+          "signature": "4540S0NSUsuE/UvuoijAGeWFnE4YOb1P\u002BcMLieLsSx\u002BUIq\u002BOuBdi\u002Bv7SFM/wRu4wIn0cbZPim3/d8sEaZLCVhA==",
           "fileHandlers": [
             {
               "mediaType": "application/pdf",
@@ -1000,15 +1000,15 @@
       },
       "license": "MIT",
       "repository": "https://github.com/Kazo-ca/Os-App-Photo",
-      "latestVersion": "0.1.0",
+      "latestVersion": "0.1.1",
       "versions": [
         {
-          "version": "0.1.1-beta.1",
-          "commit": "d62367691793c3bb4a24e9bfef86d254448fe34d",
-          "package": "packages/ca.kazo.photo/0.1.1-beta.1/ca.kazo.photo-0.1.1-beta.1.kazoapp",
-          "sha256": "38c0993353ff29deb4c2e6a229006cfd0d966f23891be9197d11fad8dfaf4a0f",
-          "size": 25745565,
-          "publishedAt": "2026-11-15T19:48:57+00:00",
+          "version": "0.1.1",
+          "commit": "f0f548edb0b06a0b692b44a7940de5ff7dbc3df8",
+          "package": "packages/ca.kazo.photo/0.1.1/ca.kazo.photo-0.1.1.kazoapp",
+          "sha256": "d321e98f229ecd13ff693ebb43857c39d41f1d5ef6eebb400ea1e51fa0636f09",
+          "size": 25745547,
+          "publishedAt": "2026-11-15T21:56:28+00:00",
           "capabilities": [
             "apps.launch",
             "dialogs.file-open",
@@ -1019,19 +1019,19 @@
             "filesystem.user-home.write"
           ],
           "sdkCompatibility": {
-            "minimumVersion": "3.4.0-preview.4"
+            "minimumVersion": "3.4.0"
           },
-          "icon": "assets/ca.kazo.photo/0.1.1-beta.1/icon.png",
+          "icon": "assets/ca.kazo.photo/0.1.1/icon.png",
           "screenshots": [
-            "assets/ca.kazo.photo/0.1.1-beta.1/screenshots/1.png",
-            "assets/ca.kazo.photo/0.1.1-beta.1/screenshots/2.png",
-            "assets/ca.kazo.photo/0.1.1-beta.1/screenshots/3.png"
+            "assets/ca.kazo.photo/0.1.1/screenshots/1.png",
+            "assets/ca.kazo.photo/0.1.1/screenshots/2.png",
+            "assets/ca.kazo.photo/0.1.1/screenshots/3.png"
           ],
           "descriptions": {
-            "en": "assets/ca.kazo.photo/0.1.1-beta.1/description.en.md",
-            "fr": "assets/ca.kazo.photo/0.1.1-beta.1/description.fr.md"
+            "en": "assets/ca.kazo.photo/0.1.1/description.en.md",
+            "fr": "assets/ca.kazo.photo/0.1.1/description.fr.md"
           },
-          "signature": "b/JM1nqYjaj5KDsl9I7YuKEfC6z/q4O7YZLsdwag31F1KO2o80LjwBIRXoOdPashjBMYR4SIdqRTH\u002BMoxK/ApA==",
+          "signature": "qerljNLpxhlOjQLegudG/xDJxfDl2l0WUBMqq\u002B0h5z9xRTMkt9aCeK4Oa09Mm9pz1wMyHuulcsUtaF7Q4R\u002BLwA==",
           "fileHandlers": [
             {
               "mediaType": "application/dicom",
@@ -2213,15 +2213,15 @@
       },
       "license": "MIT",
       "repository": "https://github.com/Kazo-ca/Os-App-Spreadsheets",
-      "latestVersion": "0.1.0",
+      "latestVersion": "0.1.1",
       "versions": [
         {
-          "version": "0.1.1-beta.1",
-          "commit": "09f705718cf1d96f4c1e6dcfaa62bf14791b80e2",
-          "package": "packages/ca.kazo.spreadsheets/0.1.1-beta.1/ca.kazo.spreadsheets-0.1.1-beta.1.kazoapp",
-          "sha256": "97e43cc7aa24a7ad8ca84a41e4c339cb8fd6a23886acc6ab6ecfe1d75a22bdff",
-          "size": 9884085,
-          "publishedAt": "2026-11-15T19:03:14+00:00",
+          "version": "0.1.1",
+          "commit": "63a05b755fa83980d8e8799849aa3885ad12bccc",
+          "package": "packages/ca.kazo.spreadsheets/0.1.1/ca.kazo.spreadsheets-0.1.1.kazoapp",
+          "sha256": "0a92d3259f941d5b25661b98706e63503aaea728c3e2e28d03002b9b53b601a6",
+          "size": 9884056,
+          "publishedAt": "2026-11-15T21:56:28+00:00",
           "capabilities": [
             "apps.launch",
             "dialogs.file-open",
@@ -2232,19 +2232,19 @@
             "filesystem.user-home.write"
           ],
           "sdkCompatibility": {
-            "minimumVersion": "3.4.0-preview.4"
+            "minimumVersion": "3.4.0"
           },
-          "icon": "assets/ca.kazo.spreadsheets/0.1.1-beta.1/icon.png",
+          "icon": "assets/ca.kazo.spreadsheets/0.1.1/icon.png",
           "screenshots": [
-            "assets/ca.kazo.spreadsheets/0.1.1-beta.1/screenshots/1.png",
-            "assets/ca.kazo.spreadsheets/0.1.1-beta.1/screenshots/2.png",
-            "assets/ca.kazo.spreadsheets/0.1.1-beta.1/screenshots/3.png"
+            "assets/ca.kazo.spreadsheets/0.1.1/screenshots/1.png",
+            "assets/ca.kazo.spreadsheets/0.1.1/screenshots/2.png",
+            "assets/ca.kazo.spreadsheets/0.1.1/screenshots/3.png"
           ],
           "descriptions": {
-            "en": "assets/ca.kazo.spreadsheets/0.1.1-beta.1/description.en.md",
-            "fr": "assets/ca.kazo.spreadsheets/0.1.1-beta.1/description.fr.md"
+            "en": "assets/ca.kazo.spreadsheets/0.1.1/description.en.md",
+            "fr": "assets/ca.kazo.spreadsheets/0.1.1/description.fr.md"
           },
-          "signature": "H5gqk31hZSvUXI129uHxwLKQ8fxI0ITsYrtl8rl/VgZq0xChBO5qwpzJcW0Fwf/LqrdQ6\u002BdWW4eAnjQ8GnCfaQ==",
+          "signature": "5U/zShVEaFmXFf8RQGdhQdjQYwWUuzP6H63VYXmoEU3JH\u002BdUQWiCM2iCsrcu7439smwR8Fcvqy3wrughFdohkA==",
           "fileHandlers": [
             {
               "mediaType": "application/json",
@@ -2497,15 +2497,15 @@
       },
       "license": "MIT",
       "repository": "https://github.com/Kazo-ca/Os-App-Vector",
-      "latestVersion": "0.1.0",
+      "latestVersion": "0.1.1",
       "versions": [
         {
-          "version": "0.1.1-beta.1",
-          "commit": "34d7c33f8e2d3061fa10f8a523589d47d91357c3",
-          "package": "packages/ca.kazo.vector/0.1.1-beta.1/ca.kazo.vector-0.1.1-beta.1.kazoapp",
-          "sha256": "de39791032fe909cff8fb2ad463d778eae0ae5f084d19b3424ee730f8003fc0a",
-          "size": 30491272,
-          "publishedAt": "2026-11-15T19:29:06+00:00",
+          "version": "0.1.1",
+          "commit": "2d040ff2f6e05796cc26eebeae145ccd40985478",
+          "package": "packages/ca.kazo.vector/0.1.1/ca.kazo.vector-0.1.1.kazoapp",
+          "sha256": "a28b3bd2ae6919fce34e02cd4a4e3724552db2b0518a31f4903f9d5d846538aa",
+          "size": 30491256,
+          "publishedAt": "2026-11-15T21:56:28+00:00",
           "capabilities": [
             "apps.launch",
             "dialogs.file-open",
@@ -2516,19 +2516,19 @@
             "filesystem.user-home.write"
           ],
           "sdkCompatibility": {
-            "minimumVersion": "3.4.0-preview.4"
+            "minimumVersion": "3.4.0"
           },
-          "icon": "assets/ca.kazo.vector/0.1.1-beta.1/icon.png",
+          "icon": "assets/ca.kazo.vector/0.1.1/icon.png",
           "screenshots": [
-            "assets/ca.kazo.vector/0.1.1-beta.1/screenshots/1.png",
-            "assets/ca.kazo.vector/0.1.1-beta.1/screenshots/2.png",
-            "assets/ca.kazo.vector/0.1.1-beta.1/screenshots/3.png"
+            "assets/ca.kazo.vector/0.1.1/screenshots/1.png",
+            "assets/ca.kazo.vector/0.1.1/screenshots/2.png",
+            "assets/ca.kazo.vector/0.1.1/screenshots/3.png"
           ],
           "descriptions": {
-            "en": "assets/ca.kazo.vector/0.1.1-beta.1/description.en.md",
-            "fr": "assets/ca.kazo.vector/0.1.1-beta.1/description.fr.md"
+            "en": "assets/ca.kazo.vector/0.1.1/description.en.md",
+            "fr": "assets/ca.kazo.vector/0.1.1/description.fr.md"
           },
-          "signature": "RtW\u002BiaTGat7TAB\u002BFWGaL1uF1QRy6CxJrMH3jTFvFPTYtkPPeG/rfueGz56pKHEeYAHdoN1DOoY/5lW1L6MRjGg==",
+          "signature": "EIr2zoznesdYoFDGACoO/qxs\u002BjmOZ0QC77A5tNjrxhmEAPRWKIjIgcxMHp5CGmvnSI275vSWQnmvOauvSvMa9g==",
           "fileHandlers": [
             {
               "mediaType": "application/illustrator",
