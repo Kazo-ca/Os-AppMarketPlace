@@ -1,0 +1,1 @@
+Discutez avec des modèles d'IA : vos propres clés (OpenRouter, OpenAI, Ollama, LM Studio) ou un modèle local sur votre GPU, avec mode course et AutoTune.
