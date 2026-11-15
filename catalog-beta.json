@@ -576,6 +576,49 @@
       "latestVersion": "0.1.0",
       "versions": [
         {
+          "version": "0.1.1-beta.1",
+          "commit": "0e087fa799fb2d3d4b35ef5b4cf6911e6167fb26",
+          "package": "packages/ca.kazo.pdf/0.1.1-beta.1/ca.kazo.pdf-0.1.1-beta.1.kazoapp",
+          "sha256": "727b5bbc1cebe79b5eb043276f95481d1eeb571c81c34d417eff59ce903e6d39",
+          "size": 34723118,
+          "publishedAt": "2026-11-15T19:00:29+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.4.0-preview.4"
+          },
+          "icon": "assets/ca.kazo.pdf/0.1.1-beta.1/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.pdf/0.1.1-beta.1/screenshots/1.png",
+            "assets/ca.kazo.pdf/0.1.1-beta.1/screenshots/2.png",
+            "assets/ca.kazo.pdf/0.1.1-beta.1/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.pdf/0.1.1-beta.1/description.en.md",
+            "fr": "assets/ca.kazo.pdf/0.1.1-beta.1/description.fr.md"
+          },
+          "signature": "H8CWGwsJQxbNNEC4653NP6MhZOq2vI\u002BKCTLjtRRi8gsrMLUJhKlejrnpJkF4uGptRFRLE5AuQJJ3AVR9wnkWYg==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/pdf",
+              "extensions": [
+                ".pdf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            }
+          ]
+        },
+        {
           "version": "0.1.0",
           "commit": "babb51c6806a0484015e6602aa2213d7db70e0e9",
           "package": "packages/ca.kazo.pdf/0.1.0/ca.kazo.pdf-0.1.0.kazoapp",
