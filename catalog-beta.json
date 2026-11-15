@@ -321,6 +321,154 @@
       "latestVersion": "0.1.0",
       "versions": [
         {
+          "version": "0.1.1-beta.1",
+          "commit": "3c2d08d169ee700fdd770561c515710de931e5d7",
+          "package": "packages/ca.kazo.fig/0.1.1-beta.1/ca.kazo.fig-0.1.1-beta.1.kazoapp",
+          "sha256": "5a395d958ecf53c80911a34fbe1116518c6ccd3cfe493029a38afbaaa1b5e4ed",
+          "size": 10724341,
+          "publishedAt": "2026-11-15T19:17:04+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.4.0-preview.4"
+          },
+          "icon": "assets/ca.kazo.fig/0.1.1-beta.1/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.fig/0.1.1-beta.1/screenshots/1.png",
+            "assets/ca.kazo.fig/0.1.1-beta.1/screenshots/2.png",
+            "assets/ca.kazo.fig/0.1.1-beta.1/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.fig/0.1.1-beta.1/description.en.md",
+            "fr": "assets/ca.kazo.fig/0.1.1-beta.1/description.fr.md"
+          },
+          "signature": "g1Jhrkp7Mdrlyn9a7D0JflbeuHF/DSKvVR9byRLyi4g8RNRzh2DD0JnQ/i86LaNnUyzheB\u002BlhJD4/\u002BYQ0PkZ9A==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/json",
+              "extensions": [
+                ".json"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "application/x-fig",
+              "extensions": [
+                ".fig"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-figcraft",
+              "extensions": [
+                ".figcraft"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-jam",
+              "extensions": [
+                ".jam"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-penpot",
+              "extensions": [
+                ".penpot"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-sketch",
+              "extensions": [
+                ".sketch"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/gif",
+              "extensions": [
+                ".gif"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/jpeg",
+              "extensions": [
+                ".jpg",
+                ".jpeg"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/png",
+              "extensions": [
+                ".png"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/svg\u002Bxml",
+              "extensions": [
+                ".svg"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/tiff",
+              "extensions": [
+                ".tif",
+                ".tiff"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/webp",
+              "extensions": [
+                ".webp"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
+        },
+        {
           "version": "0.1.0",
           "commit": "4f8cd85366e9e60e8827b33ae8b6faabdd277a17",
           "package": "packages/ca.kazo.fig/0.1.0/ca.kazo.fig-0.1.0.kazoapp",
