@@ -1,0 +1,12 @@
+{
+  "repository": "https://github.com/Kazo-ca/Os-App-PDF",
+  "project": "src/Kazo.Pdf/Kazo.Pdf.csproj",
+  "category": "productivity",
+  "tags": [
+    "pdf",
+    "documents",
+    "office"
+  ],
+  "license": "MIT",
+  "commit": "0e087fa799fb2d3d4b35ef5b4cf6911e6167fb26"
+}
