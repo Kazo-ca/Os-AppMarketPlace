@@ -1,0 +1,2215 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "id": "productivity",
+      "labels": {
+        "en": "Productivity",
+        "fr": "Productivit\u00E9"
+      }
+    },
+    {
+      "id": "utilities",
+      "labels": {
+        "en": "Utilities",
+        "fr": "Utilitaires"
+      }
+    },
+    {
+      "id": "developer",
+      "labels": {
+        "en": "Developer tools",
+        "fr": "Outils de d\u00E9veloppement"
+      }
+    },
+    {
+      "id": "internet",
+      "labels": {
+        "en": "Internet",
+        "fr": "Internet"
+      }
+    },
+    {
+      "id": "communication",
+      "labels": {
+        "en": "Communication",
+        "fr": "Communication"
+      }
+    },
+    {
+      "id": "multimedia",
+      "labels": {
+        "en": "Music and video",
+        "fr": "Musique et vid\u00E9o"
+      }
+    },
+    {
+      "id": "graphics",
+      "labels": {
+        "en": "Graphics",
+        "fr": "Graphisme"
+      }
+    },
+    {
+      "id": "education",
+      "labels": {
+        "en": "Education",
+        "fr": "\u00C9ducation"
+      }
+    },
+    {
+      "id": "entertainment",
+      "labels": {
+        "en": "Entertainment",
+        "fr": "Divertissement"
+      }
+    },
+    {
+      "id": "emulation",
+      "labels": {
+        "en": "Emulation",
+        "fr": "\u00C9mulation"
+      }
+    },
+    {
+      "id": "system",
+      "labels": {
+        "en": "System",
+        "fr": "Syst\u00E8me"
+      }
+    }
+  ],
+  "apps": [
+    {
+      "appId": "ca.kazo.chess",
+      "kind": "app",
+      "name": "Chess",
+      "category": "entertainment",
+      "tags": [
+        "chess",
+        "board-game",
+        "stockfish",
+        "pgn"
+      ],
+      "shortDescriptions": {
+        "en": "Chess for two on one screen or against Stockfish (5 levels), with a clock, undo and saved games (.pgn).",
+        "fr": "\u00C9checs \u00E0 deux sur un \u00E9cran ou contre Stockfish (5 niveaux), avec pendule, annulation et parties .pgn."
+      },
+      "license": "GPL-3.0",
+      "repository": "https://github.com/Kazo-ca/Os-App-Chess",
+      "latestVersion": "1.1.0",
+      "versions": [
+        {
+          "version": "1.1.0",
+          "commit": "c64fe542f46f9ed3b85662c1140c6cc13c07dbab",
+          "package": "packages/ca.kazo.chess/1.1.0/ca.kazo.chess-1.1.0.kazoapp",
+          "sha256": "ce8e753a2abe6ac73bd069f00b80a9e42b5a00b0c42b44dde33117c9788e2777",
+          "size": 1348016,
+          "publishedAt": "2026-11-05T20:48:54+00:00",
+          "capabilities": [
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.0.0"
+          },
+          "icon": "assets/ca.kazo.chess/1.1.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.chess/1.1.0/screenshots/1.png",
+            "assets/ca.kazo.chess/1.1.0/screenshots/2.png",
+            "assets/ca.kazo.chess/1.1.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.chess/1.1.0/description.en.md",
+            "fr": "assets/ca.kazo.chess/1.1.0/description.fr.md"
+          },
+          "signature": "25iKg9/mFWiDa2Ad9NJBy2h3dn0GPjquafUl\u002BElKXmvEqKdK3zwOl43ZmTy5jOnOdllaF5tUeb6Z5clLslkFGw==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/x-chess-pgn",
+              "extensions": [
+                ".pgn"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
+        },
+        {
+          "version": "1.0.0",
+          "commit": "56bbb3d9958349d9c71cceb9700bf11dce63e5d6",
+          "package": "packages/ca.kazo.chess/1.0.0/ca.kazo.chess-1.0.0.hackapp",
+          "sha256": "2c44ec5646fae8389000bdf4aeab7e38e4f96d8afa5053e9325380133a748c9f",
+          "size": 1348035,
+          "publishedAt": "2026-11-01T22:19:25+00:00",
+          "capabilities": [
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "2.2.1"
+          },
+          "icon": "assets/ca.kazo.chess/1.0.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.chess/1.0.0/screenshots/1.png",
+            "assets/ca.kazo.chess/1.0.0/screenshots/2.png",
+            "assets/ca.kazo.chess/1.0.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.chess/1.0.0/description.en.md",
+            "fr": "assets/ca.kazo.chess/1.0.0/description.fr.md"
+          },
+          "signature": "rsbYj1ghSTaSncAHqPQKEbPv94KFmVPoGBR/YvywN5O6X42p4CD60CCiIq5Pi4KOTnE0H28qsufsQuUOF\u002Bg3nw==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/x-chess-pgn",
+              "extensions": [
+                ".pgn"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "appId": "ca.kazo.deck",
+      "kind": "app",
+      "name": "Kazo Deck",
+      "category": "productivity",
+      "tags": [
+        "presentation",
+        "slides",
+        "slide-show",
+        "pptx",
+        "office"
+      ],
+      "shortDescriptions": {
+        "en": "A presentation editor for Kazo OS, built on DeckCraft.",
+        "fr": "Un \u00E9diteur de pr\u00E9sentations pour Kazo OS, construit sur DeckCraft."
+      },
+      "license": "MIT",
+      "repository": "https://github.com/Kazo-ca/Os-App-Deck",
+      "latestVersion": "0.1.0",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "commit": "93467731e53453c120b655c23d85818ac31f0316",
+          "package": "packages/ca.kazo.deck/0.1.0/ca.kazo.deck-0.1.0.kazoapp",
+          "sha256": "798dc19f096cc269aa66a9ceaf8fc3b670e83f89055408b83a70043225641c0e",
+          "size": 15657860,
+          "publishedAt": "2026-11-14T19:06:43+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.3.4"
+          },
+          "icon": "assets/ca.kazo.deck/0.1.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.deck/0.1.0/screenshots/1.png",
+            "assets/ca.kazo.deck/0.1.0/screenshots/2.png",
+            "assets/ca.kazo.deck/0.1.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.deck/0.1.0/description.en.md",
+            "fr": "assets/ca.kazo.deck/0.1.0/description.fr.md"
+          },
+          "signature": "2Rf3SS6ksds4kts\u002BWGSdHfYMTsOhljpV3s6VRbWDnN98tyu9VkwCzdvdwtRMO9gk6HNMJ\u002B3SQeqv3vtZQDd44Q==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/rtf",
+              "extensions": [
+                ".rtf"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+              "extensions": [
+                ".pptx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.openxmlformats-officedocument.presentationml.slideshow",
+              "extensions": [
+                ".ppsx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.openxmlformats-officedocument.presentationml.template",
+              "extensions": [
+                ".potx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-deckcraft",
+              "extensions": [
+                ".deckcraft"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "text/markdown",
+              "extensions": [
+                ".md"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/plain",
+              "extensions": [
+                ".txt"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "appId": "ca.kazo.fig",
+      "kind": "app",
+      "name": "Kazo Fig",
+      "category": "graphics",
+      "tags": [
+        "design",
+        "prototype",
+        "ui",
+        "figcraft"
+      ],
+      "shortDescriptions": {
+        "en": "Interface design and prototyping for .figcraft files, based on FigCraft by the ArtCraft team.",
+        "fr": "Design d\u0027interfaces et prototypage pour les fichiers .figcraft, bas\u00E9 sur FigCraft de l\u0027\u00E9quipe ArtCraft."
+      },
+      "license": "MIT",
+      "repository": "https://github.com/Kazo-ca/Os-App-Fig",
+      "latestVersion": "0.1.0",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "commit": "4f8cd85366e9e60e8827b33ae8b6faabdd277a17",
+          "package": "packages/ca.kazo.fig/0.1.0/ca.kazo.fig-0.1.0.kazoapp",
+          "sha256": "cab59e5a3d6eb776f6d8a0312e360f2c4a37a3ea2d34e2d1c63e3d090e3e976d",
+          "size": 10724319,
+          "publishedAt": "2026-11-13T17:08:57+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.3.3"
+          },
+          "icon": "assets/ca.kazo.fig/0.1.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.fig/0.1.0/screenshots/1.png",
+            "assets/ca.kazo.fig/0.1.0/screenshots/2.png",
+            "assets/ca.kazo.fig/0.1.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.fig/0.1.0/description.en.md",
+            "fr": "assets/ca.kazo.fig/0.1.0/description.fr.md"
+          },
+          "signature": "jaUhacBhfxTTlB5CRz5a1iK3/wC7iUqtOAHCMjevgqtSuyes2Hq5vUvOWMtc03q6s3VUW3V50xCcHcpB\u002BqrMoQ==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/json",
+              "extensions": [
+                ".json"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "application/x-fig",
+              "extensions": [
+                ".fig"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-figcraft",
+              "extensions": [
+                ".figcraft"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-jam",
+              "extensions": [
+                ".jam"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-penpot",
+              "extensions": [
+                ".penpot"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-sketch",
+              "extensions": [
+                ".sketch"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/gif",
+              "extensions": [
+                ".gif"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/jpeg",
+              "extensions": [
+                ".jpg",
+                ".jpeg"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/png",
+              "extensions": [
+                ".png"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/svg\u002Bxml",
+              "extensions": [
+                ".svg"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/tiff",
+              "extensions": [
+                ".tif",
+                ".tiff"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/webp",
+              "extensions": [
+                ".webp"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "appId": "ca.kazo.irc",
+      "kind": "app",
+      "name": "IRC",
+      "category": "communication",
+      "tags": [
+        "irc",
+        "chat",
+        "ircv3",
+        "websocket",
+        "libera",
+        "messaging"
+      ],
+      "shortDescriptions": {
+        "en": "Chat on real IRC networks: WebSocket without any server, Libera.Chat and OFTC through the Kazo server.",
+        "fr": "Discutez sur les vrais r\u00E9seaux IRC : WebSocket sans aucun serveur, Libera.Chat et OFTC par le serveur Kazo."
+      },
+      "license": "MIT",
+      "repository": "https://github.com/Kazo-ca/Os-App-IRC",
+      "latestVersion": "1.0.1",
+      "versions": [
+        {
+          "version": "1.0.1",
+          "commit": "3b7faf239953be5e6b0e6891a6b513f4720babef",
+          "package": "packages/ca.kazo.irc/1.0.1/ca.kazo.irc-1.0.1.kazoapp",
+          "sha256": "eaf19ddbf427ce727e510ddbf17c679cc363aa53372d02adb71d4e5b2c42a33a",
+          "size": 146148,
+          "publishedAt": "2026-11-11T21:50:08+00:00",
+          "capabilities": [
+            "apps.launch",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write",
+            "network.real.access",
+            "network.simulated.write",
+            "notifications.post"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.2.0"
+          },
+          "icon": "assets/ca.kazo.irc/1.0.1/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.irc/1.0.1/screenshots/1.png",
+            "assets/ca.kazo.irc/1.0.1/screenshots/2.png",
+            "assets/ca.kazo.irc/1.0.1/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.irc/1.0.1/description.en.md",
+            "fr": "assets/ca.kazo.irc/1.0.1/description.fr.md"
+          },
+          "signature": "HpZp3dRCw7M6DBSvqUZeZzOjts0OAhdbLSbWnvfxusMuOK0\u002BCkWMwHySYEOMJb63cKW99FDOqUd3nqLzlL0kEA=="
+        },
+        {
+          "version": "1.0.0",
+          "commit": "8309ff4395bd4b1f9cc953b78f00cf35bd6cea38",
+          "package": "packages/ca.kazo.irc/1.0.0/ca.kazo.irc-1.0.0.kazoapp",
+          "sha256": "7b03f2fcfeefafa5c1face1a566c27370c817961697693a36840ac632ab16ab0",
+          "size": 146113,
+          "publishedAt": "2026-11-07T22:00:01+00:00",
+          "capabilities": [
+            "apps.launch",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write",
+            "network.real.access",
+            "network.simulated.write",
+            "notifications.post"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.2.0"
+          },
+          "icon": "assets/ca.kazo.irc/1.0.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.irc/1.0.0/screenshots/1.png",
+            "assets/ca.kazo.irc/1.0.0/screenshots/2.png",
+            "assets/ca.kazo.irc/1.0.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.irc/1.0.0/description.en.md",
+            "fr": "assets/ca.kazo.irc/1.0.0/description.fr.md"
+          },
+          "signature": "tHIkZlPkTN9JiTPQz5LeTZ6a0ddtWJ4eBCNrtB\u002BjbI2Jel6ycUBy9wFzLvl209B9e4ONEue4Q66ESL2cdhxaDg=="
+        }
+      ]
+    },
+    {
+      "appId": "ca.kazo.pdf",
+      "kind": "app",
+      "name": "Kazo Pdf",
+      "category": "productivity",
+      "tags": [
+        "pdf",
+        "documents",
+        "office"
+      ],
+      "shortDescriptions": {
+        "en": "A PDF reader and editor for Kazo OS, built on PdfCraft.",
+        "fr": "Un lecteur et \u00E9diteur de PDF pour Kazo OS, construit sur PdfCraft."
+      },
+      "license": "MIT",
+      "repository": "https://github.com/Kazo-ca/Os-App-PDF",
+      "latestVersion": "0.1.0",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "commit": "babb51c6806a0484015e6602aa2213d7db70e0e9",
+          "package": "packages/ca.kazo.pdf/0.1.0/ca.kazo.pdf-0.1.0.kazoapp",
+          "sha256": "dcf5efda9e6b85a5b72442d791beff9e00e8981b7bd87db3c01fe4aba68be8af",
+          "size": 34723091,
+          "publishedAt": "2026-11-13T23:42:06+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.3.4"
+          },
+          "icon": "assets/ca.kazo.pdf/0.1.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.pdf/0.1.0/screenshots/1.png",
+            "assets/ca.kazo.pdf/0.1.0/screenshots/2.png",
+            "assets/ca.kazo.pdf/0.1.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.pdf/0.1.0/description.en.md",
+            "fr": "assets/ca.kazo.pdf/0.1.0/description.fr.md"
+          },
+          "signature": "GQSl0\u002B0BD5yYQEum8tWG21uBplOCvrtYs5G4syoqnqxmCiYb92Ka71sXu4tuzeeVN8nIgL9lHLF/MbT67Rt9eg==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/pdf",
+              "extensions": [
+                ".pdf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "appId": "ca.kazo.photo",
+      "kind": "app",
+      "name": "Kazo Photo",
+      "category": "graphics",
+      "tags": [
+        "image-editor",
+        "photo",
+        "layers",
+        "psd",
+        "graphics"
+      ],
+      "shortDescriptions": {
+        "en": "A layered image editor for Kazo OS, built on PhotoCraft.",
+        "fr": "Un \u00E9diteur d\u0027images \u00E0 calques pour Kazo OS, construit sur PhotoCraft."
+      },
+      "license": "MIT",
+      "repository": "https://github.com/Kazo-ca/Os-App-Photo",
+      "latestVersion": "0.1.0",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "commit": "e085cbca11592937c617544ec2f9ebe6333a1c9e",
+          "package": "packages/ca.kazo.photo/0.1.0/ca.kazo.photo-0.1.0.kazoapp",
+          "sha256": "55aa0ab5dbf51e6c823160aa91afccc9671140c48d5ac2b077319800f25d163f",
+          "size": 25745558,
+          "publishedAt": "2026-11-14T07:58:06+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.3.4"
+          },
+          "icon": "assets/ca.kazo.photo/0.1.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.photo/0.1.0/screenshots/1.png",
+            "assets/ca.kazo.photo/0.1.0/screenshots/2.png",
+            "assets/ca.kazo.photo/0.1.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.photo/0.1.0/description.en.md",
+            "fr": "assets/ca.kazo.photo/0.1.0/description.fr.md"
+          },
+          "signature": "grIG1n9l7wL6PUptqjOSVGkLGv4sUBdKj2UTEMfwK0/50s3ZTTg/5keoOHDStbNirMkOvoeNWUGQtwCgduToZQ==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/dicom",
+              "extensions": [
+                ".dcm",
+                ".dicom",
+                ".dc3"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-adobe-swatch-exchange",
+              "extensions": [
+                ".ase"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-affinity",
+              "extensions": [
+                ".af"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-affinity-designer",
+              "extensions": [
+                ".afdesign"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-affinity-photo",
+              "extensions": [
+                ".afphoto"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-affinity-publisher",
+              "extensions": [
+                ".afpub"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-krita",
+              "extensions": [
+                ".kra"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-krita-archive",
+              "extensions": [
+                ".krz"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-photocraft",
+              "extensions": [
+                ".pcraft"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-photoshop-brush",
+              "extensions": [
+                ".abr"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-photoshop-color-table",
+              "extensions": [
+                ".act"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-photoshop-gradient",
+              "extensions": [
+                ".grd"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-photoshop-large",
+              "extensions": [
+                ".psb"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-photoshop-style",
+              "extensions": [
+                ".asl"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-photoshop-swatches",
+              "extensions": [
+                ".aco"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-photoshop-template",
+              "extensions": [
+                ".psdt"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/bmp",
+              "extensions": [
+                ".bmp"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/fits",
+              "extensions": [
+                ".fits",
+                ".fit",
+                ".fts"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/gif",
+              "extensions": [
+                ".gif"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/heic",
+              "extensions": [
+                ".heic"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/heif",
+              "extensions": [
+                ".heif",
+                ".hif"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/jpeg",
+              "extensions": [
+                ".jpg",
+                ".jpeg"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/openraster",
+              "extensions": [
+                ".ora"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/png",
+              "extensions": [
+                ".png"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/qoi",
+              "extensions": [
+                ".qoi"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/svg\u002Bxml",
+              "extensions": [
+                ".svg"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/svg\u002Bxml-compressed",
+              "extensions": [
+                ".svgz"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/tiff",
+              "extensions": [
+                ".tif",
+                ".tiff"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/vnd-ms.dds",
+              "extensions": [
+                ".dds"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/vnd.adobe.photoshop",
+              "extensions": [
+                ".psd"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/vnd.microsoft.icon",
+              "extensions": [
+                ".ico"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/vnd.radiance",
+              "extensions": [
+                ".hdr"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/webp",
+              "extensions": [
+                ".webp"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "image/x-adobe-dng",
+              "extensions": [
+                ".dng"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-canon-cr2",
+              "extensions": [
+                ".cr2"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-canon-cr3",
+              "extensions": [
+                ".cr3"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-cineon",
+              "extensions": [
+                ".cin"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-compressed-xcf",
+              "extensions": [
+                ".xcfgz"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-dpx",
+              "extensions": [
+                ".dpx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-exr",
+              "extensions": [
+                ".exr"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-fuji-raf",
+              "extensions": [
+                ".raf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-iff",
+              "extensions": [
+                ".iff",
+                ".lbm",
+                ".ilbm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-nikon-nef",
+              "extensions": [
+                ".nef"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-nikon-nrw",
+              "extensions": [
+                ".nrw"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-olympus-orf",
+              "extensions": [
+                ".orf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-paintdotnet",
+              "extensions": [
+                ".pdn"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-panasonic-rw2",
+              "extensions": [
+                ".rw2"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-pentax-pef",
+              "extensions": [
+                ".pef"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-portable-arbitrarymap",
+              "extensions": [
+                ".pam"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-portable-bitmap",
+              "extensions": [
+                ".pbm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-portable-floatmap",
+              "extensions": [
+                ".pfm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-portable-graymap",
+              "extensions": [
+                ".pgm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-portable-pixmap",
+              "extensions": [
+                ".ppm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-sony-arw",
+              "extensions": [
+                ".arw"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-tga",
+              "extensions": [
+                ".tga"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/x-xcf",
+              "extensions": [
+                ".xcf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "appId": "ca.kazo.spreadsheets",
+      "kind": "app",
+      "name": "Kazo Spreadsheets",
+      "category": "productivity",
+      "tags": [
+        "spreadsheet",
+        "xlsx",
+        "ods",
+        "gridcraft"
+      ],
+      "shortDescriptions": {
+        "en": "A spreadsheet for .xlsx, .ods and .csv workbooks, based on GridCraft by the ArtCraft team.",
+        "fr": "Un tableur pour les classeurs .xlsx, .ods et .csv, bas\u00E9 sur GridCraft de l\u0027\u00E9quipe ArtCraft."
+      },
+      "license": "MIT",
+      "repository": "https://github.com/Kazo-ca/Os-App-Spreadsheets",
+      "latestVersion": "0.1.0",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "commit": "5d757d37c15a59a49d605d9ab75be9be9284d5d4",
+          "package": "packages/ca.kazo.spreadsheets/0.1.0/ca.kazo.spreadsheets-0.1.0.kazoapp",
+          "sha256": "9f9eaa954a281450033636643c404154dfa44b11e50c02a27f6d19b4dff1c567",
+          "size": 9884043,
+          "publishedAt": "2026-11-13T16:08:36+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.3.3"
+          },
+          "icon": "assets/ca.kazo.spreadsheets/0.1.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.spreadsheets/0.1.0/screenshots/1.png",
+            "assets/ca.kazo.spreadsheets/0.1.0/screenshots/2.png",
+            "assets/ca.kazo.spreadsheets/0.1.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.spreadsheets/0.1.0/description.en.md",
+            "fr": "assets/ca.kazo.spreadsheets/0.1.0/description.fr.md"
+          },
+          "signature": "KY0Fkb2zmw7pamklJRRCAor2sjOdtSIR3QXi3PymFYWMKlKmV2ccrbYn9xhWF\u002BE6b2/wyLnsSwXZPES0/TQuYw==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/json",
+              "extensions": [
+                ".json"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ms-excel",
+              "extensions": [
+                ".xls"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ms-excel.sheet.binary.macroEnabled.12",
+              "extensions": [
+                ".xlsb"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ms-excel.sheet.macroEnabled.12",
+              "extensions": [
+                ".xlsm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.oasis.opendocument.spreadsheet",
+              "extensions": [
+                ".ods"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+              "extensions": [
+                ".xlsx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-sylk",
+              "extensions": [
+                ".slk"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "text/csv",
+              "extensions": [
+                ".csv"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "text/plain",
+              "extensions": [
+                ".txt"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/tab-separated-values",
+              "extensions": [
+                ".tsv"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "appId": "ca.kazo.vector",
+      "kind": "app",
+      "name": "Kazo Vector",
+      "category": "graphics",
+      "tags": [
+        "vector",
+        "drawing",
+        "illustration",
+        "svg",
+        "graphics"
+      ],
+      "shortDescriptions": {
+        "en": "A vector drawing app for Kazo OS, built on VectorCraft.",
+        "fr": "Une app de dessin vectoriel pour Kazo OS, construite sur VectorCraft."
+      },
+      "license": "MIT",
+      "repository": "https://github.com/Kazo-ca/Os-App-Vector",
+      "latestVersion": "0.1.0",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "commit": "f1d05146e60aec116f9b4de2929d2a6dbebd4a85",
+          "package": "packages/ca.kazo.vector/0.1.0/ca.kazo.vector-0.1.0.kazoapp",
+          "sha256": "f4fc3aab6944c0c85974755393ebebcd151a1b6b3eca4437c54c341e498d444c",
+          "size": 30491261,
+          "publishedAt": "2026-11-14T19:56:19+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.3.4"
+          },
+          "icon": "assets/ca.kazo.vector/0.1.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.vector/0.1.0/screenshots/1.png",
+            "assets/ca.kazo.vector/0.1.0/screenshots/2.png",
+            "assets/ca.kazo.vector/0.1.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.vector/0.1.0/description.en.md",
+            "fr": "assets/ca.kazo.vector/0.1.0/description.fr.md"
+          },
+          "signature": "5/gnwlqlNzxs8vtSNKt8s5HJEJZLHImReyX8myKUK6oIGLxe0g41fgMmpo/tVIPc1IidzCPWHgY1BQJvipP9CA==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/illustrator",
+              "extensions": [
+                ".ai"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/pdf",
+              "extensions": [
+                ".pdf"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "application/postscript",
+              "extensions": [
+                ".eps",
+                ".epsf",
+                ".ps"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-affinity-designer",
+              "extensions": [
+                ".afdesign"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "application/x-illustrator-template",
+              "extensions": [
+                ".ait"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-vectorcraft",
+              "extensions": [
+                ".vectorcraft"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-vectorcraft-template",
+              "extensions": [
+                ".vctemplate"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/emf",
+              "extensions": [
+                ".emf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/svg\u002Bxml",
+              "extensions": [
+                ".svg",
+                ".svgz"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/vnd.dxf",
+              "extensions": [
+                ".dxf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "image/wmf",
+              "extensions": [
+                ".wmf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "appId": "ca.kazo.webamp",
+      "kind": "app",
+      "name": "Webamp",
+      "category": "multimedia",
+      "tags": [
+        "music",
+        "player",
+        "winamp",
+        "playlist",
+        "skins",
+        "visualizer"
+      ],
+      "shortDescriptions": {
+        "en": "Winamp 2\u0027s player: your music, .m3u/.pls playlists, .wsz skins, equalizer and Milkdrop.",
+        "fr": "Le lecteur de Winamp 2 : vos musiques, listes .m3u/.pls, skins .wsz, \u00E9galiseur et Milkdrop."
+      },
+      "license": "MIT",
+      "repository": "https://github.com/Kazo-ca/Os-App-Webamp",
+      "latestVersion": "1.1.0",
+      "versions": [
+        {
+          "version": "1.1.0",
+          "commit": "99567cd027cfa9e1428db6d0903a96bc5ab526fd",
+          "package": "packages/ca.kazo.webamp/1.1.0/ca.kazo.webamp-1.1.0.kazoapp",
+          "sha256": "c7631b9ff2cc43bd53554b8b8a0a4281f3da8a42aebdd01869ef9d15ee260b1c",
+          "size": 637456,
+          "publishedAt": "2026-11-08T04:55:12+00:00",
+          "capabilities": [
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "dialogs.folder-select",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write",
+            "notifications.post",
+            "shell.context-menu"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.1.0"
+          },
+          "icon": "assets/ca.kazo.webamp/1.1.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.webamp/1.1.0/screenshots/1.png",
+            "assets/ca.kazo.webamp/1.1.0/screenshots/2.png",
+            "assets/ca.kazo.webamp/1.1.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.webamp/1.1.0/description.en.md",
+            "fr": "assets/ca.kazo.webamp/1.1.0/description.fr.md"
+          },
+          "signature": "bUHOnnUBDo9dGJfxuRYDu\u002BVDGkMkHywvZT47sYs3VgBUICo6x97QUkQjt1P\u002BPJf4PMeBAmkANzZX652a9f6CGQ==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/vnd.apple.mpegurl",
+              "extensions": [
+                ".m3u8"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "application/x-winamp-skin",
+              "extensions": [
+                ".wsz"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/aac",
+              "extensions": [
+                ".aac"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/flac",
+              "extensions": [
+                ".flac"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/mp4",
+              "extensions": [
+                ".m4a"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/mpeg",
+              "extensions": [
+                ".mp3"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/ogg",
+              "extensions": [
+                ".ogg",
+                ".oga"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/opus",
+              "extensions": [
+                ".opus"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/wav",
+              "extensions": [
+                ".wav"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/webm",
+              "extensions": [
+                ".weba"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/x-mpegurl",
+              "extensions": [
+                ".m3u"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/x-scpls",
+              "extensions": [
+                ".pls"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
+        },
+        {
+          "version": "1.0.0",
+          "commit": "ac301545f6fd214bcde28d4dfd77e2f491005a04",
+          "package": "packages/ca.kazo.webamp/1.0.0/ca.kazo.webamp-1.0.0.kazoapp",
+          "sha256": "354fcecd942c1d0ee2ced5dbf8136cf63692dff1a9f4c4cd994e3c49a8a8b42e",
+          "size": 637231,
+          "publishedAt": "2026-11-06T19:41:20+00:00",
+          "capabilities": [
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "dialogs.folder-select",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write",
+            "notifications.post",
+            "shell.context-menu"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.0.0"
+          },
+          "icon": "assets/ca.kazo.webamp/1.0.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.webamp/1.0.0/screenshots/1.png",
+            "assets/ca.kazo.webamp/1.0.0/screenshots/2.png",
+            "assets/ca.kazo.webamp/1.0.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.webamp/1.0.0/description.en.md",
+            "fr": "assets/ca.kazo.webamp/1.0.0/description.fr.md"
+          },
+          "signature": "9ftvTPo0Bjs9XWE1vu8WQQyRAiTaG18lNExcbRhx2teYoLJqTJMf6PrODe74Z5qZ5OxnNvkJHt1LnYz8Rh\u002BdAA==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/vnd.apple.mpegurl",
+              "extensions": [
+                ".m3u8"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "application/x-winamp-skin",
+              "extensions": [
+                ".wsz"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/aac",
+              "extensions": [
+                ".aac"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/flac",
+              "extensions": [
+                ".flac"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/mp4",
+              "extensions": [
+                ".m4a"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/mpeg",
+              "extensions": [
+                ".mp3"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/ogg",
+              "extensions": [
+                ".ogg",
+                ".oga"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/opus",
+              "extensions": [
+                ".opus"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/wav",
+              "extensions": [
+                ".wav"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/webm",
+              "extensions": [
+                ".weba"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/x-mpegurl",
+              "extensions": [
+                ".m3u"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/x-scpls",
+              "extensions": [
+                ".pls"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "appId": "ca.kazo.word",
+      "kind": "app",
+      "name": "Kazo Word",
+      "category": "productivity",
+      "tags": [
+        "word-processor",
+        "documents",
+        "docx",
+        "odt",
+        "wordcraft"
+      ],
+      "shortDescriptions": {
+        "en": "A word processor for .docx and .odt documents, based on WordCraft by the ArtCraft team.",
+        "fr": "Un traitement de texte pour les documents .docx et .odt, bas\u00E9 sur WordCraft de l\u0027\u00E9quipe ArtCraft."
+      },
+      "license": "MIT",
+      "repository": "https://github.com/Kazo-ca/Os-App-Word",
+      "latestVersion": "0.1.1",
+      "versions": [
+        {
+          "version": "0.1.1",
+          "commit": "35e85bed9316035f102406d8d662ec936b747c01",
+          "package": "packages/ca.kazo.word/0.1.1/ca.kazo.word-0.1.1.kazoapp",
+          "sha256": "f29b317f4ce019f7bb933b82b73911090f1476c07af72a99ebde98c3edb93e29",
+          "size": 22792207,
+          "publishedAt": "2026-11-13T17:28:39+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.3.3"
+          },
+          "icon": "assets/ca.kazo.word/0.1.1/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.word/0.1.1/screenshots/1.png",
+            "assets/ca.kazo.word/0.1.1/screenshots/2.png",
+            "assets/ca.kazo.word/0.1.1/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.word/0.1.1/description.en.md",
+            "fr": "assets/ca.kazo.word/0.1.1/description.fr.md"
+          },
+          "signature": "LXr4p\u002Bt7K57USt4Fogmff/s0FDhjsub5/UQWIInahifLF7koaOJLbRZMg784oBUtsmF9K3T/kXxgtXfX2/zbeg==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/msword",
+              "extensions": [
+                ".doc",
+                ".dot"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/rtf",
+              "extensions": [
+                ".rtf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ms-word.document.macroenabled.12",
+              "extensions": [
+                ".docm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ms-word.template.macroenabled.12",
+              "extensions": [
+                ".dotm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.oasis.opendocument.text",
+              "extensions": [
+                ".odt"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.oasis.opendocument.text-flat-xml",
+              "extensions": [
+                ".fodt"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.oasis.opendocument.text-template",
+              "extensions": [
+                ".ott"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+              "extensions": [
+                ".docx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.openxmlformats-officedocument.wordprocessingml.template",
+              "extensions": [
+                ".dotx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-tex",
+              "extensions": [
+                ".tex"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/html",
+              "extensions": [
+                ".html",
+                ".htm"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/markdown",
+              "extensions": [
+                ".md"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/plain",
+              "extensions": [
+                ".txt"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
+        },
+        {
+          "version": "0.1.0",
+          "commit": "263e2de830a9226f30a9504b23a2688b0dac7f39",
+          "package": "packages/ca.kazo.word/0.1.0/ca.kazo.word-0.1.0.kazoapp",
+          "sha256": "82f0e544e0622b3f130de6834b1102d7b787d82d220c5515f5dd06957d3b1dff",
+          "size": 22791521,
+          "publishedAt": "2026-11-13T08:07:50+00:00",
+          "capabilities": [
+            "apps.launch",
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.3.2"
+          },
+          "icon": "assets/ca.kazo.word/0.1.0/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.word/0.1.0/screenshots/1.png",
+            "assets/ca.kazo.word/0.1.0/screenshots/2.png",
+            "assets/ca.kazo.word/0.1.0/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.word/0.1.0/description.en.md",
+            "fr": "assets/ca.kazo.word/0.1.0/description.fr.md"
+          },
+          "signature": "f9TUfDypurEHc0uk0T\u002Bd9NPQq8cZ4ITZAvMLLh2dWH7JVsnVebD/qIrjx86aXZzpCAnzINbfkgv8enfik//Aaw==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/msword",
+              "extensions": [
+                ".doc",
+                ".dot"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/rtf",
+              "extensions": [
+                ".rtf"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ms-word.document.macroenabled.12",
+              "extensions": [
+                ".docm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.ms-word.template.macroenabled.12",
+              "extensions": [
+                ".dotm"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.oasis.opendocument.text",
+              "extensions": [
+                ".odt"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.oasis.opendocument.text-flat-xml",
+              "extensions": [
+                ".fodt"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.oasis.opendocument.text-template",
+              "extensions": [
+                ".ott"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+              "extensions": [
+                ".docx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/vnd.openxmlformats-officedocument.wordprocessingml.template",
+              "extensions": [
+                ".dotx"
+              ],
+              "actions": [
+                "open",
+                "edit"
+              ]
+            },
+            {
+              "mediaType": "application/x-tex",
+              "extensions": [
+                ".tex"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/html",
+              "extensions": [
+                ".html",
+                ".htm"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/markdown",
+              "extensions": [
+                ".md"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "text/plain",
+              "extensions": [
+                ".txt"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
