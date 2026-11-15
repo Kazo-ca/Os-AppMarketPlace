@@ -6,13 +6,20 @@ namespace Kazo.Os.MarketPlace;
 /// <summary>
 /// Command line of the catalog tool, run by the workflows of this repository:
 /// <list type="bullet">
-/// <item><c>validate --root &lt;catalog&gt; [folder...]</c>: checks <c>categories.json</c> and the
-/// named app folders (every folder when none is named).</item>
+/// <item><c>validate --root &lt;catalog&gt; [--channel stable|beta] [folder...]</c>: checks <c>categories.json</c> and the
+/// named app folders (every folder when none is named). The named folders must belong to the
+/// channel of the branch (ADR 0271 §5 of Kazo-ca/Os); with none named, <c>stable</c> refuses any beta folder.</item>
 /// <item><c>check-package --root &lt;catalog&gt; --folder &lt;name&gt; --report &lt;file.md&gt; [--package &lt;file.kazoapp&gt;] [--sarif &lt;dir&gt;]</c>:
 /// checks the package built from a folder and writes its review comment section.</item>
-/// <item><c>publish --root &lt;catalog&gt; --built &lt;dir&gt; --output &lt;packages branch&gt; [--keep 3] [--published-at &lt;ISO 8601&gt;]</c>:
+/// <item><c>publish --root &lt;catalog&gt; --built &lt;dir&gt; --output &lt;packages branch&gt; [--channel stable|beta] [--keep 3] [--published-at &lt;ISO 8601&gt;]</c>:
 /// updates the <c>packages</c> branch, signing each new package with the key of the
-/// <c>KAZO_STORE_SIGNING_KEY</c> variable when it is set (ADR 0214 §2 of Kazo-ca/Os).</item>
+/// <c>KAZO_STORE_SIGNING_KEY</c> variable when it is set (ADR 0214 §2 of Kazo-ca/Os): <c>catalog.json</c>
+/// and <c>catalog-beta.json</c> from <c>main</c>, <c>catalog-beta.json</c> alone from <c>beta</c>.</item>
+/// <item><c>previous-version --root &lt;catalog&gt; --folder &lt;name&gt;</c>: checks a submitted folder and prints, as
+/// <c>name=value</c> lines for <c>GITHUB_OUTPUT</c>, its repository and commit and those of the previous
+/// version of the app in the branch (nothing for a first version).</item>
+/// <item><c>check-rebuild --root &lt;catalog&gt; --folder &lt;name&gt; --diff &lt;file&gt;</c>: exit code 0 when the
+/// submission is a rebuild only (<see cref="RebuildCheck"/>), 1 with the reasons otherwise.</item>
 /// <item><c>keygen --private-key &lt;file.pem&gt;</c>: creates the catalog's key pair, writes the private
 /// key to a new file and prints the public key to compile into the OS.</item>
 /// <item><c>sign --package &lt;file.kazoapp&gt; [--private-key &lt;file.pem&gt;]</c>: prints the signature of a package.</item>
@@ -33,6 +40,8 @@ public static class Program
                 "validate" => Validate(CommandLine.Parse(args.AsSpan(1))),
                 "check-package" => CheckPackage(CommandLine.Parse(args.AsSpan(1))),
                 "publish" => Publish(CommandLine.Parse(args.AsSpan(1))),
+                "previous-version" => PreviousVersion(CommandLine.Parse(args.AsSpan(1))),
+                "check-rebuild" => CheckRebuild(CommandLine.Parse(args.AsSpan(1))),
                 "keygen" => KeyGen(CommandLine.Parse(args.AsSpan(1))),
                 "sign" => Sign(CommandLine.Parse(args.AsSpan(1))),
                 _ => Usage(),
@@ -48,9 +57,11 @@ public static class Program
     private static int Validate(CommandLine line)
     {
         string root = Path.GetFullPath(line.Required("root"));
+        ReleaseChannel channel = ReleaseChannels.Parse(line.Optional("channel"));
         List<CatalogError> errors = [];
         CategoryList categories = CategoryList.Load(Path.Combine(root, CatalogPaths.CategoriesFile), CatalogPaths.CategoriesFile, errors);
         string appsRoot = Path.Combine(root, CatalogPaths.AppsFolder);
+        bool named = line.Positional.Count > 0;
         IEnumerable<string> folders = line.Positional.Count > 0
             ? line.Positional
             : Directory.Exists(appsRoot) ? Directory.EnumerateDirectories(appsRoot).Select(Path.GetFileName).OfType<string>().Order(StringComparer.Ordinal) : [];
@@ -64,7 +75,14 @@ public static class Program
                 continue;
             }
 
-            AppFolderValidator.Validate(folder, categories, errors);
+            AppFolder? valid = AppFolderValidator.Validate(folder, categories, errors);
+            if (valid is not null && (named || channel == ReleaseChannel.Stable))
+            {
+                // A named folder is one a PR adds: it goes to the branch of its channel. Without names,
+                // main holds no beta folder; beta holds both (it receives the stable ones from main).
+                ReleaseChannels.Check(valid, channel, errors);
+            }
+
             checkedFolders++;
         }
 
@@ -107,6 +125,7 @@ public static class Program
         string root = Path.GetFullPath(line.Required("root"));
         string built = Path.GetFullPath(line.Required("built"));
         string output = Path.GetFullPath(line.Required("output"));
+        ReleaseChannel channel = ReleaseChannels.Parse(line.Optional("channel"));
         int keep = line.Optional("keep") is { } keepText ? int.Parse(keepText, CultureInfo.InvariantCulture) : CatalogPaths.DefaultKeptVersions;
         DateTimeOffset publishedAt = line.Optional("published-at") is { } at
             ? DateTimeOffset.Parse(at, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal)
@@ -114,9 +133,77 @@ public static class Program
         List<CatalogError> errors = [];
         string? signingKey = ReadSigningKey(null);
         IReadOnlyList<string> published = CatalogPublisher.Publish(
-            root, built, output, keep, DateTimeOffset.FromUnixTimeSeconds(publishedAt.ToUnixTimeSeconds()), errors, signingKey);
+            root, built, output, keep, DateTimeOffset.FromUnixTimeSeconds(publishedAt.ToUnixTimeSeconds()), errors, signingKey, channel);
         string signed = signingKey is null ? " (unsigned: no signing key)" : $" (signed by {PackageSigner.GetPublicKey(signingKey)})";
         return Report(errors, $"Published: {(published.Count == 0 ? "nothing" : string.Join(", ", published))}{signed}.");
+    }
+
+    private static int PreviousVersion(CommandLine line)
+    {
+        string root = Path.GetFullPath(line.Required("root"));
+        List<CatalogError> errors = [];
+        (AppFolder? submitted, AppFolder? previous) = ReadSubmission(root, line.Required("folder"), errors);
+        if (submitted is null || errors.Count > 0)
+        {
+            return Report(errors, string.Empty);
+        }
+
+        Console.WriteLine($"repository={submitted.Store.Repository}");
+        Console.WriteLine($"commit={submitted.Store.Commit}");
+        if (previous is not null)
+        {
+            Console.WriteLine($"previous-folder={previous.Name}");
+            Console.WriteLine($"previous-repository={previous.Store.Repository}");
+            Console.WriteLine($"previous-commit={previous.Store.Commit}");
+        }
+
+        return 0;
+    }
+
+    private static int CheckRebuild(CommandLine line)
+    {
+        string root = Path.GetFullPath(line.Required("root"));
+        string diff = File.ReadAllText(Path.GetFullPath(line.Required("diff")));
+        List<CatalogError> errors = [];
+        (AppFolder? submitted, AppFolder? previous) = ReadSubmission(root, line.Required("folder"), errors);
+        if (submitted is null || errors.Count > 0)
+        {
+            return Report(errors, string.Empty);
+        }
+
+        string display = $"{CatalogPaths.AppsFolder}/{submitted.Name}";
+        if (previous is null)
+        {
+            errors.Add(new CatalogError(display, $"First version of {submitted.AppId} in this branch: a maintainer reviews it."));
+        }
+        else
+        {
+            errors.AddRange(RebuildCheck.Check(previous, submitted, diff).Select(reason => new CatalogError(display, reason)));
+        }
+
+        return Report(errors, $"{submitted.AppId} {submitted.Version} is a rebuild of {previous?.Version} for a new Kazo OS SDK.");
+    }
+
+    // The submitted folder and the previous version of its app in the branch, both checked.
+    private static (AppFolder? Submitted, AppFolder? Previous) ReadSubmission(string root, string name, List<CatalogError> errors)
+    {
+        CategoryList categories = CategoryList.Load(Path.Combine(root, CatalogPaths.CategoriesFile), CatalogPaths.CategoriesFile, errors);
+        string appsRoot = Path.Combine(root, CatalogPaths.AppsFolder);
+        if (name.Contains('/', StringComparison.Ordinal) || name.Contains('\\', StringComparison.Ordinal) || !Directory.Exists(Path.Combine(appsRoot, name)))
+        {
+            errors.Add(new CatalogError($"{CatalogPaths.AppsFolder}/{name}", "No such app folder."));
+            return (null, null);
+        }
+
+        AppFolder? submitted = AppFolderValidator.Validate(Path.Combine(appsRoot, name), categories, errors);
+        if (submitted is null)
+        {
+            return (null, null);
+        }
+
+        string? previousName = RebuildCheck.FindPrevious(appsRoot, submitted.AppId, submitted.Version);
+        AppFolder? previous = previousName is null ? null : AppFolderValidator.Validate(Path.Combine(appsRoot, previousName), categories, errors);
+        return (submitted, previous);
     }
 
     // The private key never goes through the command line: a file the maintainer keeps, or the secret.
@@ -185,9 +272,11 @@ public static class Program
     private static int Usage()
     {
         Console.Error.WriteLine("Kazo OS catalog tool (ADR 0188)");
-        Console.Error.WriteLine("  validate --root <catalog> [folder...]");
+        Console.Error.WriteLine("  validate --root <catalog> [--channel stable|beta] [folder...]");
         Console.Error.WriteLine("  check-package --root <catalog> --folder <name> --report <file.md> [--package <file.kazoapp>] [--sarif <dir>]");
-        Console.Error.WriteLine("  publish --root <catalog> --built <dir> --output <packages branch> [--keep 3] [--published-at <ISO 8601>]");
+        Console.Error.WriteLine("  publish --root <catalog> --built <dir> --output <packages branch> [--channel stable|beta] [--keep 3] [--published-at <ISO 8601>]");
+        Console.Error.WriteLine("  previous-version --root <catalog> --folder <name>");
+        Console.Error.WriteLine("  check-rebuild --root <catalog> --folder <name> --diff <file>");
         Console.Error.WriteLine("  keygen --private-key <file.pem>");
         Console.Error.WriteLine("  sign --package <file.kazoapp> [--private-key <file.pem>]");
         return 2;

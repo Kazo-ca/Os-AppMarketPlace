@@ -1,12 +1,17 @@
 # Publishes after a merge (ADR 0188 §6): rebuilds each new version at its commit, then rewrites the
 # packages branch (catalog.json, APPS.md and APPS-fr.md, packages/, assets/), keeping the 3 newest versions of each app,
 # and signs each new package with the KAZO_STORE_SIGNING_KEY secret when it is set.
-# The build jobs run the app's code with a read-only token; only the last job may push.
+# Two channels (ADR 0271 §5 of Kazo-ca/Os):
+#   - main publishes the stable versions: catalog.json, then catalog-beta.json (the same apps plus the
+#     beta versions, minus those a new stable version replaces), then brings main into beta;
+#   - beta publishes the versions with a suffix (1.0.1-beta.1): catalog-beta.json only. The stable
+#     folders beta receives from main are published by main, never rebuilt here.
+# The build jobs run the app's code with a read-only token; only the last jobs may push.
 name: Publish catalog
 
 on:
   push:
-    branches: [main]
+    branches: [main, beta]
     paths: ['apps/**', 'categories.json']
   workflow_dispatch:
     inputs:
@@ -18,7 +23,12 @@ on:
 permissions:
   contents: read
 
+env:
+  # beta publishes the beta channel, main (and any dispatch from main) the stable one.
+  CHANNEL: ${{ github.ref_name == 'beta' && 'beta' || 'stable' }}
+
 concurrency:
+  # One group for both branches: they push to the same packages branch.
   group: publish-catalog
   cancel-in-progress: false
 
@@ -49,8 +59,16 @@ jobs:
             # Nothing to build: the publish job only rewrites catalog.json, for example to fill the
             # fileHandlers of versions published before that field (ADR 0257 of Kazo-ca/Os).
             list=''
+          elif [ -z "${BEFORE//0/}" ]; then
+            # The branch was just created (before is all zeros): nothing new to build.
+            list=''
           else
             list=$(git diff --name-only --diff-filter=A "$BEFORE" HEAD -- apps | awk -F/ 'NF >= 3 {print $2}')
+          fi
+          if [ "$CHANNEL" = beta ] && [ -z "$INPUT_FOLDERS" ]; then
+            # Only the beta folders (<appId>_<version with a suffix>; an app id has no '_'): the stable
+            # folders reach beta when main is merged into it, and main has published them already.
+            list=$(printf '%s\n' "$list" | awk 'index(substr($0, index($0, "_") + 1), "-") > 0')
           fi
           folders=$(printf '%s\n' "$list" | sed '/^$/d' | sort -u | jq -R . | jq -sc .)
           echo "folders=$folders" >> "$GITHUB_OUTPUT"
@@ -59,7 +77,7 @@ jobs:
         if: steps.folders.outputs.folders != '[]'
         env:
           FOLDERS: ${{ steps.folders.outputs.folders }}
-        run: dotnet run --project tools/Kazo.Os.MarketPlace.Tool -c Release -- validate --root . $(jq -r '.[]' <<< "$FOLDERS")
+        run: dotnet run --project tools/Kazo.Os.MarketPlace.Tool -c Release -- validate --root . --channel "$CHANNEL" $(jq -r '.[]' <<< "$FOLDERS")
 
   build:
     name: Build ${{ matrix.folder }}
@@ -131,7 +149,7 @@ jobs:
           # built/<folder>/ for each app built above (nothing when only categories.json changed).
           mkdir -p "$RUNNER_TEMP/built"
           dotnet run --project tools/Kazo.Os.MarketPlace.Tool -c Release -- publish \
-            --root . --built "$RUNNER_TEMP/built" --output packages-branch
+            --root . --built "$RUNNER_TEMP/built" --output packages-branch --channel "$CHANNEL"
 
       - name: Push
         env:
@@ -144,5 +162,42 @@ jobs:
             exit 0
           fi
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
-            commit --quiet -m "Publish catalog from $SOURCE_SHA"
+            commit --quiet -m "Publish $CHANNEL catalog from $SOURCE_SHA"
           git push origin HEAD:refs/heads/packages
+
+  sync-beta:
+    name: Bring main into beta
+    # beta holds all of main plus the beta folders, so the "rebuild only" check of a beta
+    # submission finds the newest stable version of its app (ADR 0271 §5 of Kazo-ca/Os).
+    needs: publish
+    if: github.ref_name == 'main' && needs.publish.result == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Merge main into beta
+        run: |
+          if ! git ls-remote --exit-code --heads origin beta > /dev/null; then
+            echo "No beta branch: the beta channel of the catalog is not open yet." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git fetch origin beta
+          git checkout -B beta origin/beta
+          export GIT_AUTHOR_NAME='github-actions[bot]' GIT_COMMITTER_NAME='github-actions[bot]'
+          export GIT_AUTHOR_EMAIL='41898282+github-actions[bot]@users.noreply.github.com' GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+          if ! git merge --no-edit -m "Merge main into beta" origin/main; then
+            # beta follows a pre-release of Kazo OS: when both branches moved the submodule, beta keeps its own.
+            if [ "$(git diff --name-only --diff-filter=U)" = "external/KazoOs" ]; then
+              git update-index --cacheinfo "160000,$(git rev-parse HEAD:external/KazoOs),external/KazoOs"
+              git commit --no-edit
+            else
+              git merge --abort
+              echo "::warning::main does not merge into beta without conflicts: merge it by hand."
+              exit 0
+            fi
+          fi
+          # Pushed with the workflow token: it starts no publication of beta, which has nothing new to build.
+          git push origin HEAD:refs/heads/beta || echo "::warning::beta refused the merge of main (branch protection?): merge it by hand."
