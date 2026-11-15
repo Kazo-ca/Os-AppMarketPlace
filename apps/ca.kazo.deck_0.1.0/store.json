@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/Kazo-ca/Os-App-Deck",
+  "project": "src/Kazo.Deck/Kazo.Deck.csproj",
+  "category": "productivity",
+  "tags": [
+    "presentation",
+    "slides",
+    "slide-show",
+    "pptx",
+    "office"
+  ],
+  "license": "MIT",
+  "commit": "93467731e53453c120b655c23d85818ac31f0316"
+}
