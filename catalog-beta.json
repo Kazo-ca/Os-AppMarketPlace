@@ -81,6 +81,58 @@
   ],
   "apps": [
     {
+      "appId": "ca.kazo.ai",
+      "kind": "app",
+      "name": "Kazo AI",
+      "category": "productivity",
+      "tags": [
+        "ai",
+        "chat",
+        "llm",
+        "openrouter",
+        "webgpu",
+        "local-model"
+      ],
+      "shortDescriptions": {
+        "en": "Chat with AI models using your own keys (OpenRouter, OpenAI, Ollama) or a local GPU model, with race mode and AutoTune.",
+        "fr": "Discutez avec des IA : vos cl\u00E9s (OpenRouter, OpenAI, Ollama) ou un mod\u00E8le local sur votre GPU, avec course et AutoTune."
+      },
+      "license": "MIT",
+      "repository": "https://github.com/Kazo-ca/Os-App-AI",
+      "latestVersion": "0.1.1",
+      "versions": [
+        {
+          "version": "0.1.1",
+          "commit": "954813a0894299af141b2acc63f0f777a6a231e8",
+          "package": "packages/ca.kazo.ai/0.1.1/ca.kazo.ai-0.1.1.kazoapp",
+          "sha256": "b15e5bfd06be399b2e4458e1fc4336564efd1bd6aa5a0257726c800f66fae877",
+          "size": 2501317,
+          "publishedAt": "2026-11-16T03:02:44+00:00",
+          "capabilities": [
+            "clipboard.write",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "network.real.access"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.4.0"
+          },
+          "icon": "assets/ca.kazo.ai/0.1.1/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.ai/0.1.1/screenshots/1.png",
+            "assets/ca.kazo.ai/0.1.1/screenshots/2.png",
+            "assets/ca.kazo.ai/0.1.1/screenshots/3.png",
+            "assets/ca.kazo.ai/0.1.1/screenshots/4.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.ai/0.1.1/description.en.md",
+            "fr": "assets/ca.kazo.ai/0.1.1/description.fr.md"
+          },
+          "signature": "5163OB7qD8RJ9/uf7735oVhl/6CcVQQNFlZerlMbLQkWT26qh5WllKhxMm0edruaon9v3x\u002BNtMTDp\u002Bx6svl8sw=="
+        }
+      ]
+    },
+    {
       "appId": "ca.kazo.chess",
       "kind": "app",
       "name": "Chess",
