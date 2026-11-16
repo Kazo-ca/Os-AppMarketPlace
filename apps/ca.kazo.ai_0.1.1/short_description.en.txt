@@ -1,1 +1,1 @@
-Chat with AI models: your own keys (OpenRouter, OpenAI, Ollama, LM Studio) or a local model on your GPU, with race mode and AutoTune.
+Chat with AI models using your own keys (OpenRouter, OpenAI, Ollama) or a local GPU model, with race mode and AutoTune.
