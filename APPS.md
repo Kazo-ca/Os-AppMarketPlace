@@ -4,7 +4,7 @@
 
 Every app you can install from the Store of [Kazo OS](https://github.com/Kazo-ca/Os). **Try it** opens the app in Kazo OS in your browser, with nothing to install on your computer. This page is rewritten by the **Publish catalog** workflow each time the catalog changes.
 
-10 apps. Last publication: 2026-11-15.
+10 apps. Last publication: 2026-11-16.
 
 | | App | Description | Version | Category | Links |
 | --- | --- | --- | --- | --- | --- |
@@ -17,6 +17,6 @@ Every app you can install from the Store of [Kazo OS](https://github.com/Kazo-ca
 | <img src="assets/ca.kazo.spreadsheets/0.1.1/icon.png" width="48" height="48" alt=""> | **Kazo Spreadsheets**<br>`ca.kazo.spreadsheets` | A spreadsheet for .xlsx, .ods and .csv workbooks, based on GridCraft by the ArtCraft team.<br>Opens: .json, .xls, .xlsb, .xlsm, .ods, .xlsx, .slk, .csv, .txt, .tsv | 0.1.1 | Productivity | [Try it](https://os.kazo.ca/?autolaunch=ca.kazo.spreadsheets) · [Source](https://github.com/Kazo-ca/Os-App-Spreadsheets) · MIT |
 | <img src="assets/ca.kazo.vector/0.1.1/icon.png" width="48" height="48" alt=""> | **Kazo Vector**<br>`ca.kazo.vector` | A vector drawing app for Kazo OS, built on VectorCraft.<br>Opens: .ai, .pdf, .eps, .epsf, .ps, .afdesign, .ait, .vectorcraft, .vctemplate, .emf, .svg, .svgz, .dxf, .wmf | 0.1.1 | Graphics | [Try it](https://os.kazo.ca/?autolaunch=ca.kazo.vector) · [Source](https://github.com/Kazo-ca/Os-App-Vector) · MIT |
 | <img src="assets/ca.kazo.word/0.1.2/icon.png" width="48" height="48" alt=""> | **Kazo Word**<br>`ca.kazo.word` | A word processor for .docx and .odt documents, based on WordCraft by the ArtCraft team.<br>Opens: .doc, .dot, .rtf, .docm, .dotm, .odt, .fodt, .ott, .docx, .dotx, .tex, .html, .htm, .md, .txt | 0.1.2 | Productivity | [Try it](https://os.kazo.ca/?autolaunch=ca.kazo.word) · [Source](https://github.com/Kazo-ca/Os-App-Word) · MIT |
-| <img src="assets/ca.kazo.webamp/1.1.0/icon.png" width="48" height="48" alt=""> | **Webamp**<br>`ca.kazo.webamp` | Winamp 2's player: your music, .m3u/.pls playlists, .wsz skins, equalizer and Milkdrop.<br>Opens: .m3u8, .wsz, .aac, .flac, .m4a, .mp3, .ogg, .oga, .opus, .wav, .weba, .m3u, .pls | 1.1.0 | Music and video | [Try it](https://os.kazo.ca/?autolaunch=ca.kazo.webamp) · [Source](https://github.com/Kazo-ca/Os-App-Webamp) · MIT |
+| <img src="assets/ca.kazo.webamp/1.1.2/icon.png" width="48" height="48" alt=""> | **Webamp**<br>`ca.kazo.webamp` | Winamp 2's player: your music, .m3u/.pls playlists, .wsz skins, equalizer and Milkdrop.<br>Opens: .m3u8, .wsz, .aac, .flac, .m4a, .mp3, .ogg, .oga, .opus, .wav, .weba, .m3u, .pls | 1.1.2 | Music and video | [Try it](https://os.kazo.ca/?autolaunch=ca.kazo.webamp) · [Source](https://github.com/Kazo-ca/Os-App-Webamp) · MIT |
 
 To propose an app, read the [catalog README](https://github.com/Kazo-ca/Os-AppMarketPlace#readme).

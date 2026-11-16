@@ -2808,8 +2808,152 @@
       },
       "license": "MIT",
       "repository": "https://github.com/Kazo-ca/Os-App-Webamp",
-      "latestVersion": "1.1.0",
+      "latestVersion": "1.1.2",
       "versions": [
+        {
+          "version": "1.1.2",
+          "commit": "89c2f77ca88a2e21992bad7a848a6821302716dd",
+          "package": "packages/ca.kazo.webamp/1.1.2/ca.kazo.webamp-1.1.2.kazoapp",
+          "sha256": "d020454ec5f96bc8e0b000e4922a75b630e85853d6d246a48425997a0b74e970",
+          "size": 637444,
+          "publishedAt": "2026-11-16T02:59:23+00:00",
+          "capabilities": [
+            "dialogs.file-open",
+            "dialogs.file-save",
+            "dialogs.folder-select",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "filesystem.user-home.read",
+            "filesystem.user-home.write",
+            "notifications.post",
+            "shell.context-menu"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.4.1"
+          },
+          "icon": "assets/ca.kazo.webamp/1.1.2/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.webamp/1.1.2/screenshots/1.png",
+            "assets/ca.kazo.webamp/1.1.2/screenshots/2.png",
+            "assets/ca.kazo.webamp/1.1.2/screenshots/3.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.webamp/1.1.2/description.en.md",
+            "fr": "assets/ca.kazo.webamp/1.1.2/description.fr.md"
+          },
+          "signature": "dIOJUartPvCsZXpTDtSkBUr\u002BXntK/Sme2fP5cxlzzaadigrPh6X4iNp0NdoxuqiWG1tPaOBMLDvDj276kAx4Kw==",
+          "fileHandlers": [
+            {
+              "mediaType": "application/vnd.apple.mpegurl",
+              "extensions": [
+                ".m3u8"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "application/x-winamp-skin",
+              "extensions": [
+                ".wsz"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/aac",
+              "extensions": [
+                ".aac"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/flac",
+              "extensions": [
+                ".flac"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/mp4",
+              "extensions": [
+                ".m4a"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/mpeg",
+              "extensions": [
+                ".mp3"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/ogg",
+              "extensions": [
+                ".ogg",
+                ".oga"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/opus",
+              "extensions": [
+                ".opus"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/wav",
+              "extensions": [
+                ".wav"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/webm",
+              "extensions": [
+                ".weba"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/x-mpegurl",
+              "extensions": [
+                ".m3u"
+              ],
+              "actions": [
+                "open"
+              ]
+            },
+            {
+              "mediaType": "audio/x-scpls",
+              "extensions": [
+                ".pls"
+              ],
+              "actions": [
+                "open"
+              ]
+            }
+          ]
+        },
         {
           "version": "1.1.0",
           "commit": "99567cd027cfa9e1428db6d0903a96bc5ab526fd",
