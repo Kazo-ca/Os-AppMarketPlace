@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/Kazo-ca/Os-App-Vector",
+  "project": "src/Kazo.Vector/Kazo.Vector.csproj",
+  "category": "graphics",
+  "tags": [
+    "vector",
+    "drawing",
+    "illustration",
+    "svg",
+    "graphics"
+  ],
+  "license": "MIT",
+  "commit": "ba76fc1e19c537721f6cb8e8a69dfe39977f54d7"
+}
