@@ -142,9 +142,13 @@ une copie :
 | Un champ « adresse du serveur » ([ADR 0284](https://github.com/Kazo-ca/Os/blob/main/doc/fr/wasm/dev/adr/0284-drive-provider-hosts-and-typed-server-address.md) §2) est un champ `url` obligatoire et non secret, un au plus par fournisseur | `manifest.drive-provider.server-address` |
 | La classe, le nom, la connexion, les champs du formulaire et l'icône sont complets | `manifest.drive-provider.class`, `.name`, `.connection`, `.oauth`, `.form`, `.icon` |
 
-Deux points sont vérifiés ailleurs : que la classe dérive de `KazoDriveProvider` (le générateur de
-manifeste, à la compilation de l'app), et qu'aucune autre fonctionnalité ne fournit déjà le type
-(l'OS, à l'installation). Le commentaire de revue liste chaque type avec sa classe, sa connexion et
+Un type appartient à une seule app du catalogue : l'app publiée en premier le garde, et ses
+versions suivantes aussi (décision de Benoit, 2026-11-17). `validate` refuse un dossier ajouté dont
+le type est déjà fourni par une app de la branche, ou déclaré par une autre app de la même PR
+(`DriveTypeOwnership`) ; sans dossier nommé, il refuse un catalogue où deux apps fournissent le
+même type. L'OS refuse aussi ce cas à l'installation ; le Store le dit avant la publication. Que la
+classe dérive de `KazoDriveProvider` est vérifié par le générateur de manifeste, à la compilation
+de l'app. Le commentaire de revue liste chaque type avec sa classe, sa connexion et
 ses hôtes : le relecteur vérifie que le fournisseur ne joint que le service qu'il nomme, car la
 liste d'hôtes borne le SDK, pas le code propre de la fonctionnalité (ADR 0282, Sécurité).
 
@@ -382,7 +386,11 @@ GitHub Actions, les erreurs deviennent des annotations sur les fichiers de la PR
 - Fournisseurs de lecteur (2026-11-17, chantier 8 de la série `drive-providers` de Kazo OS,
   ADR 0282) : le sous-module passe à `v3.5.0` pour que le validateur de Kazo OS vérifie la
   déclaration ; aucune règle n'est copiée dans l'outil. `store.json` accepte `kind: "feature"`,
-  qui doit concorder avec le manifeste, et `catalog.json` l'écrit.
+  qui doit concorder avec le manifeste, et `catalog.json` l'écrit. Un type de lecteur appartient à
+  l'app publiée en premier, qui le garde dans ses versions suivantes ; une soumission dont le type
+  est fourni par une autre app est refusée (décision de Benoit, 2026-11-17, choix A sur trois :
+  refuser, avertir, rien). Cela ne concerne que les types de lecteur : la protection contre une
+  app publiée sous l'identifiant d'une autre est une étude à part.
 
 - Canal bêta (2026-11-14, ADR 0271) : rétention de 3 bêtas par app en plus des 3 stables ; une
   bêta plus ancienne que la dernière stable est refusée ; la « reconstruction seule » exige aussi
