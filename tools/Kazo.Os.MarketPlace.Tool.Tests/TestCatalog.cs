@@ -48,6 +48,36 @@ internal sealed class TestCatalog : IDisposable
         return folder;
     }
 
+    /// <summary>
+    /// Writes a valid folder whose manifest is <paramref name="manifestJson"/>, for the manifests
+    /// <see cref="AddApp"/> does not build (a feature that provides drive types, for example).
+    /// </summary>
+    /// <param name="storeKind">The <c>kind</c> written to <c>store.json</c>, or <see langword="null"/> for none.</param>
+    public string AddApp(string appId, string version, string manifestJson, string? storeKind)
+    {
+        string folder = AddApp(appId, version);
+        File.WriteAllText(Path.Combine(folder, "manifest.json"), manifestJson);
+        if (storeKind is not null)
+        {
+            string store = Path.Combine(folder, "store.json");
+            File.WriteAllText(store, File.ReadAllText(store).Replace("\"license\": \"MIT\"", $"\"license\": \"MIT\",\n  \"kind\": \"{storeKind}\"", StringComparison.Ordinal));
+        }
+
+        return folder;
+    }
+
+    /// <summary>
+    /// A feature manifest as the Kazo OS generator writes it (ADR 0282), with <paramref name="driveProviders"/>
+    /// written as its <c>driveProviders</c> JSON array.
+    /// </summary>
+    public static string FeatureManifest(string appId, string version, string[] capabilities, string driveProviders, string kind = "feature")
+    {
+        string entryPoint = kind == "feature" ? string.Empty : "\"entryPoint\":{\"assembly\":\"Example.Drives.dll\",\"type\":\"Example.Drives.DrivesService\"},";
+        return $$"""
+        {"schemaVersion":1,"id":"{{appId}}","name":"Example drives","version":"{{version}}","publisherId":"pub.example","description":"Example drives","kind":"{{kind}}",{{entryPoint}}"sdkCompatibility":{"minimumVersion":"3.5.0"},"presentation":{"category":"system","launchVisibility":"hidden","iconAssetPaths":[]},"localizations":[],"capabilities":[{{string.Join(",", capabilities.Select(c => $"\"{c}\""))}}],"declaredTopicPermissions":[],"resources":{"baselineCpuWeight":0,"burstCpuWeight":0,"baselineMemoryWeight":0,"burstMemoryWeight":0,"baselineStorageIoWeight":0,"burstStorageIoWeight":0,"baselineNetworkIoWeight":0,"burstNetworkIoWeight":0},"intents":[],"dependencies":[],"assets":[],"fileHandlers":[],"singleInstancePerUser":false,"autoStart":false,"supportsBack":false,"execution":"mainThread","driveProviders":{{driveProviders}}}
+        """;
+    }
+
     /// <summary>Builds the package our CI would build for a folder, with a fake assembly.</summary>
     public static byte[] Package(string manifestJson) =>
         AppPackageWriter.Write(Encoding.UTF8.GetBytes(manifestJson), _ => [0x4D, 0x5A, 0x90, 0x00], _ => []);

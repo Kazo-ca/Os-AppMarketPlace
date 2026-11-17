@@ -61,7 +61,10 @@ code relu.
 3. Ouvrez une pull request vers `main` et remplissez le modèle.
 4. L'action **Validate app submissions** vérifie le format, compile l'app au commit indiqué,
    compare le manifeste produit avec le vôtre, lance CodeQL, puis écrit un commentaire avec les
-   capacités demandées (les dangereuses en évidence) et les fichiers JavaScript embarqués.
+   capacités demandées (les dangereuses en évidence) et les fichiers JavaScript embarqués. Une
+   fonctionnalité de l'OS écrit `"kind": "feature"` dans son `store.json` ; celle qui fournit un
+   type de lecteur réseau voit sa déclaration vérifiée avec les règles de Kazo OS (types réservés,
+   hôtes en `https`, pas de `*` nu), voir [Fournisseurs de lecteur](doc/fr/catalog-format.md#fournisseurs-de-lecteur-adr-0282).
 5. Un mainteneur relit le code de l'app à ce commit et approuve. Rien n'est fusionné
    automatiquement.
 6. Après la fusion, l'action **Publish catalog** recompile l'app au même commit et met à jour la

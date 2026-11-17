@@ -178,6 +178,25 @@ public sealed class AppFolderValidatorTests : IDisposable
     }
 
     [Fact]
+    public void A_feature_folder_says_feature_in_store_json()
+    {
+        string manifest = TestCatalog.FeatureManifest("org.example.drives", "1.0.0", ["drives.provide"], "[]");
+
+        Assert.Empty(catalog.Validate(catalog.AddApp("org.example.drives", "1.0.0", manifest, "feature")));
+        Assert.Contains(
+            catalog.Validate(catalog.AddApp("org.example.drives", "1.0.1", TestCatalog.FeatureManifest("org.example.drives", "1.0.1", ["drives.provide"], "[]"), null)),
+            error => error.Path.EndsWith("/store.json", StringComparison.Ordinal) && error.Message.Contains("write \"kind\": \"feature\"", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void An_app_folder_may_not_say_feature_in_store_json()
+    {
+        Assert.Contains(
+            catalog.Validate(catalog.AddApp("org.example.notes", "1.2.0", TestCatalog.Manifest("org.example.notes", "1.2.0", []), "feature")),
+            error => error.Path.EndsWith("/store.json", StringComparison.Ordinal) && error.Message.StartsWith("'kind' is \"feature\" but the manifest's kind is \"terminal\"", StringComparison.Ordinal));
+    }
+
+    [Fact]
     public void Store_json_accepts_a_project_path_and_the_app_kind()
     {
         string folder = catalog.AddApp();

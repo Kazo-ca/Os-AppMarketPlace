@@ -9,9 +9,27 @@ public sealed class CatalogPublisherTests : IDisposable
 
     public void Dispose() => catalog.Dispose();
 
+    private const string DriveProvider = """
+        [{"type":"exampledav","name":"Example DAV","provider":"Example.Drives.ExampleDavProvider, Example.Drives","hosts":["*.example.org"],
+          "connection":{"kind":"form","fields":[{"name":"address","label":"Address","kind":"url","secret":false,"required":true,"serverAddress":true}]}}]
+        """;
+
     private string Built => Path.Combine(catalog.Root, "built");
 
     private string Output => Path.Combine(catalog.Root, "packages-branch");
+
+    [Fact]
+    public void A_feature_is_published_with_the_feature_kind()
+    {
+        string manifest = TestCatalog.FeatureManifest("org.example.drives", "1.0.0", ["drives.provide"], DriveProvider);
+        Build(catalog.AddApp("org.example.drives", "1.0.0", manifest, "feature"));
+
+        List<CatalogError> errors = [];
+        CatalogPublisher.Publish(catalog.Root, Built, Output, 3, Now, errors);
+
+        Assert.Empty(errors);
+        Assert.Equal("feature", (string?)ReadCatalog()["apps"]![0]!["kind"]);
+    }
 
     [Fact]
     public void A_first_version_writes_the_package_its_assets_and_catalog_json()

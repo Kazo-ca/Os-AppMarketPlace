@@ -59,7 +59,10 @@ that package is what gets published. What reaches users is exactly the reviewed 
 3. Open a pull request to `main` and fill in the template.
 4. The **Validate app submissions** workflow checks the format, builds the app at the given
    commit, compares the generated manifest with yours, runs CodeQL, then writes a comment with the
-   requested capabilities (dangerous ones highlighted) and the embedded JavaScript files.
+   requested capabilities (dangerous ones highlighted) and the embedded JavaScript files. A
+   feature of the OS writes `"kind": "feature"` in its `store.json`; one that provides a type of
+   network drive has its declaration checked with the Kazo OS rules (reserved types, `https` hosts,
+   no bare `*`), see [Drive providers](doc/en/catalog-format.md#drive-providers-adr-0282).
 5. A maintainer reads the app's code at that commit and approves. Nothing is merged
    automatically.
 6. After the merge, the **Publish catalog** workflow rebuilds the app at the same commit and

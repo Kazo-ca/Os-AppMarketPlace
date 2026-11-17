@@ -86,6 +86,8 @@ public static class Program
             checkedFolders++;
         }
 
+        // A drive type belongs to the app published first (ADR 0282, Benoit's decision of 2026-11-17).
+        DriveTypeOwnership.Check(appsRoot, named ? [.. line.Positional] : [], errors);
         return Report(errors, $"{checkedFolders} app folder(s) and {categories.Categories.Count} categories are valid.");
     }
 

@@ -33,10 +33,11 @@ packages                          written only by publish.yml, no code history
 The tool `tools/Kazo.Os.MarketPlace.Tool` reads manifests with `AppManifestJsonSerializer` and
 `AppManifestValidator`, and packages with `AppPackage.Read`: the Kazo OS classes themselves, so the
 catalog applies exactly the rules the OS applies at install time. The tool builds the two
-libraries from the `external/KazoOs` submodule (`https://github.com/Kazo-ca/Os`), on the `v3.2.0`
-tag (2026-11-07: Kazo OS 3.2.0 manifests have the `realNetworkPorts` field of ADR 0235, which the
-strict reading of 3.0.0 refused; HackerOS was renamed Kazo OS on 2026-11-05, Kazo OS ADR 0228 and
-0229). The `Kazo.Os.*` NuGet packages carry the package reader too: the submodule can be replaced by `PackageReference`
+libraries from the `external/KazoOs` submodule (`https://github.com/Kazo-ca/Os`), on the `v3.5.0`
+tag (2026-11-17: Kazo OS 3.5.0 manifests have the `driveProviders` field of
+[ADR 0282](https://github.com/Kazo-ca/Os/blob/main/doc/en/wasm/dev/adr/0282-third-party-drive-providers.md), which the strict reading of older versions refused, and its validator checks
+it; see [Drive providers](#drive-providers-adr-0282)). Each move of the submodule brings the rules
+of that Kazo OS version: the manifest validator, the reserved names, the dangerous capabilities. The `Kazo.Os.*` NuGet packages carry the package reader too: the submodule can be replaced by `PackageReference`
 items later.
 
 The CI builds a submitted app at its commit with the app's own `external/KazoOs` submodule (an
@@ -81,7 +82,7 @@ Read strictly: an unknown or duplicate property is an error.
 | `tags` | no | at most 10, lower case, digits and `-`, 30 characters at most, no duplicate |
 | `license` | yes | SPDX expression (`MIT`, `GPL-3.0-only`, `MIT OR Apache-2.0`) |
 | `project` | no | relative path of the `.csproj` to build (letters, digits, `.`, `_`, `-`, `/`, no `..`) |
-| `kind` | no | what the folder publishes: `app` (the value when the field is absent) or `feature` (a feature of the OS, [ADR 0243](https://github.com/Kazo-ca/Os/blob/main/doc/en/wasm/dev/adr/0243-feature-app-type.md) of Kazo OS: its `manifest.json` has `kind: "feature"` and its package holds `entrypoints/`). The tool accepts `feature` only once its `external/KazoOs` submodule moves to a Kazo OS version that reads that kind; theme packs (ADR 0190) come with their work item |
+| `kind` | no | what the folder publishes: `app` (the value when the field is absent) or `feature` (a feature of the OS, [ADR 0243](https://github.com/Kazo-ca/Os/blob/main/doc/en/wasm/dev/adr/0243-feature-app-type.md) of Kazo OS: its `manifest.json` has `kind: "feature"` and its package holds `entrypoints/`). It must agree with the manifest: `feature` exactly when the manifest's `kind` is `feature`. `catalog.json` takes it as is, so the Store installs a feature for the machine only. Theme packs (ADR 0190) come with their work item |
 
 ### `categories.json`
 
@@ -97,12 +98,12 @@ The numbers are those of ADR 0188 §5.
 |---|---|---|
 | — | job *Catalog tool tests* | tests of the tool |
 | — | job *Check folders* | a file of an already merged folder may neither change nor disappear; a PR may only add folders |
-| 1, 2 | job *Check folders* | `validate` on `categories.json` and every folder |
+| 1, 2 | job *Check folders* | `validate` on `categories.json` and every folder, with the Kazo OS manifest validator (including the drive provider declaration, see [Drive providers](#drive-providers-adr-0282)) |
 | 3 | job *Build* | `git fetch` of the commit from the `store.json` repository; fails if it does not exist |
 | 4 | job *Build* then *review* | `dotnet build -c Release -t:KazoOsPack`, then `check-package`: the package must be read by `AppPackage.Read` and its manifest must be the folder's |
 | 5 | *review* | API check against the trimmed runtime (Kazo OS ADR 0277 §3): `.github/scripts/check-package-apis.sh` downloads `Kazo.Os.App.Build` of the newest Kazo OS of the channel from nuget.org (stable for `main`, pre-releases included for `beta`) and runs the `check-api` command of its manifest generator on the package, against the API surface it carries. A missing member fails the PR and is listed in the comment. A version that carries no surface yet (3.4.2 and older) gives a warning and "not checked" in the comment, without blocking (Benoit's decision, 2026-11-17). `kazopkg` checks again at install time (ADR 0182) |
 | 6 | job *Build* | CodeQL on the app's code: C# from its traced build (`manual`); JavaScript/TypeScript, when the repository has some outside `external/`, from its sources with the runner's CodeQL CLI (`none`, the only mode JavaScript supports, which the CodeQL action would run on the catalog's own directory); `external/**` (the Kazo OS submodule) is ignored; results are summed up in the comment |
-| 7 | *review* then `pr-comment.yml` | comment: source, license, SDK, package size and SHA-256, capabilities (dangerous first, marked ⚠️), JavaScript files, assemblies, CodeQL results |
+| 7 | *review* then `pr-comment.yml` | comment: source, license, SDK, package size and SHA-256, capabilities (dangerous first, marked ⚠️), drive types a feature provides (type, class, connection, hosts), JavaScript files, assemblies, CodeQL results |
 
 Then a maintainer reads the code and approves. One exception: a "rebuild only" submitted by the app
 automation is merged by `auto-merge.yml` (see [Beta channel](#beta-channel-adr-0271-5)).
@@ -118,6 +119,34 @@ automation is merged by `auto-merge.yml` (see [Beta channel](#beta-channel-adr-0
   environment variables, never through `${{ }}`, and are only used after the format check.
 - A PR can change the workflows themselves: the reviewer checks that the PR only touches `apps/`
   (otherwise it is a maintenance PR, reviewed as such).
+
+### Drive providers ([ADR 0282](https://github.com/Kazo-ca/Os/blob/main/doc/en/wasm/dev/adr/0282-third-party-drive-providers.md))
+
+A feature may provide a type of network drive (`driveProviders` in its manifest, Kazo OS 3.5.0).
+Its provider reads every file of the drives the user connects, so the catalog refuses an invalid
+declaration before anything is built or signed. The rules are those of the Kazo OS validator
+(`AppManifestValidator`, codes `manifest.drive-provider.*`), not a copy:
+
+| Rule | Code |
+|---|---|
+| Only a feature declares `driveProviders` and the `drives.provide` capability | `manifest.feature.only` |
+| A feature that declares a provider holds `drives.provide` | `manifest.drive-provider.capability` |
+| The type has the form of a filesystem type (lower case, digits, dashes) and is declared once | `manifest.drive-provider.type`, `manifest.drive-provider.duplicate` |
+| The type is not one the OS keeps for itself (`dropbox`, `onedrive`, `s3`, `hostfs`, `tmpfs`…: `AppDriveProviders.ReservedTypes`) | `manifest.drive-provider.reserved` |
+| Each host is a name reached in `https` (`api.example.org`, `*.example.org`), never a bare `*`, a scheme, a port or a path | `manifest.drive-provider.host` |
+| The OAuth addresses are absolute `https` addresses | `manifest.drive-provider.address` |
+| A "server address" field ([ADR 0284](https://github.com/Kazo-ca/Os/blob/main/doc/en/wasm/dev/adr/0284-drive-provider-hosts-and-typed-server-address.md) §2) is a required `url` field that is not secret, at most one per provider | `manifest.drive-provider.server-address` |
+| The class, name, connection, form fields and icon are complete | `manifest.drive-provider.class`, `.name`, `.connection`, `.oauth`, `.form`, `.icon` |
+
+A type belongs to one app of the catalog: the app published first keeps it, and its later
+versions keep it too (Benoit's decision, 2026-11-17). `validate` refuses an added folder whose type
+an app already in the branch provides, or that another app of the same PR declares
+(`DriveTypeOwnership`); without named folders, it refuses a catalog where two apps provide one
+type. The OS refuses that case at install time too; the Store says it before publication. Whether
+the class derives from `KazoDriveProvider` is checked by the manifest generator, at the app's
+build. The review comment lists each type with its class, its connection and its hosts:
+the reviewer checks that the provider only reaches the service it names, since the host list
+bounds the SDK, not the feature's own code (ADR 0282, Security).
 
 ## Publication (`publish.yml`)
 
@@ -353,6 +382,14 @@ Actions, errors become annotations on the PR's files. Clone with `--recurse-subm
   kind of a package so the Store hides "Install for me"; an absent field means `app`, existing
   entries do not change.
 
+- Drive providers (2026-11-17, work item 8 of the `drive-providers` series of Kazo OS, ADR 0282):
+  the submodule moves to `v3.5.0` so the Kazo OS validator checks the declaration; no rule is
+  copied into the tool. `store.json` accepts `kind: "feature"`, which must agree with the manifest,
+  and `catalog.json` writes it. A drive type belongs to the app published first, which keeps it in
+  its later versions; a submission whose type another app provides is refused (Benoit's decision,
+  2026-11-17, option A of three: refuse, warn, nothing). This concerns drive types only: protection
+  against an app published under another app's id is a separate study.
+
 - Beta channel (2026-11-14, ADR 0271): 3 betas kept per app on top of the 3 stable versions; a
   beta older than the newest stable version is refused; a "rebuild only" also needs the same
   assets and a `store.json` that only differs by `commit`, and compares with the previous version
@@ -371,6 +408,8 @@ Actions, errors become annotations on the PR's files. Clone with `--recurse-subm
 - [x] API check against the trimmed runtime in CI ([#3](https://github.com/Kazo-ca/Os-AppMarketPlace/issues/3)).
 - [ ] Replace the submodule by the NuGet packages once a release carries them.
 - [ ] Theme packs (`kind: "theme-pack"`, ADR 0190).
-- [ ] `kind: "feature"` in the tool (`store.json`, `check-package`, `publish`) once the
-  `external/KazoOs` submodule reads features (ADR 0243 of Kazo OS,
-  [Kazo-ca/Os#449](https://github.com/Kazo-ca/Os/pull/449)).
+- [x] `kind: "feature"` in the tool (`store.json`, the folder check, `publish`) (ADR 0243 of Kazo OS,
+  [Kazo-ca/Os#449](https://github.com/Kazo-ca/Os/pull/449)); `check-package` reads a feature's
+  package with `AppPackage.Read` like any other.
+- [x] Drive provider declaration (ADR 0282, ADR 0284 of Kazo OS): Kazo OS 3.5.0 validator,
+  tests, drive types in the review comment.
