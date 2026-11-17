@@ -37,6 +37,14 @@ public static partial class AppFolderValidator
         List<string> screenshots = CheckScreenshots(folder, display, errors);
         AppManifest? manifest = ReadManifest(folder, display, folderAppId, folderVersion, errors);
         StoreEntry? store = ReadStore(folder, display, categories, errors);
+        if (manifest is not null && store is not null && (manifest.Kind == AppKind.Feature) != (store.Kind == StoreEntry.FeatureKind))
+        {
+            // The catalog says the kind (Kazo-ca/Os#449), so the Store never offers "Install for me" for a feature.
+            errors.Add(new CatalogError(
+                $"{display}/{CatalogPaths.StoreFile}",
+                $"'kind' is \"{store.Kind}\" but the manifest's kind is \"{manifest.Kind.ToString().ToLowerInvariant()}\": write \"kind\": \"{StoreEntry.FeatureKind}\" for a feature and nothing (or \"{StoreEntry.AppKind}\") otherwise."));
+        }
+
 
         return errors.Count == before
             ? new AppFolder(folder, name, manifest!, folderVersion, store!, shortDescriptions, descriptionFiles, screenshots)

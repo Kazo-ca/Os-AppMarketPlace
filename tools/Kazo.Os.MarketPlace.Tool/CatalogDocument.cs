@@ -46,7 +46,7 @@ public sealed record CatalogDocument(int SchemaVersion, IReadOnlyList<CatalogCat
 
 /// <summary>One app of the catalog. Its listing fields come from its newest published version.</summary>
 /// <param name="AppId">App identifier.</param>
-/// <param name="Kind"><c>app</c>, or <c>theme-pack</c> later (ADR 0190).</param>
+/// <param name="Kind"><c>app</c> or <c>feature</c> (ADR 0243 of Kazo OS), or <c>theme-pack</c> later (ADR 0190).</param>
 /// <param name="Name">Display name from the manifest.</param>
 /// <param name="Category">Category id.</param>
 /// <param name="Tags">Search tags.</param>

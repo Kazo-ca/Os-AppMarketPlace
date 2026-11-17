@@ -235,7 +235,7 @@ public static class CatalogPublisher
 
         return new CatalogApp(
             folder.AppId,
-            "app",
+            folder.Store.Kind,
             folder.Manifest.Name,
             folder.Store.Category,
             folder.Store.Tags,

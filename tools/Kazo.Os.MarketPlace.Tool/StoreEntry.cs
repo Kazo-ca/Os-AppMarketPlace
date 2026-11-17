@@ -18,7 +18,19 @@ namespace Kazo.Os.MarketPlace;
 /// </param>
 public sealed partial record StoreEntry(string Repository, string Commit, string Category, IReadOnlyList<string> Tags, string License, string? Project)
 {
+    /// <summary>The <c>kind</c> of an ordinary app, the value when <c>store.json</c> has none.</summary>
+    public const string AppKind = "app";
+
+    /// <summary>The <c>kind</c> of a feature of the OS (ADR 0243 of Kazo OS), whose manifest has <c>kind: "feature"</c>.</summary>
+    public const string FeatureKind = "feature";
+
     private static readonly string[] AllowedProperties = ["repository", "commit", "category", "tags", "license", "project", "kind"];
+
+    /// <summary>
+    /// Gets what the folder publishes: <see cref="AppKind"/> or <see cref="FeatureKind"/>. The catalog
+    /// writes it to <c>catalog.json</c>, so the Store installs a feature for the machine only.
+    /// </summary>
+    public string Kind { get; init; } = AppKind;
 
     /// <summary>Reads and checks a <c>store.json</c> file.</summary>
     /// <param name="json">The file content.</param>
@@ -49,10 +61,10 @@ public sealed partial record StoreEntry(string Repository, string Commit, string
             }
 
             string? kind = StrictJson.GetString(root, "kind");
-            if (root.TryGetProperty("kind", out _) && kind != "app")
+            if (root.TryGetProperty("kind", out _) && kind is not (AppKind or FeatureKind))
             {
-                // Theme packs (ADR 0190) get their own checks with their work item; until then only apps.
-                errors.Add(new CatalogError(displayPath, $"'kind' may only be \"app\" for now (theme packs come with ADR 0190), got '{kind}'."));
+                // Theme packs (ADR 0190) get their own checks with their work item; until then apps and features.
+                errors.Add(new CatalogError(displayPath, $"'kind' may only be \"{AppKind}\" or \"{FeatureKind}\" for now (theme packs come with ADR 0190), got '{kind}'."));
             }
 
             string? repository = Require(root, "repository", RepositoryPattern(), "https://github.com/owner/repo", displayPath, errors);
@@ -68,7 +80,7 @@ public sealed partial record StoreEntry(string Repository, string Commit, string
             string? project = ReadProject(root, displayPath, errors);
 
             return errors.Count == before
-                ? new StoreEntry(repository!, commit!, category!, tags, license!, project)
+                ? new StoreEntry(repository!, commit!, category!, tags, license!, project) { Kind = kind ?? AppKind }
                 : null;
         }
     }
