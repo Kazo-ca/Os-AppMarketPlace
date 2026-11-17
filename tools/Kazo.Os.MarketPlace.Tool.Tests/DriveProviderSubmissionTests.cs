@@ -122,6 +122,78 @@ public sealed class DriveProviderSubmissionTests : IDisposable
         AssertRefused(Validate($"[{provider},{provider}]"), "manifest.drive-provider.duplicate");
     }
 
+    [Fact]
+    public void A_type_another_app_of_the_catalog_provides_is_refused()
+    {
+        AddFeature("org.example.first", "1.0.0");
+        string second = AddFeature("org.example.second", "1.0.0");
+
+        List<CatalogError> errors = [];
+        DriveTypeOwnership.Check(catalog.Apps, [second], errors);
+
+        CatalogError error = Assert.Single(errors);
+        Assert.Equal($"apps/{second}/manifest.json", error.Path);
+        Assert.StartsWith("The drive type 'exampledav' is already provided by 'org.example.first'", error.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void The_app_that_owns_a_type_keeps_it_in_its_later_versions()
+    {
+        AddFeature("org.example.first", "1.0.0");
+        string next = AddFeature("org.example.first", "1.1.0");
+
+        List<CatalogError> errors = [];
+        DriveTypeOwnership.Check(catalog.Apps, [next], errors);
+
+        Assert.Empty(errors);
+    }
+
+    [Fact]
+    public void Two_apps_of_one_pull_request_may_not_share_a_type()
+    {
+        string first = AddFeature("org.example.first", "1.0.0");
+        string second = AddFeature("org.example.second", "1.0.0");
+
+        List<CatalogError> errors = [];
+        DriveTypeOwnership.Check(catalog.Apps, [first, second], errors);
+
+        Assert.Equal(2, errors.Count);
+        Assert.All(errors, error => Assert.Contains("declared by several apps of this pull request", error.Message, StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void The_whole_catalog_check_refuses_a_type_provided_by_two_apps()
+    {
+        AddFeature("org.example.first", "1.0.0");
+        AddFeature("org.example.first", "1.1.0");
+        AddFeature("org.example.other", "1.0.0", type: "otherdav");
+
+        List<CatalogError> errors = [];
+        DriveTypeOwnership.Check(catalog.Apps, [], errors);
+        Assert.Empty(errors);
+
+        AddFeature("org.example.second", "1.0.0");
+        DriveTypeOwnership.Check(catalog.Apps, [], errors);
+        Assert.Contains("'org.example.first', 'org.example.second'", Assert.Single(errors).Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void The_validate_command_refuses_a_submission_whose_type_is_taken()
+    {
+        AddFeature("org.example.first", "1.0.0");
+        string second = AddFeature("org.example.second", "1.0.0", type: "otherdav");
+        Assert.Equal(0, Program.Main(["validate", "--root", catalog.Root, second]));
+
+        string third = AddFeature("org.example.third", "1.0.0");
+        Assert.Equal(1, Program.Main(["validate", "--root", catalog.Root, third]));
+    }
+
+    private string AddFeature(string appId, string version, string type = "exampledav")
+    {
+        string manifest = TestCatalog.FeatureManifest(appId, version, [DrivesProvide], Provider(type: type));
+        return Path.GetFileName(catalog.AddApp(appId, version, manifest, "feature"));
+    }
+
     /// <summary>A WebDAV-like form provider; each argument replaces one part of a valid declaration.</summary>
     private static string Provider(string type = "exampledav", string hosts = "[\"*.example.org\"]", string? fields = null)
     {

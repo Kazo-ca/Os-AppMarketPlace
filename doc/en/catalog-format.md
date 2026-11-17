@@ -138,9 +138,13 @@ declaration before anything is built or signed. The rules are those of the Kazo 
 | A "server address" field ([ADR 0284](https://github.com/Kazo-ca/Os/blob/main/doc/en/wasm/dev/adr/0284-drive-provider-hosts-and-typed-server-address.md) §2) is a required `url` field that is not secret, at most one per provider | `manifest.drive-provider.server-address` |
 | The class, name, connection, form fields and icon are complete | `manifest.drive-provider.class`, `.name`, `.connection`, `.oauth`, `.form`, `.icon` |
 
-Two things are checked elsewhere: whether the class derives from `KazoDriveProvider` (the manifest
-generator, at the app's build), and whether another feature already provides the type (the OS, at
-install time). The review comment lists each type with its class, its connection and its hosts:
+A type belongs to one app of the catalog: the app published first keeps it, and its later
+versions keep it too (Benoit's decision, 2026-11-17). `validate` refuses an added folder whose type
+an app already in the branch provides, or that another app of the same PR declares
+(`DriveTypeOwnership`); without named folders, it refuses a catalog where two apps provide one
+type. The OS refuses that case at install time too; the Store says it before publication. Whether
+the class derives from `KazoDriveProvider` is checked by the manifest generator, at the app's
+build. The review comment lists each type with its class, its connection and its hosts:
 the reviewer checks that the provider only reaches the service it names, since the host list
 bounds the SDK, not the feature's own code (ADR 0282, Security).
 
@@ -381,7 +385,10 @@ Actions, errors become annotations on the PR's files. Clone with `--recurse-subm
 - Drive providers (2026-11-17, work item 8 of the `drive-providers` series of Kazo OS, ADR 0282):
   the submodule moves to `v3.5.0` so the Kazo OS validator checks the declaration; no rule is
   copied into the tool. `store.json` accepts `kind: "feature"`, which must agree with the manifest,
-  and `catalog.json` writes it.
+  and `catalog.json` writes it. A drive type belongs to the app published first, which keeps it in
+  its later versions; a submission whose type another app provides is refused (Benoit's decision,
+  2026-11-17, option A of three: refuse, warn, nothing). This concerns drive types only: protection
+  against an app published under another app's id is a separate study.
 
 - Beta channel (2026-11-14, ADR 0271): 3 betas kept per app on top of the 3 stable versions; a
   beta older than the newest stable version is refused; a "rebuild only" also needs the same
