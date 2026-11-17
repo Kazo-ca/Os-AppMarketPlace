@@ -18,15 +18,15 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <!-- The Kazo OS repository (Kazo-ca/Os), a submodule pinned to the commit of its v3.0.0 tag. -->
+    <!-- The Kazo OS repository (Kazo-ca/Os), a submodule pinned to the commit of its v3.5.0 tag (driveProviders, ADR 0282). -->
     <KazoOsRoot>$(MSBuildThisFileDirectory)../../external/KazoOs/wasm2/KazoOs/</KazoOsRoot>
   </PropertyGroup>
 
   <ItemGroup>
     <!--
       The tool builds the two libraries from the submodule. The Kazo.Os.* 3.0.0 NuGet packages carry
-      the package reader (AppPackage, ADR 0182) too: these can become PackageReference items of that
-      version later, and the submodule then goes.
+      the package reader (AppPackage, ADR 0182) too: these can become PackageReference items of the
+      submodule's version later, and the submodule then goes.
     -->
     <ProjectReference Include="$(KazoOsRoot)Shared/Kazo.Os.App.Abstractions/Kazo.Os.App.Abstractions.csproj" />
     <ProjectReference Include="$(KazoOsRoot)Platform/Kazo.Os.Platform.Core/Kazo.Os.Platform.Core.csproj" />
