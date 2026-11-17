@@ -114,6 +114,8 @@ jobs:
 
       - name: Check each package against its folder
         env:
+          # ADR 0277 §3 of Kazo-ca/Os: the APIs are checked against the newest Kazo OS of the channel.
+          CHANNEL: ${{ github.base_ref == 'beta' && 'beta' || 'stable' }}
           FOLDERS: ${{ needs.plan.outputs.folders }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           REVIEW: ${{ runner.temp }}/review
@@ -134,6 +136,12 @@ jobs:
             package=$(find "$REVIEW/$folder/package" -name '*.kazoapp' -print -quit 2>/dev/null || true)
             "${tool[@]}" check-package --root . --folder "$folder" --report "comment/$folder.md" \
               ${package:+--package "$package"} --sarif "$REVIEW/$folder/sarif" || status=1
+            # Step 5 of ADR 0188 §5 (ADR 0277 §3): the trimmed OS must have every member the
+            # package calls, or kazopkg and the Store refuse to install it.
+            if [ -n "$package" ]; then
+              bash .github/scripts/check-package-apis.sh --package "$package" --channel "$CHANNEL" \
+                --report "comment/$folder.md" || status=1
+            fi
             cat "comment/$folder.md" >> comment/comment.md
           done
           cat comment/comment.md >> "$GITHUB_STEP_SUMMARY"
