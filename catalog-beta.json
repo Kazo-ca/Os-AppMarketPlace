@@ -99,8 +99,37 @@
       },
       "license": "MIT",
       "repository": "https://github.com/Kazo-ca/Os-App-AI",
-      "latestVersion": "0.1.1",
+      "latestVersion": "0.1.2",
       "versions": [
+        {
+          "version": "0.1.2",
+          "commit": "3d6b8a26606891e67382a4acfb8b09da04595857",
+          "package": "packages/ca.kazo.ai/0.1.2/ca.kazo.ai-0.1.2.kazoapp",
+          "sha256": "a757f086b7041aeef15c3508256841eb998dcdd62b427e82b780f1b7b0638017",
+          "size": 2501317,
+          "publishedAt": "2026-11-17T03:52:49+00:00",
+          "capabilities": [
+            "clipboard.write",
+            "filesystem.private.read",
+            "filesystem.private.write",
+            "network.real.access"
+          ],
+          "sdkCompatibility": {
+            "minimumVersion": "3.4.2"
+          },
+          "icon": "assets/ca.kazo.ai/0.1.2/icon.png",
+          "screenshots": [
+            "assets/ca.kazo.ai/0.1.2/screenshots/1.png",
+            "assets/ca.kazo.ai/0.1.2/screenshots/2.png",
+            "assets/ca.kazo.ai/0.1.2/screenshots/3.png",
+            "assets/ca.kazo.ai/0.1.2/screenshots/4.png"
+          ],
+          "descriptions": {
+            "en": "assets/ca.kazo.ai/0.1.2/description.en.md",
+            "fr": "assets/ca.kazo.ai/0.1.2/description.fr.md"
+          },
+          "signature": "PV8pp0\u002Bitxv6\u002BYE78dac476q6wsaxH9yMriysFGcud4BoK3QAlGUM5UOMX5y7Z\u002BuQQ9zuYkSFTrrSMnL1VLV3A=="
+        },
         {
           "version": "0.1.1",
           "commit": "954813a0894299af141b2acc63f0f777a6a231e8",

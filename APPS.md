@@ -4,13 +4,13 @@
 
 Every app you can install from the Store of [Kazo OS](https://github.com/Kazo-ca/Os). **Try it** opens the app in Kazo OS in your browser, with nothing to install on your computer. This page is rewritten by the **Publish catalog** workflow each time the catalog changes.
 
-11 apps. Last publication: 2026-11-16.
+11 apps. Last publication: 2026-11-17.
 
 | | App | Description | Version | Category | Links |
 | --- | --- | --- | --- | --- | --- |
 | <img src="assets/ca.kazo.chess/1.1.1/icon.png" width="48" height="48" alt=""> | **Chess**<br>`ca.kazo.chess` | Chess for two on one screen or against Stockfish \(5 levels\), with a clock, undo and saved games \(.pgn\).<br>Opens: .pgn | 1.1.1 | Entertainment | [Try it](https://os.kazo.ca/?autolaunch=ca.kazo.chess) · [Source](https://github.com/Kazo-ca/Os-App-Chess) · GPL-3.0 |
 | <img src="assets/ca.kazo.irc/1.0.2/icon.png" width="48" height="48" alt=""> | **IRC**<br>`ca.kazo.irc` | Chat on real IRC networks: WebSocket without any server, Libera.Chat and OFTC through the Kazo server. | 1.0.2 | Communication | [Try it](https://os.kazo.ca/?autolaunch=ca.kazo.irc) · [Source](https://github.com/Kazo-ca/Os-App-IRC) · MIT |
-| <img src="assets/ca.kazo.ai/0.1.1/icon.png" width="48" height="48" alt=""> | **Kazo AI**<br>`ca.kazo.ai` | Chat with AI models using your own keys \(OpenRouter, OpenAI, Ollama\) or a local GPU model, with race mode and AutoTune. | 0.1.1 | Productivity | [Try it](https://os.kazo.ca/?autolaunch=ca.kazo.ai) · [Source](https://github.com/Kazo-ca/Os-App-AI) · MIT |
+| <img src="assets/ca.kazo.ai/0.1.2/icon.png" width="48" height="48" alt=""> | **Kazo AI**<br>`ca.kazo.ai` | Chat with AI models using your own keys \(OpenRouter, OpenAI, Ollama\) or a local GPU model, with race mode and AutoTune. | 0.1.2 | Productivity | [Try it](https://os.kazo.ca/?autolaunch=ca.kazo.ai) · [Source](https://github.com/Kazo-ca/Os-App-AI) · MIT |
 | <img src="assets/ca.kazo.deck/0.1.1/icon.png" width="48" height="48" alt=""> | **Kazo Deck**<br>`ca.kazo.deck` | A presentation editor for Kazo OS, built on DeckCraft.<br>Opens: .rtf, .pptx, .ppsx, .potx, .deckcraft, .md, .txt | 0.1.1 | Productivity | [Try it](https://os.kazo.ca/?autolaunch=ca.kazo.deck) · [Source](https://github.com/Kazo-ca/Os-App-Deck) · MIT |
 | <img src="assets/ca.kazo.fig/0.1.1/icon.png" width="48" height="48" alt=""> | **Kazo Fig**<br>`ca.kazo.fig` | Interface design and prototyping for .figcraft files, based on FigCraft by the ArtCraft team.<br>Opens: .json, .fig, .figcraft, .jam, .penpot, .sketch, .gif, .jpg, .jpeg, .png, .svg, .tif, .tiff, .webp | 0.1.1 | Graphics | [Try it](https://os.kazo.ca/?autolaunch=ca.kazo.fig) · [Source](https://github.com/Kazo-ca/Os-App-Fig) · MIT |
 | <img src="assets/ca.kazo.pdf/0.1.1/icon.png" width="48" height="48" alt=""> | **Kazo Pdf**<br>`ca.kazo.pdf` | A PDF reader and editor for Kazo OS, built on PdfCraft.<br>Opens: .pdf | 0.1.1 | Productivity | [Try it](https://os.kazo.ca/?autolaunch=ca.kazo.pdf) · [Source](https://github.com/Kazo-ca/Os-App-PDF) · MIT |
