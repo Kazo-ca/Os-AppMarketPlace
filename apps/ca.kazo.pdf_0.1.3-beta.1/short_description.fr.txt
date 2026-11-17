@@ -1,0 +1,1 @@
+Un lecteur et éditeur de PDF pour Kazo OS, construit sur PdfCraft.
