@@ -18,6 +18,7 @@ main                              relue par PR
   tools/                          outil du catalogue (C#) et ses tests
   external/KazoOs                 sous-module : bibliothèques Kazo OS lues par l'outil
   .github/actions/build-app/      compile une app depuis son commit (+ CodeQL)
+  .github/scripts/check-package-apis.sh  vérification des API contre Kazo OS élagué
   .github/workflows/validate.yml  vérifie une PR
   .github/workflows/pr-comment.yml écrit le commentaire de revue
   .github/workflows/publish.yml   publie après la fusion
@@ -99,7 +100,7 @@ Les numéros sont ceux de l'ADR 0188 §5.
 | 1, 2 | job *Check folders* | `validate` sur `categories.json` et tous les dossiers |
 | 3 | job *Build* | `git fetch` du commit dans le dépôt de `store.json` ; échec s'il n'existe pas |
 | 4 | job *Build* puis *review* | `dotnet build -c Release -t:KazoOsPack`, puis `check-package` : le paquet doit être lu par `AppPackage.Read` et son manifeste être celui du dossier |
-| 5 | — | vérification des API contre le runtime élagué : faite par `kazopkg` à l'installation (ADR 0182) ; pas en CI pour la v1 (décision de Benoit, Q1 = A ; [#3](https://github.com/Kazo-ca/Os-AppMarketPlace/issues/3)) |
+| 5 | *review* | vérification des API contre le runtime élagué (ADR 0277 §3 de Kazo OS) : `.github/scripts/check-package-apis.sh` télécharge de nuget.org `Kazo.Os.App.Build` de la dernière version de Kazo OS du canal (stable pour `main`, préversions comprises pour `beta`) et lance la commande `check-api` de son générateur de manifeste sur le paquet, contre la surface d'API qu'il contient. Un membre manquant fait échouer la PR et figure dans le commentaire. Une version qui n'a pas encore de surface (3.4.2 et avant) donne un avertissement et « non vérifié » dans le commentaire, sans bloquer (décision de Benoit, 2026-11-17). `kazopkg` vérifie encore à l'installation (ADR 0182) |
 | 6 | job *Build* | CodeQL sur le code de l'app : C# depuis sa build tracée (`manual`) ; JavaScript/TypeScript, si le dépôt en a hors de `external/`, depuis ses sources avec la CLI CodeQL du runner (`none`, le seul mode que JavaScript accepte, que l'action CodeQL lancerait sur le dossier du catalogue lui-même) ; `external/**` (le sous-module Kazo OS) est ignoré ; les résultats sont résumés dans le commentaire |
 | 7 | *review* puis `pr-comment.yml` | commentaire : source, licence, SDK, taille et SHA-256 du paquet, capacités (les dangereuses d'abord, marquées ⚠️), fichiers JavaScript, assemblies, résultats CodeQL |
 
@@ -355,8 +356,11 @@ GitHub Actions, les erreurs deviennent des annotations sur les fichiers de la PR
   bêta plus ancienne que la dernière stable est refusée ; la « reconstruction seule » exige aussi
   des ressources identiques et un `store.json` identique sauf `commit`, et se compare à la
   version précédente dans la branche visée.
-- La vérification des API en CI (ADR 0188 §5 étape 5) est laissée à l'installation pour la v1
-  (décision de Benoit, Q1 = A) ; elle viendra avec [#3](https://github.com/Kazo-ca/Os-AppMarketPlace/issues/3).
+- La vérification des API en CI (ADR 0188 §5 étape 5) était laissée à l'installation pour la v1
+  (décision de Benoit, Q1 = A). Elle tourne en CI depuis l'ADR 0277 §3 de Kazo OS ([#3](https://github.com/Kazo-ca/Os-AppMarketPlace/issues/3),
+  [Kazo-ca/Os#346](https://github.com/Kazo-ca/Os/issues/346)), contre la dernière version de Kazo OS
+  du canal ; elle avertit sans bloquer tant que cette version ne publie pas de surface d'API
+  (décision de Benoit, 2026-11-17).
 - `kind: "feature"` dans `catalog.json` (2026-11-11, décision de Benoit sur
   [Kazo-ca/Os#449](https://github.com/Kazo-ca/Os/pull/449), question 1 = B) : le catalogue dit le
   genre d'un paquet pour que le Store cache « Installer pour moi » ; l'absence du champ vaut `app`,
@@ -372,7 +376,7 @@ GitHub Actions, les erreurs deviennent des annotations sur les fichiers de la PR
 - [x] Outil du catalogue : format, manifeste, paquet, commentaire de revue, publication, tests.
 - [x] `validate.yml`, `pr-comment.yml`, `publish.yml` et l'action `build-app`.
 - [x] README (anglais, français) et ce document.
-- [ ] Vérification des API contre le runtime élagué en CI ([#3](https://github.com/Kazo-ca/Os-AppMarketPlace/issues/3)).
+- [x] Vérification des API contre le runtime élagué en CI ([#3](https://github.com/Kazo-ca/Os-AppMarketPlace/issues/3)).
 - [ ] Remplacer le sous-module par les paquets NuGet quand une version les contient.
 - [ ] Packs de thèmes (`kind: "theme-pack"`, ADR 0190).
 - [ ] `kind: "feature"` dans l'outil (`store.json`, `check-package`, `publish`) quand le

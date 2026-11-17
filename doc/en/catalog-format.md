@@ -18,6 +18,7 @@ main                              reviewed by PR
   tools/                          catalog tool (C#) and its tests
   external/KazoOs                 submodule: Kazo OS libraries the tool reads with
   .github/actions/build-app/      builds an app from its commit (+ CodeQL)
+  .github/scripts/check-package-apis.sh  API check against the trimmed Kazo OS
   .github/workflows/validate.yml  checks a PR
   .github/workflows/pr-comment.yml writes the review comment
   .github/workflows/publish.yml   publishes after the merge
@@ -99,7 +100,7 @@ The numbers are those of ADR 0188 §5.
 | 1, 2 | job *Check folders* | `validate` on `categories.json` and every folder |
 | 3 | job *Build* | `git fetch` of the commit from the `store.json` repository; fails if it does not exist |
 | 4 | job *Build* then *review* | `dotnet build -c Release -t:KazoOsPack`, then `check-package`: the package must be read by `AppPackage.Read` and its manifest must be the folder's |
-| 5 | — | API check against the trimmed runtime: done by `kazopkg` at install time (ADR 0182); not in CI for v1 (Benoit's decision, Q1 = A; [#3](https://github.com/Kazo-ca/Os-AppMarketPlace/issues/3)) |
+| 5 | *review* | API check against the trimmed runtime (Kazo OS ADR 0277 §3): `.github/scripts/check-package-apis.sh` downloads `Kazo.Os.App.Build` of the newest Kazo OS of the channel from nuget.org (stable for `main`, pre-releases included for `beta`) and runs the `check-api` command of its manifest generator on the package, against the API surface it carries. A missing member fails the PR and is listed in the comment. A version that carries no surface yet (3.4.2 and older) gives a warning and "not checked" in the comment, without blocking (Benoit's decision, 2026-11-17). `kazopkg` checks again at install time (ADR 0182) |
 | 6 | job *Build* | CodeQL on the app's code: C# from its traced build (`manual`); JavaScript/TypeScript, when the repository has some outside `external/`, from its sources with the runner's CodeQL CLI (`none`, the only mode JavaScript supports, which the CodeQL action would run on the catalog's own directory); `external/**` (the Kazo OS submodule) is ignored; results are summed up in the comment |
 | 7 | *review* then `pr-comment.yml` | comment: source, license, SDK, package size and SHA-256, capabilities (dangerous first, marked ⚠️), JavaScript files, assemblies, CodeQL results |
 
@@ -342,8 +343,11 @@ Actions, errors become annotations on the PR's files. Clone with `--recurse-subm
   10 tags.
 - `catalog.json` also holds the categories and their labels, so the Store reads a single file.
 - A merged version is immutable: a PR may only add folders.
-- The API check in CI (ADR 0188 §5 step 5) is left to install time for v1 (Benoit's decision,
-  Q1 = A); it comes with [#3](https://github.com/Kazo-ca/Os-AppMarketPlace/issues/3).
+- The API check in CI (ADR 0188 §5 step 5) was left to install time for v1 (Benoit's decision,
+  Q1 = A). It runs in CI since Kazo OS ADR 0277 §3 ([#3](https://github.com/Kazo-ca/Os-AppMarketPlace/issues/3),
+  [Kazo-ca/Os#346](https://github.com/Kazo-ca/Os/issues/346)), against the newest Kazo OS of the
+  channel; it warns without blocking while that version publishes no API surface (Benoit's
+  decision, 2026-11-17).
 - `kind: "feature"` in `catalog.json` (2026-11-11, Benoit's decision on
   [Kazo-ca/Os#449](https://github.com/Kazo-ca/Os/pull/449), question 1 = B): the catalog says the
   kind of a package so the Store hides "Install for me"; an absent field means `app`, existing
@@ -364,7 +368,7 @@ Actions, errors become annotations on the PR's files. Clone with `--recurse-subm
 - [x] Catalog tool: format, manifest, package, review comment, publication, tests.
 - [x] `validate.yml`, `pr-comment.yml`, `publish.yml` and the `build-app` action.
 - [x] README (English, French) and this document.
-- [ ] API check against the trimmed runtime in CI ([#3](https://github.com/Kazo-ca/Os-AppMarketPlace/issues/3)).
+- [x] API check against the trimmed runtime in CI ([#3](https://github.com/Kazo-ca/Os-AppMarketPlace/issues/3)).
 - [ ] Replace the submodule by the NuGet packages once a release carries them.
 - [ ] Theme packs (`kind: "theme-pack"`, ADR 0190).
 - [ ] `kind: "feature"` in the tool (`store.json`, `check-package`, `publish`) once the
