@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/Kazo-ca/Os-App-AI",
+  "project": "src/Kazo.Ai/Kazo.Ai.csproj",
+  "category": "productivity",
+  "tags": [
+    "ai",
+    "chat",
+    "llm",
+    "openrouter",
+    "webgpu",
+    "local-model"
+  ],
+  "license": "MIT",
+  "commit": "3d6b8a26606891e67382a4acfb8b09da04595857"
+}
