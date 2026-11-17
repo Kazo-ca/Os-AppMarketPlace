@@ -34,6 +34,7 @@ public static class ReviewReport
         text.AppendLine();
         AppendErrors(text, errors);
         AppendCapabilities(text, folder.Manifest.Capabilities);
+        AppendDriveProviders(text, folder.Manifest.DriveProviders);
         if (package is not null)
         {
             AppendFiles(text, package);
@@ -90,6 +91,42 @@ public static class ReviewReport
         }
 
         text.AppendLine();
+    }
+
+    /// <summary>
+    /// The drive types a feature provides (ADR 0282 of Kazo-ca/Os). The catalog has already checked
+    /// their form; the reviewer checks that each one reaches only the service it names, since the
+    /// provider reads every file of the drives the user connects (ADR 0282, Security).
+    /// </summary>
+    private static void AppendDriveProviders(StringBuilder text, IReadOnlyList<AppDriveProviderManifest>? providers)
+    {
+        if (providers is not { Count: > 0 })
+        {
+            return;
+        }
+
+        text.AppendLine($"**Drive providers** ({providers.Count})");
+        text.AppendLine();
+        foreach (AppDriveProviderManifest provider in providers)
+        {
+            string hosts = provider.Hosts.Count == 0 ? "none" : string.Join(", ", provider.Hosts.Select(host => $"`{host}`"));
+            text.AppendLine($"- `{provider.Type}` ({provider.Name}), class `{provider.Provider}`: {DescribeConnection(provider.Connection)}; hosts {hosts}");
+        }
+
+        text.AppendLine();
+    }
+
+    private static string DescribeConnection(AppDriveConnectionManifest connection)
+    {
+        if (connection.Kind == AppDriveConnectionKind.OAuth && connection.OAuth is { } oauth)
+        {
+            return $"OAuth through `{oauth.AuthorizationEndpoint}` and `{oauth.TokenEndpoint}`";
+        }
+
+        AppDriveFormFieldManifest? server = connection.Fields.FirstOrDefault(static field => field.ServerAddress);
+        return server is null
+            ? "form"
+            : $"form; the host the user types in `{server.Name}` is allowed too (ADR 0284)";
     }
 
     private static void AppendFiles(StringBuilder text, AppPackage package)

@@ -34,9 +34,11 @@ L'outil `tools/Kazo.Os.MarketPlace.Tool` lit les manifestes avec `AppManifestJso
 `AppManifestValidator`, et les paquets avec `AppPackage.Read` : ce sont les classes de Kazo OS
 elles-mêmes, donc le catalogue applique exactement les règles de l'OS à l'installation. L'outil
 compile les deux bibliothèques depuis le sous-module `external/KazoOs` (`https://github.com/Kazo-ca/Os`),
-sur le tag `v3.2.0` (2026-11-07 : les manifestes de Kazo OS 3.2.0 ont le champ `realNetworkPorts`
-de l'ADR 0235, que la lecture stricte de 3.0.0 refusait ; HackerOS a été renommé Kazo OS le
-2026-11-05, ADR 0228 et 0229 de Kazo OS). Les paquets NuGet `Kazo.Os.*` contiennent aussi le lecteur de paquets : le sous-module pourra
+sur le tag `v3.5.0` (2026-11-17 : les manifestes de Kazo OS 3.5.0 ont le champ `driveProviders` de
+l'[ADR 0282](https://github.com/Kazo-ca/Os/blob/main/doc/fr/wasm/dev/adr/0282-third-party-drive-providers.md), que la lecture stricte des versions antérieures refusait, et son validateur le
+vérifie ; voir [Fournisseurs de lecteur](#fournisseurs-de-lecteur-adr-0282)). Chaque avancée du
+sous-module apporte les règles de cette version de Kazo OS : le validateur de manifeste, les noms
+réservés, les capacités dangereuses. Les paquets NuGet `Kazo.Os.*` contiennent aussi le lecteur de paquets : le sous-module pourra
 être remplacé plus tard par des `PackageReference`.
 
 La CI compile une app soumise à son commit avec le sous-module `external/KazoOs` de l'app (une
@@ -81,7 +83,7 @@ Lu strictement : une propriété inconnue ou en double est une erreur.
 | `tags` | non | 10 au plus, minuscules, chiffres et `-`, 30 caractères au plus, sans doublon |
 | `license` | oui | expression SPDX (`MIT`, `GPL-3.0-only`, `MIT OR Apache-2.0`) |
 | `project` | non | chemin relatif du `.csproj` à compiler (lettres, chiffres, `.`, `_`, `-`, `/`, sans `..`) |
-| `kind` | non | ce que le dossier publie : `app` (valeur quand le champ manque) ou `feature` (une fonctionnalité de l'OS, [ADR 0243](https://github.com/Kazo-ca/Os/blob/main/doc/fr/wasm/dev/adr/0243-feature-app-type.md) de Kazo OS : son `manifest.json` a `kind: "feature"` et son paquet contient `entrypoints/`). L'outil n'accepte `feature` qu'une fois son sous-module `external/KazoOs` passé à une version de Kazo OS qui lit ce genre ; les packs de thèmes (ADR 0190) viendront avec leur chantier |
+| `kind` | non | ce que le dossier publie : `app` (valeur quand le champ manque) ou `feature` (une fonctionnalité de l'OS, [ADR 0243](https://github.com/Kazo-ca/Os/blob/main/doc/fr/wasm/dev/adr/0243-feature-app-type.md) de Kazo OS : son `manifest.json` a `kind: "feature"` et son paquet contient `entrypoints/`). Il doit concorder avec le manifeste : `feature` exactement quand le `kind` du manifeste est `feature`. `catalog.json` le reprend tel quel, pour que le Store installe une fonctionnalité pour la machine seulement. Les packs de thèmes (ADR 0190) viendront avec leur chantier |
 
 ### `categories.json`
 
@@ -97,12 +99,12 @@ Les numéros sont ceux de l'ADR 0188 §5.
 |---|---|---|
 | — | job *Catalog tool tests* | tests de l'outil |
 | — | job *Check folders* | un fichier d'un dossier déjà fusionné ne peut ni changer ni disparaître ; la PR ne peut qu'ajouter des dossiers |
-| 1, 2 | job *Check folders* | `validate` sur `categories.json` et tous les dossiers |
+| 1, 2 | job *Check folders* | `validate` sur `categories.json` et tous les dossiers, avec le validateur de manifeste de Kazo OS (déclaration des fournisseurs de lecteur comprise, voir [Fournisseurs de lecteur](#fournisseurs-de-lecteur-adr-0282)) |
 | 3 | job *Build* | `git fetch` du commit dans le dépôt de `store.json` ; échec s'il n'existe pas |
 | 4 | job *Build* puis *review* | `dotnet build -c Release -t:KazoOsPack`, puis `check-package` : le paquet doit être lu par `AppPackage.Read` et son manifeste être celui du dossier |
 | 5 | *review* | vérification des API contre le runtime élagué (ADR 0277 §3 de Kazo OS) : `.github/scripts/check-package-apis.sh` télécharge de nuget.org `Kazo.Os.App.Build` de la dernière version de Kazo OS du canal (stable pour `main`, préversions comprises pour `beta`) et lance la commande `check-api` de son générateur de manifeste sur le paquet, contre la surface d'API qu'il contient. Un membre manquant fait échouer la PR et figure dans le commentaire. Une version qui n'a pas encore de surface (3.4.2 et avant) donne un avertissement et « non vérifié » dans le commentaire, sans bloquer (décision de Benoit, 2026-11-17). `kazopkg` vérifie encore à l'installation (ADR 0182) |
 | 6 | job *Build* | CodeQL sur le code de l'app : C# depuis sa build tracée (`manual`) ; JavaScript/TypeScript, si le dépôt en a hors de `external/`, depuis ses sources avec la CLI CodeQL du runner (`none`, le seul mode que JavaScript accepte, que l'action CodeQL lancerait sur le dossier du catalogue lui-même) ; `external/**` (le sous-module Kazo OS) est ignoré ; les résultats sont résumés dans le commentaire |
-| 7 | *review* puis `pr-comment.yml` | commentaire : source, licence, SDK, taille et SHA-256 du paquet, capacités (les dangereuses d'abord, marquées ⚠️), fichiers JavaScript, assemblies, résultats CodeQL |
+| 7 | *review* puis `pr-comment.yml` | commentaire : source, licence, SDK, taille et SHA-256 du paquet, capacités (les dangereuses d'abord, marquées ⚠️), types de lecteur fournis par une fonctionnalité (type, classe, connexion, hôtes), fichiers JavaScript, assemblies, résultats CodeQL |
 
 Puis un mainteneur relit le code et approuve. Seule exception : une « reconstruction seule » soumise
 par l'automate des apps est fusionnée par `auto-merge.yml` (voir [Canal bêta](#canal-bêta-adr-0271-5)).
@@ -120,6 +122,31 @@ par l'automate des apps est fusionnée par `auto-merge.yml` (voir [Canal bêta](
   format.
 - Une PR peut modifier les workflows eux-mêmes : le relecteur vérifie que la PR ne touche que
   `apps/` (ou alors c'est une PR de maintenance relue comme telle).
+
+### Fournisseurs de lecteur ([ADR 0282](https://github.com/Kazo-ca/Os/blob/main/doc/fr/wasm/dev/adr/0282-third-party-drive-providers.md))
+
+Une fonctionnalité peut fournir un type de lecteur réseau (`driveProviders` dans son manifeste,
+Kazo OS 3.5.0). Son fournisseur lit tous les fichiers des lecteurs que l'utilisateur connecte, donc
+le catalogue refuse une déclaration invalide avant toute compilation ou signature. Les règles sont
+celles du validateur de Kazo OS (`AppManifestValidator`, codes `manifest.drive-provider.*`), pas
+une copie :
+
+| Règle | Code |
+|---|---|
+| Seule une fonctionnalité déclare `driveProviders` et la capacité `drives.provide` | `manifest.feature.only` |
+| Une fonctionnalité qui déclare un fournisseur a `drives.provide` | `manifest.drive-provider.capability` |
+| Le type a la forme d'un type de système de fichiers (minuscules, chiffres, tirets) et n'est déclaré qu'une fois | `manifest.drive-provider.type`, `manifest.drive-provider.duplicate` |
+| Le type n'est pas un de ceux que l'OS garde pour lui (`dropbox`, `onedrive`, `s3`, `hostfs`, `tmpfs`… : `AppDriveProviders.ReservedTypes`) | `manifest.drive-provider.reserved` |
+| Chaque hôte est un nom joint en `https` (`api.example.org`, `*.example.org`), jamais un `*` nu, un schéma, un port ou un chemin | `manifest.drive-provider.host` |
+| Les adresses OAuth sont des adresses `https` absolues | `manifest.drive-provider.address` |
+| Un champ « adresse du serveur » ([ADR 0284](https://github.com/Kazo-ca/Os/blob/main/doc/fr/wasm/dev/adr/0284-drive-provider-hosts-and-typed-server-address.md) §2) est un champ `url` obligatoire et non secret, un au plus par fournisseur | `manifest.drive-provider.server-address` |
+| La classe, le nom, la connexion, les champs du formulaire et l'icône sont complets | `manifest.drive-provider.class`, `.name`, `.connection`, `.oauth`, `.form`, `.icon` |
+
+Deux points sont vérifiés ailleurs : que la classe dérive de `KazoDriveProvider` (le générateur de
+manifeste, à la compilation de l'app), et qu'aucune autre fonctionnalité ne fournit déjà le type
+(l'OS, à l'installation). Le commentaire de revue liste chaque type avec sa classe, sa connexion et
+ses hôtes : le relecteur vérifie que le fournisseur ne joint que le service qu'il nomme, car la
+liste d'hôtes borne le SDK, pas le code propre de la fonctionnalité (ADR 0282, Sécurité).
 
 ## Publication (`publish.yml`)
 
@@ -352,6 +379,11 @@ GitHub Actions, les erreurs deviennent des annotations sur les fichiers de la PR
 - `catalog.json` contient aussi les catégories et leurs libellés, pour que le Store n'ait qu'un
   fichier à lire.
 - Une version fusionnée est immuable : une PR ne peut qu'ajouter des dossiers.
+- Fournisseurs de lecteur (2026-11-17, chantier 8 de la série `drive-providers` de Kazo OS,
+  ADR 0282) : le sous-module passe à `v3.5.0` pour que le validateur de Kazo OS vérifie la
+  déclaration ; aucune règle n'est copiée dans l'outil. `store.json` accepte `kind: "feature"`,
+  qui doit concorder avec le manifeste, et `catalog.json` l'écrit.
+
 - Canal bêta (2026-11-14, ADR 0271) : rétention de 3 bêtas par app en plus des 3 stables ; une
   bêta plus ancienne que la dernière stable est refusée ; la « reconstruction seule » exige aussi
   des ressources identiques et un `store.json` identique sauf `commit`, et se compare à la
@@ -379,6 +411,8 @@ GitHub Actions, les erreurs deviennent des annotations sur les fichiers de la PR
 - [x] Vérification des API contre le runtime élagué en CI ([#3](https://github.com/Kazo-ca/Os-AppMarketPlace/issues/3)).
 - [ ] Remplacer le sous-module par les paquets NuGet quand une version les contient.
 - [ ] Packs de thèmes (`kind: "theme-pack"`, ADR 0190).
-- [ ] `kind: "feature"` dans l'outil (`store.json`, `check-package`, `publish`) quand le
-  sous-module `external/KazoOs` lira les fonctionnalités (ADR 0243 de Kazo OS,
-  [Kazo-ca/Os#449](https://github.com/Kazo-ca/Os/pull/449)).
+- [x] `kind: "feature"` dans l'outil (`store.json`, la vérification du dossier, `publish`) (ADR 0243
+  de Kazo OS, [Kazo-ca/Os#449](https://github.com/Kazo-ca/Os/pull/449)) ; `check-package` lit le
+  paquet d'une fonctionnalité avec `AppPackage.Read` comme les autres.
+- [x] Déclaration des fournisseurs de lecteur (ADR 0282, ADR 0284 de Kazo OS) : validateur de
+  Kazo OS 3.5.0, tests, types de lecteur dans le commentaire de revue.
