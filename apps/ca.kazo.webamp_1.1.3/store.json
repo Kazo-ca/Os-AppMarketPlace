@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/Kazo-ca/Os-App-Webamp",
+  "project": "src/Kazo.Webamp/Kazo.Webamp.csproj",
+  "category": "multimedia",
+  "tags": [
+    "music",
+    "player",
+    "winamp",
+    "playlist",
+    "skins",
+    "visualizer"
+  ],
+  "license": "MIT",
+  "commit": "f6c01b66f10c92ac4b11fb0b03d3e256708aa5d7"
+}
