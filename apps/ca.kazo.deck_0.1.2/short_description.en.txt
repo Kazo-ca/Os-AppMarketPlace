@@ -1,0 +1,1 @@
+A presentation editor for Kazo OS, built on DeckCraft.
