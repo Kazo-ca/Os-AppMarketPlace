@@ -1,0 +1,1 @@
+A vector drawing app for Kazo OS, built on VectorCraft.
