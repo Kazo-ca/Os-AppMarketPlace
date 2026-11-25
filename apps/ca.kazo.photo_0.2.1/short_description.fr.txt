@@ -1,0 +1,1 @@
+Un éditeur d'images à calques pour Kazo OS, construit sur PhotoCraft.
