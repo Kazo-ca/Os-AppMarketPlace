@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/Kazo-ca/Os-App-Photo",
+  "project": "src/Kazo.Photo/Kazo.Photo.csproj",
+  "category": "graphics",
+  "tags": [
+    "image-editor",
+    "photo",
+    "layers",
+    "psd",
+    "graphics"
+  ],
+  "license": "MIT",
+  "commit": "c33033a6b41c13e33da277e6c724805bb933e198"
+}
