@@ -99,15 +99,15 @@
       },
       "license": "MIT",
       "repository": "https://github.com/Kazo-ca/Os-App-AI",
-      "latestVersion": "0.1.3",
+      "latestVersion": "0.1.4",
       "versions": [
         {
-          "version": "0.1.4-beta.1",
-          "commit": "413f8e90348e0418642dcc01bdf45de8ab6109ec",
-          "package": "packages/ca.kazo.ai/0.1.4-beta.1/ca.kazo.ai-0.1.4-beta.1.kazoapp",
-          "sha256": "7aadb2450cdacf5cd0371c7ed1d7cbb97c5a17c96ab4c1fffa7f3db0549f8eb6",
-          "size": 2501324,
-          "publishedAt": "2026-11-18T04:43:28+00:00",
+          "version": "0.1.4",
+          "commit": "7d88d4e4979766dcda08b95edc42adc0e74bcd9b",
+          "package": "packages/ca.kazo.ai/0.1.4/ca.kazo.ai-0.1.4.kazoapp",
+          "sha256": "87e8c82a27692aba0b94a32113c315a622b856d3d9b12d3dddfd66258666db85",
+          "size": 2501308,
+          "publishedAt": "2026-11-25T17:38:06+00:00",
           "capabilities": [
             "clipboard.write",
             "filesystem.private.read",
@@ -115,20 +115,20 @@
             "network.real.access"
           ],
           "sdkCompatibility": {
-            "minimumVersion": "3.6.0-preview.1"
+            "minimumVersion": "3.6.0"
           },
-          "icon": "assets/ca.kazo.ai/0.1.4-beta.1/icon.png",
+          "icon": "assets/ca.kazo.ai/0.1.4/icon.png",
           "screenshots": [
-            "assets/ca.kazo.ai/0.1.4-beta.1/screenshots/1.png",
-            "assets/ca.kazo.ai/0.1.4-beta.1/screenshots/2.png",
-            "assets/ca.kazo.ai/0.1.4-beta.1/screenshots/3.png",
-            "assets/ca.kazo.ai/0.1.4-beta.1/screenshots/4.png"
+            "assets/ca.kazo.ai/0.1.4/screenshots/1.png",
+            "assets/ca.kazo.ai/0.1.4/screenshots/2.png",
+            "assets/ca.kazo.ai/0.1.4/screenshots/3.png",
+            "assets/ca.kazo.ai/0.1.4/screenshots/4.png"
           ],
           "descriptions": {
-            "en": "assets/ca.kazo.ai/0.1.4-beta.1/description.en.md",
-            "fr": "assets/ca.kazo.ai/0.1.4-beta.1/description.fr.md"
+            "en": "assets/ca.kazo.ai/0.1.4/description.en.md",
+            "fr": "assets/ca.kazo.ai/0.1.4/description.fr.md"
           },
-          "signature": "c/m52bLa9CFTHjF\u002BJ6tH9tn9REPs7Pe3x1D4KQiDOHGWMRcxk14LymGvL9gUeM1AfYJb7b5ZcBndxt\u002BmzhBiog=="
+          "signature": "3DrrrlyjMC4HBNsTlhyKvFJvjuXj72L4QqTORNaOCOAOCeGHLTS1ccG8kwjBAYp6PCAwGOBu9kuKSuXSoapY7g=="
         },
         {
           "version": "0.1.3",
@@ -187,35 +187,6 @@
             "fr": "assets/ca.kazo.ai/0.1.2/description.fr.md"
           },
           "signature": "PV8pp0\u002Bitxv6\u002BYE78dac476q6wsaxH9yMriysFGcud4BoK3QAlGUM5UOMX5y7Z\u002BuQQ9zuYkSFTrrSMnL1VLV3A=="
-        },
-        {
-          "version": "0.1.1",
-          "commit": "954813a0894299af141b2acc63f0f777a6a231e8",
-          "package": "packages/ca.kazo.ai/0.1.1/ca.kazo.ai-0.1.1.kazoapp",
-          "sha256": "b15e5bfd06be399b2e4458e1fc4336564efd1bd6aa5a0257726c800f66fae877",
-          "size": 2501317,
-          "publishedAt": "2026-11-16T03:02:44+00:00",
-          "capabilities": [
-            "clipboard.write",
-            "filesystem.private.read",
-            "filesystem.private.write",
-            "network.real.access"
-          ],
-          "sdkCompatibility": {
-            "minimumVersion": "3.4.0"
-          },
-          "icon": "assets/ca.kazo.ai/0.1.1/icon.png",
-          "screenshots": [
-            "assets/ca.kazo.ai/0.1.1/screenshots/1.png",
-            "assets/ca.kazo.ai/0.1.1/screenshots/2.png",
-            "assets/ca.kazo.ai/0.1.1/screenshots/3.png",
-            "assets/ca.kazo.ai/0.1.1/screenshots/4.png"
-          ],
-          "descriptions": {
-            "en": "assets/ca.kazo.ai/0.1.1/description.en.md",
-            "fr": "assets/ca.kazo.ai/0.1.1/description.fr.md"
-          },
-          "signature": "5163OB7qD8RJ9/uf7735oVhl/6CcVQQNFlZerlMbLQkWT26qh5WllKhxMm0edruaon9v3x\u002BNtMTDp\u002Bx6svl8sw=="
         }
       ]
     },
